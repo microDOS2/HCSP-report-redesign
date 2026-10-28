@@ -1233,3 +1233,73 @@ details.glossary dt {
 }
 details.glossary dd { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-md); }
 @media (max-width: 700px) { details.glossary dl { grid-template-columns: 1fr; } }
+
+/* ═══ §3C The energy advantage — scenario selector ═══ */
+.es-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+@media (max-width: 1180px) { .es-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) { .es-grid { grid-template-columns: 1fr; } }
+.es-card {
+  display: flex; flex-direction: column; align-items: stretch; text-align: left;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+  padding: 16px 18px 14px; cursor: pointer; font-family: inherit;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.es-card:hover { border-color: var(--red); box-shadow: var(--shadow); }
+.es-card:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.es-card[aria-selected="true"] { border-color: var(--red); border-width: 2px; padding: 15px 17px 13px; box-shadow: var(--shadow); }
+.es-letter {
+  font-family: var(--mono); font-weight: 700; font-size: 13px; color: #fff;
+  background: var(--red); border-radius: 3px; align-self: flex-start;
+  padding: 2px 9px; letter-spacing: .04em;
+}
+.es-letter.big { font-size: 17px; padding: 4px 12px; }
+.es-name { font-family: var(--serif); font-weight: 700; font-size: 21px; color: var(--ink); margin-top: 10px; line-height: 1.25; }
+.es-tag { font-family: var(--mono); font-size: 12px; color: var(--red); margin-top: 3px; line-height: 1.5; }
+.es-card-txt { font-size: 13.5px; color: var(--ink-md); line-height: 1.62; margin-top: 9px; }
+.es-open { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--red); margin-top: 12px; }
+.es-card[aria-selected="true"] .es-open { color: var(--red-hi); }
+
+.es-detail { display: none; margin-top: 26px; border-top: 2px solid var(--ink); padding-top: 22px; }
+.es-detail.on { display: block; }
+.es-d-head { display: flex; gap: 16px; align-items: flex-start; }
+.es-d-name { font-family: var(--serif); font-size: 27px; font-weight: 700; color: var(--ink); margin: 0; line-height: 1.2; }
+.es-d-tag { font-family: var(--mono); font-size: 12.5px; color: var(--ink-md); margin: 4px 0 0; }
+.es-h {
+  font-family: var(--mono); font-size: 12.5px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink); margin: 30px 0 10px;
+  padding-top: 14px; border-top: 1px solid var(--line-lo);
+}
+.es-ill { color: var(--neg); font-weight: 400; letter-spacing: .06em; }
+
+.es-diagram { background: var(--paper-hi); border: 1px solid var(--line-lo); border-radius: 6px; padding: 14px 12px 6px; }
+.es-svg { display: block; width: 100%; height: auto; }
+.es-svg-lab { font-family: Menlo, Consolas, monospace; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; }
+.es-svg-val { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 12.5px; fill: #42566a; }
+.es-svg-feed { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 12.5px; fill: #eef2f6; }
+.es-svg-cap { font-family: var(--mono); font-size: 12px; color: var(--ink-md); padding: 8px 4px 8px; }
+
+.es-earns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 860px) { .es-earns { grid-template-columns: 1fr; } }
+.es-earn {
+  border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px;
+  cursor: pointer; background: var(--paper); transition: border-color .15s ease;
+}
+.es-earn:hover, .es-earn:focus-visible { border-color: var(--red); outline: none; }
+.es-earn-t { display: block; font-family: var(--mono); font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.es-earn-d { display: block; font-size: 13.5px; color: var(--ink); line-height: 1.6; margin-top: 7px; }
+.es-earn-src { display: block; font-family: var(--mono); font-size: 12px; color: var(--ink-md); margin-top: 9px; }
+
+table.es-econ td { font-size: 13.5px; }
+.es-econ-row { cursor: pointer; }
+.es-econ-row:hover td { background: var(--paper-hi); }
+.es-econ-row td.num { font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--ink); }
+
+.es-needs li { font-size: 14px; }
+.es-drills { display: flex; flex-wrap: wrap; gap: 9px; }
+.es-drill { font-size: 12px; }
+
+/* guardrail cards reuse the term-mag register */
+.es-guard { cursor: pointer; }
+.es-guard-t { font-size: 19px !important; }
+.es-guard-src { font-family: var(--mono); font-size: 12px !important; color: var(--ink-md) !important; margin-top: 12px; opacity: 1 !important; }
+.es-guard:hover .es-guard-src, .es-guard:focus-within .es-guard-src { opacity: 1 !important; }

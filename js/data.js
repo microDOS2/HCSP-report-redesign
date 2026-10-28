@@ -2884,3 +2884,235 @@ Object.assign(window.RPT, {
       src: ["K133"] },
   ],
 });
+
+// ═══ §3C The energy advantage — six plain-language scenarios (RPT.energy_scenarios) ═══
+// Every figure is illustrative, from the v2 engineering chapters (V2D2 trigeneration,
+// V2D3 new industries, V2D4 storage); K-refs point at the dated anchors in sources.js.
+Object.assign(window.RPT, {
+  energy_scenarios: [
+    {
+      id: "A",
+      name: "Anchor-host micro-utility",
+      tag: "Build at the waste · sell energy next door",
+      card: "Put the plant where the strong waste already is — a distillery, a sewage treatment plant, a food factory. Charge for destroying the waste, then pipe electricity and chilled water to a neighbor that needs them: a data center, a cold-storage warehouse, a greenhouse.",
+      diagram: {
+        feed: "1,000 m³/day of strong waste (100 g/L COD — distillery-strength)",
+        power: "1.4 MW of electricity",
+        cooling: "4.9 MW of cooling (≈1,392 refrigeration tons)",
+        heat: "Hot water at 150–180 °C available",
+        water: "≈900 m³/day of distilled water",
+      },
+      earns: [
+        { t: "Destruction fees", d: "The core business: the host pays to make a regulated waste problem disappear. This revenue exists with or without the energy sales.", src: ["K22", "K33"] },
+        { t: "Clean water", d: "Roughly 900 m³/day of distilled water, worth about $1–5/m³ depending on the site — a real credit, never the main product.", src: ["K31", "K1"] },
+        { t: "Energy", d: "About $1.15M a year of electricity plus cooling (illustrative, from engineering studies) — stacked on top of the destruction fees, not instead of them.", src: ["K83", "K80"] },
+      ],
+      econ: [
+        { lab: "Heat released by destroying the waste", val: "16.1 MW of heat", src: ["K80"] },
+        { lab: "Left over after the plant preheats its own feed", val: "9.6 MW of surplus heat", src: ["K81", "K82"] },
+        { lab: "Turned into electricity by a small steam turbine", val: "1.4 MW ≈ $1.12M/yr", src: ["K83"] },
+        { lab: "Remaining heat drives chillers", val: "4.9 MW cooling ≈ $0.66M/yr of avoided electricity — up to $2.0M/yr if sold as chilled water", src: ["K83", "K86"] },
+        { lab: "Combined energy value", val: "≈ $1.15M/yr — on top of destruction fees", src: ["K83"] },
+      ],
+      needs: [
+        "Waste strong enough to make spare heat — above ~35–60 g/L COD (a measure of how much organic waste is in the water); the example uses 100 g/L.",
+        "Real scale — the example plant is 1,000 m³/day, about a hundred 10 m³/day modules working together.",
+        "A signed buyer within piping distance using at least 500 refrigeration tons (about 1.8 MW) of steady cooling.",
+        "Normal electric chillers stay installed as backup — the heat-driven system is a money-saving layer, not the only source of cold.",
+      ],
+      drills: [
+        { title: "WHERE THE HEAT GOES", value: "16.1 → 9.6 MW", sub: "Destroying the waste releases 16.1 MW of heat, but about 60% is spent preheating the incoming feed — that is the price of a self-heating process. The 9.6 MW left over is what can be sold. A real pilot plant in Cádiz recovered 71% of feed energy, so the arithmetic is not optimistic.", src: ["K80", "K81", "K82"] },
+        { title: "WHAT THE ENERGY IS WORTH", value: "$1.15M/yr illustrative", sub: "Power earns $15–20 per MWh of heat; cooling only ~$10 as avoided electricity — unless chilled water is sold at district tariffs of $30–48, in which case cooling outearns power. Combined illustrative value ≈ $1.15M/yr at $0.10/kWh and 8,000 operating hours.", src: ["K83"] },
+        { title: "THE COOLING ISLAND'S PRICE", value: "$2.8–5.4M installed", sub: "1,400–1,650 refrigeration tons of heat-driven chiller plant at $1,600–6,000 per ton installed (US DOE fact sheet), plus a cooling tower about twice the electric-chiller size. The energy module pays only because the heat is free.", src: ["K199"] },
+      ],
+      src: ["K80", "K83", "K61"],
+    },
+    {
+      id: "B",
+      name: "Cold-chain industrial park",
+      tag: "Heat in, deep cold out — on the refrigerant industry already trusts",
+      card: "Dairies, breweries, and cold-storage parks already keep things frozen with ammonia refrigeration driven by electric compressors. An HCSP plant next door makes the same cold from its spare heat instead — in a closed ammonia loop that never touches the product — and the electric compressors drop to backup duty.",
+      diagram: {
+        feed: "Food, dairy, or brewery waste at hub scale (≥60–100 g/L COD)",
+        power: "Not used here — all spare heat goes to cooling",
+        cooling: "≈4.9 MW of sub-zero cooling for freezers and cold stores",
+        heat: "Not sold here",
+        water: "Distilled water for the food plants",
+      },
+      earns: [
+        { t: "Destruction fees", d: "The park's concentrated food and dairy waste is destroyed on site instead of hauled or digested.", src: ["K46"] },
+        { t: "Clean water", d: "Distilled water goes back to the food plants, where washdown and process water are always in demand.", src: ["K1"] },
+        { t: "Energy (as cold)", d: "Cold is the product: electricity is 9–18% of a cold store's operating cost, and over 95% of US refrigerated warehouses already run ammonia — the heat-driven chiller slots into infrastructure that exists.", src: ["K197", "K85"] },
+      ],
+      econ: [
+        { lab: "Cooling from 9.6 MW of spare heat (design efficiency)", val: "≈5.8 MW of cooling (1,637 refrigeration tons)", src: ["K84"] },
+        { lab: "Same, at field-measured efficiency — the honest number", val: "≈4.3 MW (1,220 tons) — plan on this", src: ["K86"] },
+        { lab: "What a MWh of heat is worth as cooling", val: "~$10 of avoided electricity", src: ["K83"] },
+        { lab: "Installed cost of the chiller plant", val: "$2.8–5.4M (1,400–1,650 tons)", src: ["K199"] },
+      ],
+      needs: [
+        "A steady, year-round freezing or cold-storage load of at least 500 refrigeration tons right next door.",
+        "Strong waste at scale — this only works at hub-scale plants (hundreds of m³/day), not a single small module.",
+        "Room to site the ammonia equipment away from occupied buildings — ammonia is toxic, and big charges trigger federal safety rules (OSHA PSM / EPA RMP above 10,000 lb).",
+        "The existing electric compressors stay as backup — cooling loads run 24/7 and the waste plant does not.",
+      ],
+      drills: [
+        { title: "WHY AMMONIA FITS HERE", value: ">95% of US cold warehouses", sub: "Ammonia is already the industry's refrigerant: 42% of the industrial refrigeration market and over 95% of US refrigerated warehouses. The HCSP chiller is a closed ammonia loop driven by heat at 95–180 °C — no new refrigerant risk profile for the park, and it reaches the sub-zero temperatures lithium-bromide machines cannot.", src: ["K85", "K84"] },
+        { title: "THE HONEST EFFICIENCY", value: "COP 0.28–0.45 measured", sub: "Design sheets claim 0.6 units of cooling per unit of heat; the only published field measurement on waste heat (a refinery unit) came in at 0.28–0.37. Underwrite cold-chain deals at the measured band, never the brochure.", src: ["K86"] },
+        { title: "THE LOAD IT DISPLACES", value: "9–18% of cold-store opex", sub: "A typical 500-tonne cold store burns 400,000–500,000 kWh/yr; a modern automated −21 °C warehouse runs a 353-ton ammonia plant at 4.54 kWh/m³/yr. That purchased electricity is what free heat replaces.", src: ["K197"] },
+      ],
+      src: ["K85", "K86", "K197"],
+    },
+    {
+      id: "C",
+      name: "Data-center energy campus",
+      tag: "The data center buys the energy — its neighbor owns the plant",
+      card: "Data centers spend 30–40% of their electricity on cooling and wait 4–7 years for a grid connection. They make almost no organic waste of their own, so the plant sits at the waste-rich neighbor — a sewage works, distillery, or food complex — and sells the data center power and chilled water under 10–20-year energy-services agreements.",
+      diagram: {
+        feed: "The neighbor's strong waste (a data center's own waste is mostly salty water — not fuel)",
+        power: "1.4 MW sold to the campus (per example plant)",
+        cooling: "Chilled water for the data halls — 30–40% of their electric bill",
+        heat: "Optional: heat-reuse sales where the law rewards it",
+        water: "Reclaimed water for cooling-tower makeup",
+      },
+      earns: [
+        { t: "Destruction fees", d: "Paid by the waste host — the data center never touches this side of the business.", src: ["K68"] },
+        { t: "Clean water", d: "A 1 MW data center on evaporative cooling uses ~6.75M gallons of water a year; reclaimed water on site cuts that bill and eases permitting in dry states.", src: ["K69", "K142"] },
+        { t: "Energy", d: "A 10–20-year contract for power plus chilled water from a creditworthy tenant is exactly what project lenders want to see before they fund the plant.", src: ["K69", "K83"] },
+      ],
+      econ: [
+        { lab: "Cooling share of a data center's electricity", val: "30–40%", src: ["K69"] },
+        { lab: "Wait for a new grid connection", val: "4–7 years (Northern Virginia; Texas queue 410 GW)", src: ["K69"] },
+        { lab: "Heat-driven chilling vs electric chilling", val: "2 MW of cooling on ~25 kW of electricity instead of >500 kW (vendor design guide)", src: ["K201"] },
+        { lab: "Chilled water sold retail where networks exist", val: "$30–48 per MWh of heat — outearns making power", src: ["K83"] },
+      ],
+      needs: [
+        "An adjacent host with strong waste — the data center itself cannot feed the plant; its waste water is salty, not organic.",
+        "A signed 10–20-year energy-services agreement before construction — the contract, not the machine, is what gets financed.",
+        "Full electric backup cooling — data halls need cold every second of every day (the industry standard is called N+1), so the heat-driven chillers are a displacement layer.",
+        "The configuration note: lithium-bromide (LiBr) chillers for the data hall's above-freezing chilled water (they are more efficient there and non-toxic), and the closed ammonia loop only where sub-zero duty is wanted. These are options on a menu, not a conflict.",
+      ],
+      drills: [
+        { title: "WHY DATA CENTERS ARE BUYERS, NOT HOSTS", value: "Fit score 3/10 as a waste customer", sub: "A data center's liquid waste is cooling-tower blowdown — salt and minerals, which this machine does not destroy. So the report inverts the model: the plant sits at the waste and the data center signs as the energy buyer. Microsoft's Cheyenne 'Data Plant' ran the same trick in reverse on digester gas in 2014.", src: ["K68"] },
+        { title: "THE GRID QUEUE IS THE PITCH", value: "4–7 years", sub: "Northern Virginia interconnection waits run 4–7 years; Texas's large-load queue hit 410 GW, 87% of it data centers. A campus that can buy power and cooling across the fence does not wait.", src: ["K69"] },
+        { title: "TWO CHILLERS, TWO JOBS", value: "LiBr above 0 °C · ammonia below", sub: "LiBr machines run on gentle 70–120 °C hot water at better efficiency (0.7–0.8 units of cooling per unit of heat) and are a non-toxic salt solution — the right match for data-hall chilled water. Ammonia reaches −60 °C but needs siting distance from occupied buildings. Offered as options, not a conflict.", src: ["K84", "K85"] },
+      ],
+      src: ["K69", "K68", "K201"],
+    },
+    {
+      id: "D",
+      name: "Island microgrid",
+      tag: "The one place where water, power, and cold all cost the most",
+      card: "On islands, everything the plant makes is expensive: diesel power runs $0.30–0.52 per kWh, desalinated water $2–5 per cubic meter, and there is nowhere to send sewage sludge. One plant turns the island's waste into fresh water, power, and ice for the fishing fleet, resorts, and cold storage.",
+      diagram: {
+        feed: "Sewage sludge blended with grease-trap and food waste (blending is what makes it strong enough)",
+        power: "Power that displaces diesel at $0.30–0.52/kWh",
+        cooling: "Ice for fisheries + air conditioning for resorts",
+        heat: "Hot water for kitchens and laundries",
+        water: "Fresh water at desalination parity ($2–5/m³)",
+      },
+      earns: [
+        { t: "Destruction fees", d: "Islands have no cheap sludge outlet: no farmland to spread it on, scarce landfill space, tightening ocean-discharge rules. Destruction on site removes the problem entirely.", src: ["K65"] },
+        { t: "Clean water", d: "Small-scale desalination costs $2–5/m³ on islands; the plant's distilled water prices against that, not against cheap mainland water.", src: ["K65"] },
+        { t: "Energy", d: "Power replaces diesel at $0.30–0.52/kWh — three to five times mainland prices — and heat-driven ice plants serve the fishing fleet; making a tonne of ice takes ~94 kWh of electricity today.", src: ["K65", "K200"] },
+      ],
+      econ: [
+        { lab: "Island electricity price (diesel-based)", val: "$0.30–0.52/kWh (Hawaii, US Virgin Islands)", src: ["K65"] },
+        { lab: "Island small-scale desalination price", val: "$2–5/m³", src: ["K65"] },
+        { lab: "Electricity to make a tonne of ice today", val: "59–133 kWh (average ~94)", src: ["K200"] },
+        { lab: "Ride-through battery for cloudy weeks and restarts", val: "Lithium iron phosphate (LFP) default; nickel-iron only for daily-cycled off-grid sites", src: ["K88", "K87"] },
+      ],
+      needs: [
+        "Blending, not just sewage: island sludge is too watery on its own, so grease-trap waste and food waste are mixed in to reach the strength where spare heat exists (~35–60 g/L COD and up).",
+        "A cluster of buyers — resort strip, fishing port, cold store — so water, power, and ice all sell within a few kilometers.",
+        "Backup power sized for a dead site: LFP batteries by default because they hold their charge for months; nickel-iron only where the battery is cycled daily and replacements are hard to ship.",
+        "Patience with public buying — islands buy through municipal and utility processes, which are slow.",
+      ],
+      drills: [
+        { title: "WHY ISLANDS PRICE ALL THREE OUTPUTS AT THE TOP", value: "$0.52/kWh · $5/m³", sub: "Hawaii residential power reached 52¢/kWh in May 2026; US Virgin Islands commercial power runs $0.40–0.47/kWh on imported diesel; small-scale desalination costs $2–5/m³. No mainland market prices all three outputs this high at once.", src: ["K65"] },
+        { title: "ICE IS THE SELLABLE FORM OF COLD", value: "~94 kWh/tonne today", sub: "Thai government data puts ice making at 59–133 kWh per tonne by electric machine, and ammonia ice plants are the standard across South and Southeast Asia. A heat-driven ice plant converts spare heat directly into a product fishing fleets already buy.", src: ["K200"] },
+        { title: "THE BATTERY DECISION, SETTLED", value: "LFP by default", sub: "Nickel-iron batteries lose 20–30% of their charge per month sitting idle — disqualifying for backup duty. LFP packs at ~$70/kWh hold charge and win every backup row; nickel-iron survives only as an option for daily-cycled off-grid sites, and even then as a hybrid.", src: ["K87", "K88"] },
+      ],
+      src: ["K65", "K200", "K88"],
+    },
+    {
+      id: "E",
+      name: "Seasonal dual-mode",
+      tag: "Cooling in summer, heating in winter — the heat sells all year",
+      card: "Cooling sells in summer and sits idle in winter. This scenario swaps the outlet with the season: summer heat drives chillers, winter heat becomes hot water for district heating, factories, or greenhouses. Selling the heat year-round is what actually pays for the energy module.",
+      diagram: {
+        feed: "The same strong waste stream, all year",
+        power: "Optional turbine, run when it pays",
+        cooling: "SUMMER: chilled water for buildings and cold stores",
+        heat: "WINTER: hot water for district heating or greenhouses",
+        water: "Distilled water, every season",
+      },
+      earns: [
+        { t: "Destruction fees", d: "Unchanged — the waste arrives and is destroyed in every season.", src: ["K22"] },
+        { t: "Clean water", d: "Unchanged — distilled water sells in every season.", src: ["K1"] },
+        { t: "Energy, twice a year", d: "Summer: cooling worth ~$10 per MWh of heat as avoided electricity, or $30–48 where chilled water retails. Winter: heat sold at $10–30 per MWh into heating networks that already buy exactly this.", src: ["K83", "K198"] },
+      ],
+      econ: [
+        { lab: "Summer outlet — heat-driven cooling", val: "~$10/MWh of heat avoided electricity; $30–48 as retail chilled water", src: ["K83"] },
+        { lab: "Winter outlet — heat sold as heat", val: "$10–30/MWh of heat (district and process heat)", src: ["K83", "K198"] },
+        { lab: "Proof the winter market exists", val: "Meta's Danish data center sells ~100,000 MWh/yr of heat — enough to warm ~7,000 homes", src: ["K198"] },
+        { lab: "Why dual-mode matters", val: "The chiller and piping are paid off by 12 months of revenue, not 4", src: ["K202"] },
+      ],
+      needs: [
+        "Both kinds of neighbor: a cooling buyer for summer and a heating buyer (district network, factory, greenhouse) for winter, close enough to pipe to.",
+        "Heat metered like a utility, so buyers pay for what they take in either mode.",
+        "A climate with real winters and real summers — heating-dominated and cooling-dominated regions each favor one mode; dual-mode earns its keep between them.",
+        "The same guardrails as every scenario: strong feed, hub scale, backup electric chilling.",
+      ],
+      drills: [
+        { title: "THE WINTER MARKET IS PROVEN", value: "~7,000 homes warmed", sub: "Stockholm's district network has bought data-center waste heat since 2014; Meta's Odense facility supplies ~100,000 MWh/yr; Germany now requires heat reuse from new data centers above 1 MW. Winter heat sales are a signed-contract reality, not a theory.", src: ["K198"] },
+        { title: "GEOGRAPHY SETS THE MIX", value: "Heat $10–30 vs cooling $10–48 /MWh", sub: "In heating-dominated climates, district-heat sales outcompete cooling for the same surplus; in cooling-dominated climates (US Southwest, Gulf, Southeast Asia), cooling is the right polarity. Dual-mode is the answer for the temperate middle.", src: ["K83", "K198"] },
+        { title: "THE PAYOFF LOGIC", value: "2 seasons of revenue", sub: "Trigeneration economics are dispatch- and tariff-sensitive: the literature warns cooling-and-power mode can underperform unless the plant follows a proper dispatch strategy. Switching outlets with the season is that strategy, stated plainly.", src: ["K202", "K83"] },
+      ],
+      src: ["K198", "K83", "K202"],
+    },
+    {
+      id: "F",
+      name: "The steam ladder",
+      tag: "Four price points on one plant — buy a rung, not the whole campus",
+      card: "Nobody has to buy the full energy campus on day one. The ladder has four separately sellable levels: start by selling steam to the host, add a chiller when a cooling buyer signs, add a turbine when power has a buyer, and top out at full power-cooling-heat under long-term contracts. Each rung is its own price point.",
+      diagram: {
+        feed: "Any strong waste stream at hub scale",
+        power: "LEVEL 3 — a turbine turns steam into power ($15–20/MWh of heat)",
+        cooling: "LEVEL 2 — a chiller turns heat into cold (~$10/MWh of heat)",
+        heat: "LEVEL 1 — steam sold straight to the host ($10–30/MWh of heat)",
+        water: "Distilled water at every level",
+      },
+      earns: [
+        { t: "Destruction fees", d: "The base business at every rung — the ladder only stacks on a plant that already earns from destruction.", src: ["K22"] },
+        { t: "Clean water", d: "The base credit at every rung.", src: ["K31"] },
+        { t: "Energy, rung by rung", d: "Each level adds a revenue line and its own equipment: steam sales (simplest), then the chiller, then the turbine, then the full three-output contract. The illustrative full stack at the 1,000 m³/day example is ~$2.1–4.8M/yr vs $0.3–1.6M/yr for water alone.", src: ["K202", "K83"] },
+      ],
+      econ: [
+        { lab: "Level 1 — steam sales to the host (simplest)", val: "$10–30 per MWh of heat", src: ["K83", "K202"] },
+        { lab: "Level 2 — + heat-driven chiller", val: "~$10/MWh of heat avoided electricity; $30–48 as retail chilled water", src: ["K83"] },
+        { lab: "Level 3 — + steam turbine for power", val: "$15–20 per MWh of heat", src: ["K83"] },
+        { lab: "Level 4 — full power + cooling + heat under offtake contracts", val: "~$2.1–4.8M/yr illustrative stack at the example plant", src: ["K202"] },
+      ],
+      needs: [
+        "Rung 1 needs only a host that already burns fuel to make steam — the simplest sale on the ladder.",
+        "Rung 2 needs a signed cooling buyer of at least 500 refrigeration tons and siting room for ammonia equipment (or a lithium-bromide machine for above-freezing duty).",
+        "Rung 3 needs a power buyer or export permission — power earns the most per unit of heat but adds the most machinery.",
+        "Rung 4 needs all buyers signed under 10–20-year contracts — that is what lenders finance against. Nobody is forced to climb past the rung that pays.",
+      ],
+      drills: [
+        { title: "THE VALUE LADDER PER UNIT OF HEAT", value: "$10 → $48 /MWh of heat", sub: "Power $15–20, cooling ~$10 as avoided electricity, chilled water sold retail $30–48, heat $10–30. The ranking decides which rung to add next — and retail chilled water is the exception that leapfrogs power.", src: ["K83"] },
+        { title: "EACH RUNG IS A SEPARATE PRICE POINT", value: "L1 · L2 · L3 · L4", sub: "The four levels are quoted and sold independently: steam first, chiller when the cooling buyer signs, turbine when power has a buyer, full contract stack last. The illustrative full stack at the 1,000 m³/day example plant is ~$2.1–4.8M/yr against $0.3–1.6M/yr for water alone — but each rung must pay for itself.", src: ["K202"] },
+        { title: "WHAT THE TOP RUNG COSTS TO BUILD", value: "$2.8–5.4M cooling island", sub: "The chiller plant for the example is $2.8–5.4M installed before the turbine; the ladder exists so that money is only spent after the corresponding revenue is under contract.", src: ["K199"] },
+      ],
+      src: ["K202", "K83", "K199"],
+    },
+  ],
+
+  // Shared guardrails — shown once for the whole §3C section, never hidden in footnotes.
+  energy_guardrails: [
+    { t: "Spare heat is not automatic", d: "Surplus heat only exists when the waste is strong enough — above roughly 35–60 g/L COD (a measure of how much organic waste is in the water) — and when the plant is big enough. Below that line the plant heats itself and has nothing left to sell. Every scenario on this page assumes that line is cleared.", src: ["K73", "K80"] },
+    { t: "Chillers want big, steady cold customers", d: "Heat-driven chillers make economic sense at steady loads of at least 500 refrigeration tons (about 1.8 MW of cooling). And because the waste plant follows waste deliveries and maintenance, full electric backup chillers are always still needed — the heat-driven system saves money; it is never the only source of cold.", src: ["K85"] },
+    { t: "Ammonia needs distance", d: "Ammonia is the industry's standard refrigerant, but it is toxic: charges above 10,000 lb trigger federal safety programs (OSHA PSM / EPA RMP), and the equipment is sited away from occupied buildings. For above-freezing cooling next to people, the lithium-bromide option avoids this entirely.", src: ["K85", "K84"] },
+  ],
+});
