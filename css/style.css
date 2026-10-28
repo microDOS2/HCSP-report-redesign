@@ -83,12 +83,40 @@ a { color: var(--blue); }
   display: flex; align-items: center;
   padding: calc(var(--navh) + 4vh) 0 7vh;
 }
-.cover-stage { position: absolute; inset: 0; z-index: 0; opacity: 0.34; }
+/* Cover art is OPT-IN: hidden by default so the first screen is always clean
+   text. When the reader presses SHOW ANIMATION (html.cover-art), the artwork is
+   confined to the right side of the page, faded at its inner edge, and sits
+   below the fully opaque text panel in stacking order. It is always hidden at
+   ≤1280px and in reading mode. */
+.cover-stage {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 46%;
+  z-index: 0; opacity: 0.5; display: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%);
+  mask-image: linear-gradient(to right, transparent 0, #000 22%);
+}
+html.cover-art .cover-stage { display: block; }
 #cover-canvas, #cover-canvas-x, #cover-canvas-w { position: absolute; inset: 0; width: 100%; height: 100%; }
+@media (max-width: 1280px) {
+  html .cover-stage { display: none !important; }   /* small screens: clean text only */
+  html .cover-mode, html .art-toggle { display: none !important; }
+}
 html.reader .cover-stage { display: none; } /* reading mode: decorative art off */
+html.reader .cover-mode, html.reader .art-toggle { display: none; }
 
-/* cover artwork variant switch */
-.cover-mode { margin-top: 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+/* opt-in control: reveals the artwork + the A/B/C/D variant switch */
+.art-toggle {
+  margin-top: 24px; display: inline-block;
+  font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .14em;
+  color: var(--ink-md); background: var(--paper);
+  border: 1.5px solid var(--line); border-radius: 999px; padding: 6px 16px;
+  cursor: pointer; transition: border-color .15s, color .15s;
+}
+.art-toggle:hover { border-color: var(--ink); color: var(--ink); }
+.art-toggle[aria-pressed="true"] { border-color: var(--red); color: var(--red); }
+
+/* cover artwork variant switch — only visible while the art is on */
+.cover-mode { margin-top: 14px; display: none; gap: 8px; align-items: center; flex-wrap: wrap; }
+html.cover-art .cover-mode { display: flex; }
 html.reader .cover-mode { display: none; }
 .cover-mode::before {
   content: "COVER ART"; font-family: var(--mono); font-size: 9px;
@@ -110,7 +138,8 @@ html.reader .cover-mode { display: none; }
 .cover-inner button, .cover-inner a { pointer-events: auto; }
 .cover-panel {
   pointer-events: auto;
-  background: var(--paper);
+  position: relative; z-index: 3;      /* always above the artwork layer */
+  background: var(--paper);            /* fully opaque — no animation pixels behind any word */
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   border-radius: 10px;
@@ -266,6 +295,7 @@ h3 { font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 
 .chart-frame {
   background: transparent; border: 0; box-shadow: none;
   padding: 8px 0 4px; position: relative;
+  overflow: hidden; /* viewBox-scaled svg labels may overshoot the frame at small widths — clip, never scroll */
 }
 .chart-title { font-weight: 700; font-size: 17.5px; letter-spacing: -0.01em; margin: 0 0 3px 0; padding-right: 300px; }
 @media (max-width: 768px) {
@@ -331,6 +361,60 @@ h3 { font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 
 @media (max-width: 768px) {
   .vb-score { flex-basis: 46px; font-size: 18px; }
   .vb-name { font-size: 14.5px; }
+}
+
+/* ── Key dates timeline (replaces the catalyst wall chart) ──
+   Plain vertical list: year groupings, one row per dated event,
+   generous whitespace, ≥13px body text, AA contrast, always static. */
+.tl { margin-top: 14px; }
+.tl-group {
+  font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .14em;
+  color: var(--ink); margin: 34px 0 6px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+.tl-group:first-child { margin-top: 0; }
+.tl-group-closed {
+  color: var(--ink-md); border-bottom-color: var(--line);
+  font-size: 12px; text-transform: uppercase; letter-spacing: .2em;
+}
+.tl-row {
+  display: flex; gap: 26px; align-items: flex-start;
+  padding: 18px 14px; border-bottom: 1px solid var(--line-lo);
+  cursor: pointer; border-radius: 6px;
+}
+.tl-row:hover { background: var(--paper-hi); }
+.tl-row:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.tl-when { flex: 0 0 118px; padding-top: 2px; }
+.tl-date {
+  display: block; font-family: var(--mono); font-weight: 700; font-size: 16px;
+  letter-spacing: .04em; color: var(--ink); white-space: nowrap;
+}
+.tl-tag {
+  display: inline-block; margin-top: 7px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .12em;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line);
+  color: var(--ink-md); background: var(--paper);
+}
+.tl-demand .tl-tag { color: var(--red); border-color: var(--red); }
+.tl-risk .tl-tag { color: var(--neg); border-color: var(--neg); }
+.tl-fund .tl-tag { color: var(--ink); border-color: var(--ink); }
+.tl-main { flex: 1; min-width: 0; }
+.tl-name {
+  font-family: var(--serif); font-weight: 700; font-size: 17px;
+  color: var(--ink); line-height: 1.35; margin: 0 0 4px;
+}
+.tl-mean { font-size: 14px; line-height: 1.65; color: var(--ink-md); margin: 0; }
+.tl-act { font-size: 13.5px; line-height: 1.6; color: var(--ink); margin: 7px 0 0; }
+.tl-act b { color: var(--red); font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+/* CLOSED rows: muted, struck date, uniform grey */
+.tl-closed { opacity: 0.62; }
+.tl-closed .tl-date { color: var(--ink-md); text-decoration: line-through; }
+.tl-closed .tl-name { color: var(--ink-md); font-weight: 700; }
+.tl-closed .tl-tag { color: var(--ink-md); border-color: var(--ink-md); background: var(--paper-hi); }
+@media (max-width: 640px) {
+  .tl-row { flex-direction: column; gap: 8px; padding: 16px 8px; }
+  .tl-when { flex-basis: auto; display: flex; align-items: baseline; gap: 12px; }
+  .tl-tag { margin-top: 0; }
 }
 
 /* metric strip */
@@ -454,7 +538,8 @@ table.grant-dt .g-ag.src-link { font-size: 10.5px; font-family: var(--mono); }
 #sec-sources { padding: 100px 0 80px; border-top: 1px solid var(--line-lo); }
 #source-list { margin-top: 4px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; align-items: start; }
 @media (max-width: 1420px) { #source-list { grid-template-columns: 1fr; } }
-.src-row { display: block; padding: 10px 0 11px; border-bottom: 1px solid var(--line-lo); font-size: 13px; }
+.src-row { display: block; padding: 10px 0 11px; border-bottom: 1px solid var(--line-lo); font-size: 13px; overflow-wrap: anywhere; }
+.src-row .s-fact, .src-row .s-cite { overflow-wrap: anywhere; }
 .src-row .s-fact { display: block; color: var(--ink); line-height: 1.55; }
 .src-row .s-cite { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--ink-md); margin-top: 4px; line-height: 1.6; }
 .colophon { margin-top: 40px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-lo); line-height: 2; }

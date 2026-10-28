@@ -156,77 +156,116 @@
 })();
 
 /* ────────────────────────────────────────────────────────────
-   11 · The demand clock — dated regulatory catalysts, 2023–2045
+   11 · Key dates ahead — and what they mean for you
+   A plain vertical timeline in date order (replaces the wall chart):
+   CLOSED items first in muted styling, then every dated catalyst and
+   funding deadline grouped by year. Every row drills to its dated K-source.
+   Pure DOM — static in every mode, ≥13px body text, AA contrast.
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("horizon-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The demand clock: several of the risks are dated, and can be planned around",
-    sub: "WALL-CHART TIMELINE 2023–2045 · INK = POLICY FRAMEWORK · BLUE = DEMAND CATALYST · RED FRAME = RISK/COMPETITION EVENT · 2026 = CURRENT WINDOW · CLICK PLAQUES",
+    title: "Key dates ahead — and what they mean for you",
+    sub: "EVERY DATED EVENT FROM THE REPORT, IN DATE ORDER · CLOSED ITEMS SHOWN FIRST, MUTED · CLICK ANY ROW FOR THE DETAIL AND ITS DATED SOURCES",
     src: "Industry & official — US EPA, GAO, Defense Dept, WHO, EU wastewater directive 2024/3019, India's pollution board · dates as published",
   });
-  const W = 880, H = 380, axisY = 316;
-  // piecewise-linear time scale: dense recent decade expanded, long horizon compressed
-  const x = v => v <= 2028 ? 56 + (v - 2022.5) / 5.5 * 500 : 556 + (v - 2028) / 18 * 268;
-  const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
-  const clsCol = { policy: ink, demand: blue, risk: neg };
 
-  // current window band (2026)
-  svg.append("rect").attr("x", x(2026)).attr("y", 30).attr("width", x(2027) - x(2026)).attr("height", axisY - 26)
-    .attr("fill", "rgba(34,81,255,.06)");
-  svg.append("text").attr("x", (x(2026) + x(2027)) / 2).attr("y", 24).attr("text-anchor", "middle")
-    .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("font-weight", 700).attr("fill", blue).text("NOW");
+  const TAG = { policy: "POLICY", demand: "DEMAND", risk: "RISK / COMPETITION", fund: "FUNDING DEADLINE" };
 
-  // double-line axis
-  svg.append("line").attr("x1", 40).attr("x2", W - 16).attr("y1", axisY).attr("y2", axisY).attr("stroke", ink).attr("stroke-width", 1.6);
-  svg.append("line").attr("x1", 40).attr("x2", W - 16).attr("y1", axisY + 4).attr("y2", axisY + 4).attr("stroke", ink).attr("stroke-width", 1);
-  [2025, 2030, 2035, 2040, 2045].forEach(v => {
-    svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", axisY - 4).attr("y2", axisY + 9).attr("stroke", ink);
-    svg.append("text").attr("x", x(v)).attr("y", axisY + 24).attr("text-anchor", "middle")
-      .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("fill", inkLo).text(v);
+  // Merge the two dated datasets into one event list.
+  const events = RPT.catalysts.map(c => ({
+    y: c.y, date: c.date, label: c.label, mean: c.mean || c.ev, act: c.act || null,
+    cls: c.cls, closed: false, ev: c.ev, src: c.src,
+  }));
+  RPT.funding_calendar.forEach(c => {
+    events.push({
+      y: c.y, date: c.date, label: c.label, mean: c.ev, act: null,
+      cls: "fund", closed: !!c.closed, ev: c.ev, src: c.src,
+    });
   });
 
-  // greedy layering of plaques
-  const layers = []; // each: last x-end
-  const placed = RPT.catalysts.map(c => {
-    const wpx = Math.max(76, c.label.length * 7.6 + 20);
-    const cx = x(c.y);
-    let li = 0;
-    for (;;) {
-      if (!layers[li] || cx - wpx / 2 > layers[li] + 8) { layers[li] = cx + wpx / 2; break; }
-      li++;
+  const closed = events.filter(e => e.closed).sort((a, b) => a.y - b.y);
+  const open = events.filter(e => !e.closed).sort((a, b) => a.y - b.y);
+
+  const tl = document.createElement("div");
+  tl.className = "tl";
+
+  function addRow(e) {
+    const row = document.createElement("div");
+    row.className = "tl-row tl-" + e.cls + (e.closed ? " tl-closed" : "");
+    row.setAttribute("data-drill-keep", "");
+    row.setAttribute("tabindex", "0");
+
+    const when = document.createElement("div");
+    when.className = "tl-when";
+    const dt = document.createElement("span");
+    dt.className = "tl-date"; dt.textContent = e.date;
+    when.appendChild(dt);
+    const tag = document.createElement("span");
+    tag.className = "tl-tag"; tag.textContent = e.closed ? "CLOSED" : TAG[e.cls];
+    when.appendChild(tag);
+
+    const main = document.createElement("div");
+    main.className = "tl-main";
+    const nm = document.createElement("p");
+    nm.className = "tl-name"; nm.textContent = e.label;
+    const mn = document.createElement("p");
+    mn.className = "tl-mean"; mn.textContent = e.mean;
+    main.appendChild(nm); main.appendChild(mn);
+    if (e.act) {
+      const act = document.createElement("p");
+      act.className = "tl-act";
+      const lab = document.createElement("b");
+      lab.textContent = "What to do: ";
+      act.appendChild(lab);
+      act.appendChild(document.createTextNode(e.act));
+      main.appendChild(act);
     }
-    return { ...c, wpx, cx, li };
-  });
-  const layerY = li => 262 - li * 54;
-  const stemG = svg.append("g");   // stems first (never pierce plaque text)
-  const plqG = svg.append("g");    // plaques after
 
-  placed.forEach((p, i) => {
-    const py = layerY(p.li), col = clsCol[p.cls];
-    stemG.append("line").attr("x1", p.cx).attr("x2", p.cx).attr("y1", py + 20).attr("y2", axisY - 2)
-      .attr("stroke", col).attr("stroke-width", 0.9).attr("opacity", 0.55);
-    stemG.append("circle").attr("cx", p.cx).attr("cy", axisY).attr("r", 2.6).attr("fill", col);
-    const g = plqG.append("g").style("opacity", 0);
-    g.append("rect").attr("x", p.cx - p.wpx / 2).attr("y", py - 12).attr("width", p.wpx).attr("height", 34)
-      .attr("rx", 2).attr("fill", "#fff").attr("stroke", col).attr("stroke-width", p.cls === "demand" ? 1.8 : 1.2)
-      .attr("stroke-dasharray", p.cls === "risk" ? "5 3" : null);
-    const yr = Math.floor(p.y);
-    g.append("text").attr("x", p.cx - p.wpx / 2 + 7).attr("y", py + 1)
-      .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("font-weight", 700).attr("fill", col).text(yr);
-    g.append("text").attr("x", p.cx - p.wpx / 2 + 7).attr("y", py + 15)
-      .attr("font-family", CH.SERIF).attr("font-weight", 700).attr("font-size", 10.5).attr("fill", ink).text(p.label);
-    CH.drill(g, () => ({
-      title: `${yr} · ${p.label.toUpperCase()}`, value: p.cls === "risk" ? "RISK EVENT" : p.cls === "demand" ? "DEMAND CATALYST" : "POLICY FRAMEWORK",
-      sub: p.ev + ".", source: CH.srcLink(p.src),
-    }));
-    if (CH.REDUCE) g.style("opacity", 1);
-    else g.transition().delay(i * 110).duration(350).style("opacity", 1);
+    row.appendChild(when); row.appendChild(main);
+    const drillArgs = (x, y) => ({
+      title: `${e.date} · ${e.label.toUpperCase()}`,
+      value: e.closed ? "CLOSED — ALREADY PASSED" : TAG[e.cls],
+      sub: (e.closed ? "" : (e.mean ? e.mean + " " : "")) + e.ev + "." + (e.act ? " What to do: " + e.act : ""),
+      source: CH.srcLink(e.src), x, y,
+    });
+    row.addEventListener("click", ev => {
+      ev.stopPropagation();
+      U.showDrill(drillArgs(ev.clientX, ev.clientY));
+    });
+    row.addEventListener("keydown", ev => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault(); ev.stopPropagation();
+        const r = row.getBoundingClientRect();
+        U.showDrill(drillArgs(r.left + r.width / 2, r.top + r.height / 2));
+      }
+    });
+    return row;
+  }
+
+  // CLOSED items first — honest about what has already passed
+  if (closed.length) {
+    const h = document.createElement("h4");
+    h.className = "tl-group tl-group-closed";
+    h.textContent = "Already passed — closed";
+    tl.appendChild(h);
+    closed.forEach(e => tl.appendChild(addRow(e)));
+  }
+
+  // then everything open, grouped by year
+  let lastYear = null;
+  open.forEach(e => {
+    const yr = Math.floor(e.y);
+    if (yr !== lastYear) {
+      lastYear = yr;
+      const h = document.createElement("h4");
+      h.className = "tl-group";
+      h.textContent = yr;
+      tl.appendChild(h);
+    }
+    tl.appendChild(addRow(e));
   });
 
-  svg.append("text").attr("x", 56).attr("y", axisY + 42)
-    .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
-    .text("MONEY FOLLOWS DATED CLOCKS, NOT BLIND STAGING · THE EU WASTEWATER-DIRECTIVE BUILD-OUT RUNS TO 2045 (LEGAL TIMETABLE)");
+  body.appendChild(tl);
 })();

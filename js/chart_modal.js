@@ -80,12 +80,8 @@
     },
     // "verdict-chart" intentionally has no entry: it is a DOM decision board
     // (no SVG), so the explorer never opens for it.
-    "horizon-chart": {
-      take: "Several of the report's risks and catalysts are dated — so capital can be timed to them instead of committed blindly.",
-      axes: "Wall-chart timeline 2023–2045 (recent decade expanded). Ink plaques = policy framework, blue = demand catalyst, red dashed = risk/competition event; the shaded band is the current window.",
-      table: () => ({ cols: ["Year", "Event", "Class", "Why it matters"],
-        rows: RPT.catalysts.map(c => [String(Math.floor(c.y)), c.label, c.cls, c.ev]) }),
-    },
+    // "horizon-chart" intentionally has no entry: it is now a DOM vertical
+    // timeline (no SVG), so the explorer never opens for it.
     "destiny-chart": {
       take: "Forty years of commercial SCWO: a graveyard of exits for context, four verifiable survivors as the evidence — try the walkthrough for the guided version.",
       axes: "Each line is an entity's lifespan (dashed span = graded date estimate); ✕ marks an exit; hairline ribbons flow to outcome plaques (deal sizes undisclosed).",
