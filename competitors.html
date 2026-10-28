@@ -34,6 +34,7 @@
   <div class="hero-chips">
     <button class="chip" data-goto="#sec-players">§4 · The field</button>
     <button class="chip" data-goto="#sec-deepdive">§4B · The field, up close</button>
+    <button class="chip" data-goto="#sec-customers">§4C · Customers &amp; footprint</button>
   </div>
 </header>
 
@@ -109,6 +110,47 @@
   </div>
 </section>
 
+<!-- ═══ §4C Customers & global footprint ═══ -->
+<section id="sec-customers" class="band" data-win="customers">
+  <div class="prose">
+    <p class="sec-no">§4C · Customers &amp; global footprint</p>
+    <h2>Who actually pays them — and where in the world they really operate</h2>
+    <p class="dek">Named customers, hosts, and programs with locations, values, and status — read from SEC filings,
+      USASpending, state program records, and government publications, not from booth banners. Blue chips mark each
+      operator's largest engagement, ink chips its smallest, with the precision caveats attached. Every row drills to
+      its dated source.</p>
+    <p>The pattern underneath the tables: every 374Water dollar of booked revenue traces to a government entity;
+      General Atomics' realized footprint spans six countries but every current US deployment is government-funded;
+      Aquarden's only multi-million-euro engagement is booked to its prime, ArianeGroup; and Revive's entire
+      destruction capacity sits in two Midwest facilities.</p>
+  </div>
+  <div class="wide xl" id="cust-tables"></div>
+  <div class="prose">
+    <h3 class="sub-h">The geographic coverage matrix — verified footprint vs. marketing reach</h3>
+    <p>Markers distinguish a verified operating footprint from time-boxed demos, announced-but-unbuilt deals, and
+      outright marketing claims. Aquarden's partner-quoted "deployed in more than five countries" and Revive's
+      "available in parts of Canada" have no named installation or customer behind them; 374Water's international
+      horizon is aspiration with no country, partner, or timeline. Every cell drills to its evidence.</p>
+  </div>
+  <div class="wide xl"><div class="table-scroll"><table class="dt" id="geo-table"></table></div></div>
+  <div class="prose">
+    <h3 class="sub-h">What the map says</h3>
+    <p>All four survivors are regional players with government-heavy customer bases. 374Water is US-only across eight
+      states and every booked dollar is municipal, state, or federal. GA's six-country realized footprint is real but
+      rides entirely on government programs, UN/GEF aid, and one unverified 2018 China sale — there is no
+      PERSES-specific overseas channel. Aquarden's verifiable fleet is two French units plus its own Danish test plant.
+      Revive is US-only with destruction centralized in Columbus, Ohio and Grand Rapids, Michigan, and all waste
+      freighted to those two nodes.</p>
+    <div class="note-box">
+      <p><b>No competitor runs a true global small-facility channel — and that sharpens the scale-gap thesis.</b>
+        The gap below ≈$1M is not a regional accident that a stronger export program will close: it is structural in
+        all four business models. Nobody sells a small facility anything it can buy and run itself, in any geography —
+        and the two players with any international reach (GA via aid programs, Aquarden via ArianeGroup) reach foreign
+        customers only through large, government- or prime-mediated channels.</p>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══ Shared page footer · cross-links + compact downloads ═══ -->
 <footer class="page-foot">
@@ -127,7 +169,7 @@
         <a href="downloads/HCSP_Competitor_Intelligence.pdf">Competitor Intelligence · PDF</a> ·
         <a href="downloads/HCSP_Competitor_Intelligence.docx">DOCX</a></p>
     </div>
-    <p class="colophon">Interactive research edition · Compiled September 2026 · Full source register (K1–K178) on the
+    <p class="colophon">Interactive research edition · Compiled September 2026 · Full source register (K1–K196) on the
       <a href="index.html#sec-sources">Market Analysis page</a> · No investment advice</p>
   </div>
 </footer>
@@ -148,10 +190,11 @@
 <script src="js/data.js"></script>
 <script src="js/sources.js"></script>
 <script src="js/utils.js"></script>
-<script>window.DASH_SECTIONS = ["players", "deepdive"];</script>
+<script>window.DASH_SECTIONS = ["players", "deepdive", "customers"];</script>
 <script src="js/charts-core.js"></script>
 <script src="js/charts-players.js"></script>
 <script src="js/deepdive.js"></script>
+<script src="js/customers.js"></script>
 <script src="js/chart_modal.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/main.js"></script>

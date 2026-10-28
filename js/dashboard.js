@@ -17,6 +17,7 @@
     { id: "scale", no: "§3B", name: "Scale & energy" },
     { id: "players", no: "§4", name: "The field" },
     { id: "deepdive", no: "§4B", name: "The field, up close" },
+    { id: "customers", no: "§4C", name: "Customers & footprint" },
     { id: "verdict", no: "§5", name: "The verdict" },
     { id: "appendix", no: "§7", name: "Appendix" },
     { id: "funding", no: "§8", name: "Funding landscape" },
@@ -71,6 +72,12 @@
       { v: "−DKK 30.9M", k: "Aquarden equity (2025) — 11 employees, owner-debt funded", d: { title: "THE EU BENCHMARK'S BALANCE SHEET", value: "−DKK 30.9M equity", sub: "Negative equity every year since at least 2021; 2025 net loss −DKK 13.0M; cash DKK 2.7M; ~DKK 77M of growing other debt; headcount 11, down from 18 in 2016.", source: CH.srcStr(["K159"]) } },
       { v: "≈$4.9M", k: "Smallest evidenced capital sale in the field (374Water AS6, Olathe)", d: { title: "THE FIELD'S PRICE FLOOR", value: "≈$4.9M smallest deal", sub: "374Water AS6 at Olathe: $4.88M firm fixed price. GA's 3 gpm container is program-scale only (pricing undisclosed); Aquarden's 5 t/d reactor ~$2–10M; Revive sells centralized service, never equipment.", source: CH.srcStr(["K151", "K156", "K160", "K163"]) } },
       { v: "<$1M", k: "The unshaded zone — no competitor sells equipment here", d: { title: "HCSP'S OPENING", value: "Sub-$1M = unshaded", sub: "Below ≈$1M there is no product to buy and no service door: the four survivors start at ≈$4.9M, program-scale, ~$2M, and state-aggregated service respectively — while small facilities pay >6× per pound for remove-and-destroy (MPCA) and 95% of US water systems serve <10,000 customers.", source: CH.srcStr(["K166"]) } },
+    ],
+    customers: [
+      { v: "$4.88M / $600K", k: "Largest order (Olathe KS) · smallest disclosed (St. Cloud MN) — 374Water", d: { title: "THE DISCLOSED SPREAD · 374WATER", value: "$4.88M vs $600K", sub: "Olathe KS (via Garney): $4,880,000 firm fixed price — largest equipment order in company history. St. Cloud MN: $600,000 mobile pilot — smallest disclosed contract. A ~8× band with nothing above $5M booked; federal demos carry no disclosed values.", source: CH.srcStr(["K179", "K180"]) } },
+      { v: "$16.6M*", k: "Largest program served (NJ, Revive) — appropriation; contract share undisclosed", d: { title: "THE PRECISION CAVEAT · REVIVE", value: "$16.6M ≠ contract value", sub: "New Jersey's $16.6M is the state appropriation for a ~150,000-gal, 400+ department program; Revive's contract value is undisclosed. Largest fully documented Revive award: Ohio Round 1, $3M (Monsanto). Smallest documented: New Hampshire $668,258. Ohio Round 2 >$13M directed, not yet awarded.", source: CH.srcStr(["K195"]) } },
+      { v: "6 countries", k: "GA's realized footprint — every current US deployment government-funded", d: { title: "FOOTPRINT VS FUNDING · GA", value: "6 countries, government-carried", sub: "US (7 states) + Japan (historical JV) + China (2018, unverified) + Kyrgyzstan/Tajikistan (GEF/UNEP $44.18M). No PERSES-specific overseas sales channel; 'EAR 99 exportable' is posture, not a channel.", source: CH.srcStr(["K191", "K190"]) } },
+      { v: "2 sites", k: "Revive's entire destruction capacity: Columbus OH + Grand Rapids MI", d: { title: "CENTRALIZED SERVICE · REVIVE", value: "2 Midwest nodes", sub: "All waste is freighted to Columbus OH (5 units, fully permitted 2026) or Grand Rapids/Wyoming MI (300k gpd). US-only; Canada is a 4never marketing claim with no documented customer; Colorado lost to Aquagga.", source: CH.srcStr(["K196"]) } },
     ],
     verdict: [
       { v: "OCT 2026", k: "Statutory AFFF transition deadline", d: { title: "AFFF DEADLINE", value: "2026-10-01", sub: "~1,000 facilities, >6,000 mobile assets, >$2.1B initial cost — foam and rinsate destruction demand.", source: CH.srcStr(["K14", "K15"]) } },

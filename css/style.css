@@ -1029,3 +1029,35 @@ html.reader .explore-btn, html.reader .walk-btn { transition: none; }
   border-radius: 4px; padding: 1px 7px; pointer-events: none; white-space: nowrap;
 }
 html.reader .skid3d-stage { touch-action: auto; }
+
+/* ── §4C customers & footprint — customer tables, largest/smallest flags, geo matrix ──
+   Readability system: all labels ≥12px, AA-contrast colors, static frames (no motion) */
+.cust-block { margin-bottom: 46px; }
+.cust-block:last-child { margin-bottom: 18px; }
+.cust-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.cust-head .sub-h { margin-bottom: 4px; }
+.cust-geo { font-family: var(--mono); font-size: 12px; color: var(--ink-md); line-height: 1.6; margin: 0 0 4px; }
+table.dt.cust-dt th, table#geo-table.dt th { font-size: 12px; }
+
+/* largest / smallest flag chips — filled AA pairs (white on blue ≥5.9:1; white on ink ≥14:1) */
+.flag-chip {
+  display: inline-block; margin-left: 9px; vertical-align: 2px;
+  font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .07em;
+  padding: 1px 8px; border-radius: 3px;
+}
+.flag-chip.largest { background: var(--red); color: #ffffff; }
+.flag-chip.smallest { background: var(--ink); color: #ffffff; }
+
+/* geo-matrix presence markers — AA at 12px bold (darker variants of the series hues) */
+.gm { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .05em; white-space: nowrap; }
+.gm-op { color: #00674f; }    /* 6.9:1 on white */
+.gm-demo { color: #8a5f0a; }  /* 6.1:1 on white */
+.gm-ann { color: var(--ink-md); }
+.gm-mkt { color: var(--neg); }
+.gm-no { color: var(--ink-lo); }
+.gm-txt { display: block; font-size: 13px; color: var(--ink-md); margin-top: 3px; line-height: 1.5; }
+.gm-legend {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 12px;
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+}
+#geo-table td.gm-cell { min-width: 130px; }
