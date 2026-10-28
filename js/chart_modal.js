@@ -19,27 +19,27 @@
     "energy-chart": {
       take: "Grid power price swings the value of the startup/auxiliary draw and of exported energy 5× across regions — but operating energy itself is negligible per the manufacturer (self-fueling loop).",
       axes: "Bars are regional grid-price context in $/m³-equivalent (75–95 kW spec × regional power price). The dashed blue line is the recovered-water value (~$3.5/m³) — the red band is the gap water sales cannot close.",
-      table: () => ({ cols: ["Region", "$/m³-equiv (lo–hi)", "Regional index", "Note"],
+      table: () => ({ cols: ["Region", "$/m³-equiv (lo–hi)", "Attractiveness score", "Note"],
         rows: RPT.energy_floor.map(d => [d.region, `$${d.lo}–${d.hi}`, d.idx ? d.idx + "/25" : "—", d.note]) }),
     },
     "umbrella-chart": {
       take: "Existing supplier destruction and disposal runs $1–2/gal to $15–50+/gal — all public market data; HCSP's own cost and pricing are TBD until the manufacturer publishes a cost model.",
-      axes: "Log-scale $/gal bands. Ink bands are existing supplier pathways; blue hatched bands are HCSP — deliberately empty (TBD). The red marker is the $28/gal Michigan AFFF panic-buying ceiling.",
+      axes: "Log-scale $/gal bands. Ink bands are existing supplier pathways; blue hatched bands are HCSP — deliberately empty (TBD). The red marker is the $28/gal Michigan firefighting-foam panic-buying ceiling.",
       table: () => ({ cols: ["Pathway", "$/gal", "Basis"],
-        rows: RPT.umbrella.map(d => [d.name, d.tbd ? "TBD — mfr cost model pending" : `$${d.lo}–${d.hi}${d.hi >= 50 ? "+" : ""}`, d.note]) }),
+        rows: RPT.umbrella.map(d => [d.name, d.tbd ? "TBD — manufacturer cost model pending" : `$${d.lo}–${d.hi}${d.hi >= 50 ? "+" : ""}`, d.note]) }),
     },
     "payback-chart": {
       take: "The savings ladder is a cliff: destruction-priced baselines make the widest savings before our costs are known; disposal-priced baselines depend on compulsion or crisis. Net time to earn back the cost in years is withheld everywhere.",
       axes: "Each row is an industry; the chip states the shared status (time to earn back the cost: pending) and the text gives the displaced existing-supplier baseline. Blue rows are destruction-priced, ink rows disposal-priced.",
-      table: () => ({ cols: ["Vertical", "Displaced existing supplier baseline", "Baseline type"],
+      table: () => ({ cols: ["Industry", "Displaced existing supplier baseline", "Baseline type"],
         rows: RPT.payback.map(d => [d.name, d.basis, d.kind]) }),
     },
     "savings-chart": {
-      take: "Ranked by what existing suppliers charge per gallon to remediate each stream, halogenated solvents and defense AFFF lead; PFAS concentrates are top-3 under both this lens and the composite score.",
+      take: "Ranked by what existing suppliers charge per gallon to clean up each stream, halogenated solvents and defense firefighting foam lead; PFAS concentrates are top-3 under both this lens and the composite score.",
       axes: "Bars are what existing suppliers charge to clean it up per gallon on a log axis (toggle $/m³ or a linear axis on the chart). Dashed outline = low-confidence data; the blue note is the HCSP reference — no $/gal attached.",
     },
     "evidence-chart": {
-      take: "The 10 m³/day skid, with the report's hardest numbers hung on the components that carry them — throughput, 380–420 °C / 25 MPa, 75–95 kW auxiliary spec, ~$3.5/m³ water credit, and TBD where the manufacturer owes data.",
+      take: "The 10 m³/day skid, with the report's hardest numbers hung on the components that carry them — throughput, 380–420 °C / 250 bar, 75–95 kW startup power spec, ~$3.5/m³ water credit, and TBD where the manufacturer owes data.",
       axes: "Side elevation of the module. Every plaque is clickable on the live chart for value + basis + dated source.",
     },
     "mechanism-chart": {
@@ -49,46 +49,46 @@
     "sizing-chart": {
       take: "The reachable market counted in machines: roughly 1,800–3,200 skid-equivalents across five core industries — consolidated reachable demand ≈ $9–20B/yr.",
       axes: "One skid glyph = 50 module-equivalents (10 m³/day each). Solid glyphs are the modeled low case; hollow dashed glyphs are the upside; clipped glyphs are fractional.",
-      table: () => ({ cols: ["Vertical", "Module-equivalents", "reachable market", "total market", "Note"],
+      table: () => ({ cols: ["Industry", "Module-equivalents", "reachable market", "total market", "Note"],
         rows: RPT.sizing.map(d => [d.name, d.mod_lo === d.mod_hi ? "≈" + d.mod_lo.toLocaleString("en-US") : d.mod_lo.toLocaleString("en-US") + "–" + d.mod_hi.toLocaleString("en-US"), d.sam, d.tam, d.note]) }),
     },
     "scale-chart": {
       take: "Scale fixes energy first — net demand collapses from 130–250 to 35–88 kWh/m³ across four rungs — while cost stays withheld (manufacturer cost model pending), and nothing above 306 t/d has ever operated.",
-      axes: "Log capacity axis (m³/day — toggle gpd on the chart). Top panel: net energy band per rung. Bottom panel: deliberately hatched TBD — no $/m³ is attached to HCSP.",
+      axes: "Log capacity axis (m³/day — toggle gallons/day on the chart). Top panel: net energy band per rung. Bottom panel: deliberately hatched TBD — no $/m³ is attached to HCSP.",
       table: () => ({ cols: ["Rung", "Capacity", "Net energy kWh/m³", "Cost", "Note"],
-        rows: RPT.scale_ladder.map(d => [d.name, d.m3d.toLocaleString("en-US") + " m³/day (" + Math.round(d.m3d * 264.172).toLocaleString("en-US") + " gpd)", `${d.kwh[0]}–${d.kwh[1]}`, "TBD — mfr cost model pending", d.note]) }),
+        rows: RPT.scale_ladder.map(d => [d.name, d.m3d.toLocaleString("en-US") + " m³/day (" + Math.round(d.m3d * 264.172).toLocaleString("en-US") + " gal/day)", `${d.kwh[0]}–${d.kwh[1]}`, "TBD — manufacturer cost model pending", d.note]) }),
     },
     "crossover-chart": {
       take: "Net-zero sits near ~35–40 g/L COD with a power cycle; from ~60 g/L the plant exports electricity — feed strength, not scale, decides which industries pay.",
-      axes: "X = feed COD (g/L), Y = net electricity kWhₑ/m³ (positive = imported, negative = exported). The blue line is the LANL hub model with steam-cycle (Rankine) recovery; the dashed band is a 10 m³/day module without a power cycle; the rail lists measured stream CODs.",
+      axes: "X = feed strength (COD, g/L — how much organic waste is in the water), Y = net electricity kWh/m³ (positive = imported, negative = exported). The blue line is the US national-lab hub model with steam power recovery; the dashed band is a 10 m³/day module without a power cycle; the rail lists measured stream strengths.",
       table: () => ({ cols: ["Stream", "COD g/L", "Position vs. the self-powering point", "Note"],
         rows: RPT.crossover.streams.map(s => [s.name, s.cod[0] === s.cod[1] ? String(s.cod[0]) : s.cod[0] + "–" + s.cod[1], s.side === "above" ? "Above (exports)" : "Below (rejected)", s.note]) }),
     },
     "heat-chart": {
-      take: "60% of the 16.1 MW_th reaction heat never leaves the plant — it preheats the feed. The 9.6 MW_th surplus cascades into 1.4 MWₑ power and 4.9 MW_c cooling, worth ≈$1.15M/yr when dispatched correctly.",
-      axes: "Flow width is proportional to MW. Nodes left→right: gross reaction heat → exportable surplus → extraction turbine → power and cooling outputs. Bottom panel: what one MWh_th of surplus heat is worth in each monetization form.",
+      take: "60% of the 16.1 MW of reaction heat never leaves the plant — it preheats the feed. The 9.6 MW surplus cascades into 1.4 MW of power and 4.9 MW of cooling, worth ≈$1.15M/yr when run correctly.",
+      axes: "Flow width is proportional to MW of heat. Nodes left→right: gross reaction heat → exportable surplus → extraction turbine → power and cooling outputs. Bottom panel: what one megawatt-hour of surplus heat is worth in each form.",
       table: () => ({ cols: ["Quantity", "Value", "Reading"],
         rows: [
-          ["Gross reaction heat", RPT.trigen.gross + " MW_th", "13.88 kJ/g COD at 1,000 m³/day, 100 g/L"],
-          ["Internal preheat duty", RPT.trigen.preheat + " MW_th", "The price of operation that makes its own heat from the waste (~60% of gross)"],
-          ["Exportable surplus", RPT.trigen.surplus + " MW_th", "Range " + RPT.trigen.surplus_range.join("–") + " across 70–85% recovery"],
-          ["Power output", RPT.trigen.power + " MWₑ", "Back-pressure/extraction turbine, high-temp slice"],
-          ["Cooling output", RPT.trigen.cooling + " MW_c", "≈1,392 RT via NH₃–H₂O absorption at COP 0.6"],
+          ["Gross reaction heat", RPT.trigen.gross + " MW of heat", "13.88 kJ per gram of COD at 1,000 m³/day, 100 g/L"],
+          ["Internal preheat duty", RPT.trigen.preheat + " MW of heat", "The price of a process that makes its own heat from the waste (~60% of gross)"],
+          ["Exportable surplus", RPT.trigen.surplus + " MW of heat", "Range " + RPT.trigen.surplus_range.join("–") + " across 70–85% recovery"],
+          ["Power output", RPT.trigen.power + " MW of electricity", "Extraction turbine takes the hottest slice"],
+          ["Cooling output", RPT.trigen.cooling + " MW of cooling", "≈1,392 refrigeration tons via a heat-powered ammonia chiller (0.6 units of cooling per unit of heat)"],
           ["Recovered water", RPT.trigen.water, "Distilled byproduct"],
           ["Cascade value", RPT.trigen.value, "vs " + RPT.trigen.value_cooling_only + " all-cooling — " + RPT.trigen.basis],
-        ].concat(RPT.trigen.hierarchy.map(h => ["Value of 1 MWh_th as " + h.form, h.val + " /" + h.per, h.note])) }),
+        ].concat(RPT.trigen.hierarchy.map(h => ["Value of 1 megawatt-hour of heat as " + h.form, h.val + " /" + h.per, h.note])) }),
     },
     "verdict-chart": {
-      take: "The scale tips toward pursuit — staged, and gated on reliability: the bull pan carries validated destruction and the pricing umbrella; the bear pan carries the 30-year graveyard and unproven scale-up.",
-      axes: "Qualitative, not a score: solid weights are live evidence, dashed weights are upgrade triggers not yet met, and the hatched seal carries the falsification lines that would kill either case.",
+      take: "The scale tips toward pursuit — staged, and gated on reliability: the 'for' pan carries validated destruction and the pricing umbrella; the 'against' pan carries the 30-year graveyard and unproven scale-up.",
+      axes: "Qualitative, not a score: solid weights are live evidence, dashed weights are upgrade triggers not yet met, and the hatched seal carries the proof-killer lines that would sink either case.",
       table: () => ({ cols: ["Side", "Weight", "Detail"],
-        rows: RPT.verdict.bull.map(b => ["Bull", b.t.split("—")[0].trim(), b.t])
-          .concat(RPT.verdict.bear.map(b => ["Bear", b.t.split("—")[0].trim(), b.t]))
+        rows: RPT.verdict.bull.map(b => ["For", b.t.split("—")[0].trim(), b.t])
+          .concat(RPT.verdict.bear.map(b => ["Against", b.t.split("—")[0].trim(), b.t]))
           .concat(RPT.verdict.upgrades.map(u => ["Upgrade trigger (not yet met)", u.t.split("—")[0].trim(), u.t]))
-          .concat(RPT.verdict.falsifiers.map(f => ["Falsification line", f.t.split("—")[0].trim(), f.t])) }),
+          .concat(RPT.verdict.falsifiers.map(f => ["Proof-killer", f.t.split("—")[0].trim(), f.t])) }),
     },
     "horizon-chart": {
-      take: "Several of the report's risks and catalysts are dated and therefore tradeable — capital can follow dated clocks instead of blind staging.",
+      take: "Several of the report's risks and catalysts are dated — so capital can be timed to them instead of committed blindly.",
       axes: "Wall-chart timeline 2023–2045 (recent decade expanded). Ink plaques = policy framework, blue = demand catalyst, red dashed = risk/competition event; the shaded band is the current window.",
       table: () => ({ cols: ["Year", "Event", "Class", "Why it matters"],
         rows: RPT.catalysts.map(c => [String(Math.floor(c.y)), c.label, c.cls, c.ev]) }),
@@ -107,7 +107,7 @@
       take: "Below ≈$1M there is no competitor product to buy and no service door to walk through — that unshaded zone is HCSP's opening.",
       axes: "X = deal size ($M, log). Solid bars = equipment a customer can buy; dashed/hollow = services and pilots, not sold units; the blue zone marks deals no competitor serves.",
       table: () => ({ cols: ["Player", "Offer type", "Span", "Caption"],
-        rows: RPT.scalegap.lanes.map(l => [l.name, l.kind, `$${l.bar.from}M–$${l.bar.to}M`, l.bar.lab + (l.ghost ? " · ghost: " + l.ghost.lab : "")]) }),
+        rows: RPT.scalegap.lanes.map(l => [l.name, l.kind, `$${l.bar.from}M–$${l.bar.to}M`, l.bar.lab + (l.ghost ? " · pilot-only: " + l.ghost.lab : "")]) }),
     },
     "access-chart": {
       take: "Pursuit effort splits 40/35/25 across hosted utility applications, direct applications, and settlement-adjacent channels — and the Orlando chain shows how a grant converts to service revenue.",
@@ -307,7 +307,7 @@
     tools.className = "chart-tools";
     const exBtn = document.createElement("button");
     exBtn.type = "button"; exBtn.className = "explore-btn";
-    exBtn.textContent = "EXPLORE ⤢";
+    exBtn.textContent = "EXPLORE CHART ⤢";
     exBtn.addEventListener("click", e => { e.stopPropagation(); openModal(id, host); });
     tools.appendChild(exBtn);
     if (CXT.walk[id]) {

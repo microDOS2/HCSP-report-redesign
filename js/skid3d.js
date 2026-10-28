@@ -24,27 +24,27 @@
     combustor: {
       name: "Combustion chamber",
       specs: "H₂/O₂ flame >3,000 °F (≈1,650 °C) · drives SCWO preheat",
-      role: "Burns the electrolyzer's hydrogen to supply preheat duty. Grid electricity covers only the 75–95 kW startup/auxiliary spec — the loop is self-fueling in operation per the manufacturer.",
+      role: "Burns the electrolyzer's hydrogen to preheat the reactor. Grid electricity covers only the 75–95 kW startup power spec — the loop is self-fueling in operation per the manufacturer.",
     },
     separator: {
       name: "Separator / condenser",
-      specs: "Outputs: 85–95% distilled water (<10 µS/cm) · inert sludge",
-      role: "Cools and depressurizes the reactor effluent. Distilled-quality water and a contained, fully broken-down sludge leave here; on concentrated feeds the train also exports power and cooling. The only gaseous stream is vented water vapor — no air permit.",
+      specs: "Outputs: 85–95% distilled water (<10 µS/cm conductivity — purer than tap water) · inert sludge",
+      role: "Cools and depressurizes the reactor output. Distilled-quality water and a contained, fully broken-down sludge leave here; on concentrated feeds the train also exports power and cooling. The only gaseous stream is vented water vapor — no air permit.",
     },
     pump: {
       name: "High-pressure feed pump",
       specs: "10 m³/day (~2,640 gal/day) · pressurizes to 250 bar",
-      role: "The first of two energy inputs: concentrated feed (≥60–150 g/L COD, or an upstream concentrate) is pressurized so the water cannot boil on its way past the critical point.",
+      role: "The first of two energy inputs: concentrated feed (≥60–150 g/L COD — a measure of how much organic waste is in the water — or an upstream concentrate) is pressurized so the water cannot boil on its way past the critical point.",
     },
     skid: {
       name: "Base frame — container-class skid",
-      specs: "8–10 m² footprint · ≤3 m height · <75 dBA at 1 m",
+      specs: "8–10 m² footprint · under 3 m tall · quieter than 75 dB at 1 m",
       role: "Indoor-sited and deployable at the point of waste generation, not at a central plant. Module purchase cost is TBD — manufacturer cost model pending; the AirSCWO 6's $5.2M contract is the market reference point, not an HCSP price.",
     },
     piping: {
       name: "High-pressure piping train",
-      specs: "25 MPa rated · heat-recovery economizer loop",
-      role: "Connects pump → preheat → reactor → separator. A well-designed economizer train recovers 70–85% of the reaction heat — 6.5 MW_th of a hub's gross heat is spoken for before anything can be sold.",
+      specs: "250 bar rated · heat-recovery loop",
+      role: "Connects pump → preheat → reactor → separator. A well-designed heat-recovery train recovers 70–85% of the reaction heat — 6.5 MW of a hub's gross heat is spoken for before anything can be sold.",
     },
   };
 
@@ -157,11 +157,11 @@
 
   // ── labels (HTML overlay, projected) ──
   const LABELS = [
-    ["reactor", "SCWO REACTOR · 380–420 °C · 25 MPA", new THREE.Vector3(1.9, 3.1, 0)],
+    ["reactor", "SCWO REACTOR · 380–420 °C · 250 BAR", new THREE.Vector3(1.9, 3.1, 0)],
     ["electrolyzer", "ELECTROLYZER · SELF-FUELING H₂ LOOP", new THREE.Vector3(-0.9, 1.95, 0.75)],
     ["combustor", "COMBUSTION CHAMBER · >3,000 °F", new THREE.Vector3(0.55, 1.35, 0.75)],
     ["separator", "SEPARATOR / CONDENSER", new THREE.Vector3(0.9, 1.65, -0.85)],
-    ["pump", "HP FEED PUMP · 250 BAR", new THREE.Vector3(-2.55, 1.5, 0.6)],
+    ["pump", "HIGH-PRESSURE FEED PUMP · 250 BAR", new THREE.Vector3(-2.55, 1.5, 0.6)],
     ["skid", "CONTAINER-CLASS SKID · 8–10 M²", new THREE.Vector3(-1.2, 0.3, -1.4)],
   ].map(([key, text, v]) => {
     const el = document.createElement("div");

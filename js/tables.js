@@ -135,7 +135,7 @@
   RPT.league.forEach(d => { compByKey[d.key] = d; });
   const merged = RPT.savings_ladder.map(s => ({ s, c: compByKey[s.key] })).filter(m => m.c);
   const fv = v => v < 0.1 ? v.toFixed(3) : v < 1 ? v.toFixed(2) : String(v);
-  const band = s => s.na ? '<span class="vc-contra">N/A — buyer of the output</span>' : "$" + fv(s.lo) + "–" + fv(s.hi) + (s.plus ? "+" : "") + (s.lowConf ? ' <span class="lc-flag">LOW CONF</span>' : "");
+  const band = s => s.na ? '<span class="vc-contra">N/A — buyer of the output</span>' : "$" + fv(s.lo) + "–" + fv(s.hi) + (s.plus ? "+" : "") + (s.lowConf ? ' <span class="lc-flag">LOW CONFIDENCE</span>' : "");
   let lens = "savings"; // savings lens is the primary ordering (manufacturer pricing TBD)
 
   const MODES = [
@@ -165,7 +165,7 @@
       tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
       tr.onclick = e => U.showDrill({
         title: (lens === "savings" ? "SAVINGS #" + s.srank : "RANK " + c.rank) + " · " + s.vertical.toUpperCase().slice(0, 40),
-        value: s.na ? "N/A — buyer of the output" : band(s).replace(/<[^>]+>/g, "").replace("LOW CONF", "(low conf)") + " /gal",
+        value: s.na ? "N/A — buyer of the output" : band(s).replace(/<[^>]+>/g, "").replace("LOW CONFIDENCE", "(low confidence)") + " /gal",
         sub: s.note + " Composite lens: #" + c.rank + " (" + c.score + "/10, Tier " + c.tier + "). " + c.why + " " + RPT.savings_meta.qualifier + ".",
         source: CH.srcLink(s.src.concat(c.src.filter(k => !s.src.includes(k))).concat(["K150"])),
         x: e.clientX, y: e.clientY,

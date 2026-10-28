@@ -44,7 +44,7 @@
   const G = RPT.geo_matrix;
   const MARKS = {
     op:   ["●", "OPERATING", "gm-op"],
-    demo: ["◐", "DEMO / TEST", "gm-demo"],
+    demo: ["◐", "DEMO / TRIAL", "gm-demo"],
     ann:  ["○", "ANNOUNCED", "gm-ann"],
     mkt:  ["✕", "MARKETING CLAIM", "gm-mkt"],
     no:   ["—", "", "gm-no"],

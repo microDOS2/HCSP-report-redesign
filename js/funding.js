@@ -7,9 +7,9 @@
   const strip = document.getElementById("fate-strip");
   if (strip) {
     const M = [
-      { v: "$11.3B", neg: true, l: "DOE demonstration awards terminated (2025)", d: "24 OCED awards (~$3.7B) terminated May 2025, ~$7.56B more across DOE offices in Oct 2025; the office itself was abolished in November.", src: ["K106"] },
-      { v: "781", neg: true, l: "EPA environmental-justice grants terminated", d: "OBBBA (P.L. 119-21) rescinded unobligated IRA climate-justice appropriations; the Office of Environmental Justice is closed. Dead money — never a fit for a for-profit vendor.", src: ["K105"] },
-      { v: "$37.33B", l: "Known addressable pools across the register", d: "Sum of disclosed award pools — grants, forgivable SRF tranches, WIFIA credit capacity, and settlement funds — across the 92-program register. Not exhaustive; loans and settlements included, and the international/NGO layer (G-081–G-092) adds channels rather than pooled dollars.", src: ["K149"] },
+      { v: "$11.3B", neg: true, l: "DOE demonstration awards terminated (2025)", d: "24 awards (~$3.7B) from DOE's clean-energy demonstrations office terminated May 2025, ~$7.56B more across DOE offices in Oct 2025; the office itself was abolished in November.", src: ["K106"] },
+      { v: "781", neg: true, l: "EPA environmental-justice grants terminated", d: "The July 2025 federal budget law cancelled unspent Inflation Reduction Act climate-justice money; the Office of Environmental Justice is closed. Dead money — never a fit for a for-profit vendor.", src: ["K105"] },
+      { v: "$37.33B", l: "Known addressable pools across the register", d: "Sum of disclosed award pools — grants, forgivable state loan-fund installments, federal WIFIA loan capacity, and settlement funds — across the 92-program register. Not exhaustive; loans and settlements included, and the international/NGO layer (programs G-081–G-092) adds channels rather than pooled dollars.", src: ["K149"] },
       { v: "$12.75B+", l: "Settlement funds in flight to water systems", d: "3M $10.5–12.5B over 13 years (>$3.5B already paid) plus DuPont/Chemours/Corteva $1.185B, Tyco $750M, BASF $316.5M. Administrators pay utilities, not vendors — sell downstream of the checks.", src: ["K111"] },
     ];
     strip.innerHTML = M.map((m, i) => `<div class="m" data-i="${i}"><div class="v"${m.neg ? ' style="color:var(--neg)"' : ""}>${m.v}</div><div class="k">${m.l}</div></div>`).join("");
@@ -57,7 +57,7 @@
   const body = U.frame(host, {
     title: "The access architecture: 40/35/25, and the Orlando template to replicate",
     sub: "LANE WIDTH = SHARE OF PURSUIT EFFORT (%) · ORLANDO CHAIN NODE AREA ∝ DOLLARS · CLICK EVERY LANE AND NODE",
-    src: "Industry & official — Orlando/FL DEP award records, OC San RISE, MN LCCMR, DoD AFFF program (K114, K115, K143, K144, K133)",
+    src: "Industry & official — Orlando/Florida DEP award records, Orange County CA innovation program, Minnesota trust fund, Defense Dept foam program (K114, K115, K143, K144, K133)",
   });
   const W = 880, H = 470;
   const svg = CH.svg(body, W, H);
@@ -136,12 +136,12 @@
   svg.append("line").attr("x1", LX).attr("x2", W - 40).attr("y1", 326).attr("y2", 326).attr("stroke", lineLo);
 
   const chain = [
-    { lab: "CWSRF-BIL GRANT", val: "~$0.8M", date: "FEB 2024", r: Math.sqrt(0.8) * 26,
-      sub: "The City of Orlando secured a federal BIL grant through Florida's CWSRF (~$800K, February 2024) to fund an SCWO demonstration by 374Water at its Iron Bridge facility. The utility wrote the proposal; the vendor supplied the engineering package.", src: ["K114"] },
+    { lab: "STATE WATER FUND GRANT", val: "~$0.8M", date: "FEB 2024", r: Math.sqrt(0.8) * 26,
+      sub: "The City of Orlando secured a federal infrastructure-law grant through Florida's clean-water state loan fund (~$800K, February 2024) to fund an SCWO demonstration by 374Water at its Iron Bridge facility. The utility wrote the proposal; the vendor supplied the engineering package.", src: ["K114"] },
     { lab: "WDS SERVICE LICENSE", val: "5 YEARS", date: "MAR 2026", r: Math.sqrt(2.5) * 26,
       sub: "The funded demonstration converted into a five-year waste-destruction-services license (March 2026) — grant-funded proof converting into recurring service revenue.", src: ["K115"] },
     { lab: "FULL-SCALE PFAS HUB", val: "$3–5M", date: "JUN 2026", r: Math.sqrt(4) * 26,
-      sub: "Then a $3M–$5M full-scale PFAS destruction hub (June 2026). The pattern repeats: OC San's 6-ton/day RISE demonstration and Minnesota's ENRTF-funded SCWO biosolids project (Dec 2025).", src: ["K115", "K144", "K143"] },
+      sub: "Then a $3M–$5M full-scale PFAS destruction hub (June 2026). The pattern repeats: Orange County CA's 6-ton/day demonstration and Minnesota's trust-fund SCWO sewage-sludge project (Dec 2025).", src: ["K115", "K144", "K143"] },
   ];
   const xs = [200, 470, 740];
   chain.forEach((c, i) => {
@@ -296,7 +296,7 @@
   const body = U.frame(host, {
     title: "Twelve months of dated pursuits — rolling federal cycles through 2027",
     sub: "WALL-CHART TIMELINE SEP 2026 – Q3 2027 · SOLID BLUE = HARD DEADLINE · INK = EXPECTED CYCLE · DASHED = PROGRAM STILL FORMING · MUTED RED, STRUCK = CLOSED (DEADLINE PASSED SEP 2026) · ⚑ = MISSING IT COSTS A FULL ANNUAL CYCLE · CLICK PLAQUES",
-    src: "Industry & official — agency NOFO pages, settlement administrators, state program bulletins · dates as published (K116–K132)",
+    src: "Industry & official — agency grant-notice pages, settlement administrators, state program bulletins · dates as published (K116–K132)",
   });
   const W = 880, H = 420, axisY = 342;
   // piecewise scale: Sep 2026–Feb 2027 expanded (deadline cluster), Mar–Sep 2027 compressed
@@ -364,5 +364,5 @@
 
   svg.append("text").attr("x", 56).attr("y", axisY + 42)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
-    .text("RULE 1: DWPR + ONR BAA CLOSED SEP 2026 (ANNUAL CYCLES — TRACK FY2027) · SEQUENCE Q4→Q3 PER THE STACKING CALENDAR · ONE ANCHOR UTILITY PER STATE PROGRAM");
+    .text("RULE 1: RECLAMATION GRANTS + NAVY RESEARCH CALL CLOSED SEP 2026 (ANNUAL CYCLES — TRACK FY2027) · FOLLOW THE Q4→Q3 STACKING CALENDAR · ONE ANCHOR UTILITY PER STATE PROGRAM");
 })();

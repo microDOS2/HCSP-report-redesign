@@ -87,7 +87,7 @@ window.CH = (() => {
   const body = U.frame(host, {
     title: "Fifteen industries, one physics filter — and the ranking is still an economics verdict",
     sub: "WEIGHTED SIX-CRITERION SCORE /10 · COLOR = TIER · RIGHT COLUMN = NET TIME TO EARN BACK THE COST (PENDING MANUFACTURER COST MODEL) · CLICK ANY BAR FOR THE RATIONALE",
-    src: "Research compilation — cross-verified composites of dimension studies D1–D10 + v2 dimension V2D3 (2026-09), v2 ranking",
+    src: "Research compilation — cross-checked composites from the report's industry studies (D1–D10) and the v2 industry chapter (2026-09)",
   });
   const W = 880, rowH = 50, padT = 32, H = padT + rowH * RPT.league.length + 46;
   const mL = 236, mR = 210;
@@ -188,8 +188,8 @@ window.CH = (() => {
   if (!host) return;
   const body = U.frame(host, {
     title: "Grid power price context — startup/auxiliary draw and the value of exported energy",
-    sub: "REGIONAL GRID PRICE $/M³-EQUIVALENT (75–95 KW STARTUP/AUXILIARY SPEC × REGIONAL POWER PRICE) · DASHED = RECOVERED-WATER VALUE ~$3.5/M³ · OPERATING ENERGY NEGLIGIBLE PER MANUFACTURER (SELF-FUELING LOOP) · CLICK BARS",
-    src: "Industry & official — EIA (2025), Eurostat (H2-2025), EPA WaterSense (2024); broker relays for CN/IN/MEA power prices",
+    sub: "REGIONAL GRID PRICE $/M³-EQUIVALENT (75–95 KW STARTUP POWER SPEC × REGIONAL POWER PRICE) · DASHED = RECOVERED-WATER VALUE ~$3.5/M³ · OPERATING ENERGY NEGLIGIBLE PER MANUFACTURER (SELF-FUELING LOOP) · CLICK BARS",
+    src: "Industry & official — EIA (2025), Eurostat (H2-2025), EPA WaterSense (2024); broker relays for China, India, and Middle East power prices",
   });
   const W = 880, rowH = 50, padT = 34, H = padT + rowH * RPT.energy_floor.length + 50;
   const mL = 250, mR = 30;
@@ -223,7 +223,7 @@ window.CH = (() => {
     .each(function (d) { CH.wrap2(d3.select(this), d.region, 26); });
   rows.append("text").attr("x", mL - 12).attr("y", 43).attr("text-anchor", "end")
     .attr("font-family", CH.MONO).attr("font-size", 9).attr("fill", "#42566a")
-    .text(d => d.idx ? `REGIONAL INDEX ${d.idx}/25` : "—");
+    .text(d => d.idx ? `ATTRACTIVENESS SCORE ${d.idx}/25` : "—");
 
   const barsG = rows.append("g");
   barsG.each(function (d) {
@@ -247,7 +247,7 @@ window.CH = (() => {
     CH.halo(note);
     [bx, lb].forEach(s => CH.drill(s, () => ({
       title: d.region.toUpperCase(), value: `$${d.lo.toFixed(1)}–${d.hi.toFixed(1)} /m³-equiv`,
-      sub: "Grid price context, not an operating-cost floor: 75–95 kW startup/auxiliary spec (180–228 kWh/m³-equivalent) × regional industrial power price. HCSP operating energy cost is negligible per the manufacturer (self-fueling loop) — the prices shown matter for auxiliary draw and for valuing exported kWh on concentrated feeds. " + d.note,
+      sub: "Grid price context, not an operating-cost floor: the 75–95 kW startup power spec (180–228 kilowatt-hours per cubic meter, kWh/m³) × the regional industrial power price. HCSP operating energy cost is negligible per the manufacturer (self-fueling loop) — the prices shown matter for the startup draw and for valuing each exported kilowatt-hour on concentrated feeds. " + d.note,
       source: CH.srcLink(d.src),
     })));
     g.datum(Object.assign({}, d, { _bx: bx, _lb: lb, _nt: note }));
@@ -354,7 +354,7 @@ window.CH = (() => {
     .text("MICHIGAN PAID $28/GAL TO LANDFILL AFFF (2020)");
   CH.drill(cm.select("text"), () => ({
     title: "THE PANIC-BUYING CEILING", value: "$28 /gal",
-    sub: "The ceiling panic-buying sets when destruction capacity is scarce — landfilling, not destruction; CERCLA liability persists.",
+    sub: "The ceiling panic-buying sets when destruction capacity is scarce — landfilling, not destruction; under the US Superfund cleanup law (CERCLA), the polluter stays liable.",
     source: CH.srcLink(["K10"]),
   }));
 
@@ -382,7 +382,7 @@ window.CH = (() => {
   const body = U.frame(host, {
     title: "The savings cliff: savings before our costs are known vs existing supplier cost — net time to earn back the cost pending",
     sub: "SAVINGS BEFORE OUR COSTS ARE KNOWN · DISPLACED EXISTING-SUPPLIER BASELINES FROM PRICED DISPOSAL TARIFFS · BLUE = DESTRUCTION-PRICED BASELINE · INK = DISPOSAL-PRICED · TIME TO EARN BACK THE COST PENDING MANUFACTURER COST MODEL — NO EARN-BACK YEARS ARE STATED · CLICK ANY ROW",
-    src: "Research compilation — report Ch. 8.3 (2026-09), per-vertical baselines from priced disposal tariffs",
+    src: "Research compilation — report Ch. 8.3 (2026-09), per-industry baselines from priced disposal tariffs",
   });
   const W = 880, rowH = 46, padT = 40, H = padT + rowH * RPT.payback.length + 46;
   const mL = 250, mR = 40;
@@ -465,7 +465,7 @@ window.CH = (() => {
   RPT.league.forEach(d => { compByKey[d.key] = d; });
   const body = U.frame(host, {
     title: "The Savings Ladder — what existing suppliers charge to make each gallon disappear",
-    sub: "WHAT EXISTING SUPPLIERS CHARGE TO CLEAN IT UP — UNIT & AXIS TOGGLES BELOW (SESSION ONLY) · HCSP REFERENCE: SELF-FUELING LOOP, COST MODEL PENDING — NO $/GAL ATTACHED · DASHED OUTLINE = LOW CONFIDENCE · CLICK ANY BAR FOR VALUE + BASIS + DATED SOURCE",
+    sub: "WHAT EXISTING SUPPLIERS CHARGE TO CLEAN IT UP — UNIT & AXIS TOGGLES BELOW (REMEMBERED UNTIL YOU CLOSE THE TAB) · HCSP REFERENCE: SELF-FUELING LOOP, COST MODEL PENDING — NO $/GAL ATTACHED · DASHED OUTLINE = LOW CONFIDENCE · CLICK ANY BAR FOR VALUE + BASIS + DATED SOURCE",
     src: "Research compilation — report v3 addendum (2026-09), all values previously sourced in the dim research · " + CH.srcStr(["K150"]),
   });
   const GAL2M3 = 264.172; // 1 US gallon = 0.00378541 m³ → $/gal × 264.172 = $/m³
@@ -586,7 +586,7 @@ window.CH = (() => {
         g.append("line").attr("x1", x(cv(v))).attr("x2", x(cv(v))).attr("y1", 1).attr("y2", 18)
           .attr("stroke", col).attr("stroke-width", 1.6).style("opacity", 0).attr("class", "cap");
       });
-      const txt = band$(d) + (d.lowConf ? " · LOW CONF" : "");
+      const txt = band$(d) + (d.lowConf ? " · LOW CONFIDENCE" : "");
       const rightFits = x(cv(d.hi)) + 10 + txt.length * 8.8 <= W - 6;
       const lab = g.append("text")
         .attr("x", rightFits ? x(cv(d.hi)) + 8 : x(cv(d.lo)) - 8)
@@ -626,12 +626,12 @@ window.CH = (() => {
   // modal "view as table" data
   window.CXT = window.CXT || { table: {}, walk: {} };
   CXT.table["savings-chart"] = {
-    cols: ["Savings rank", "Vertical", "Existing supplier cost $/gal", "$/m³ (×264.172)", "Confidence", "Basis"],
+    cols: ["Savings rank", "Industry", "Existing supplier cost $/gal", "$/m³ (×264.172)", "Confidence", "Basis"],
     rows: data.map(d => [
       "#" + d.srank, d.vertical,
       d.na ? "N/A — buyer of the output" : "$" + d.lo + "–" + d.hi + (d.plus ? "+" : ""),
       d.na ? "—" : "$" + (d.lo * GAL2M3).toFixed(2) + "–" + (d.hi * GAL2M3).toFixed(2) + (d.plus ? "+" : ""),
-      d.lowConf ? "LOW" : "standard", d.note,
+      d.lowConf ? "Low" : "Standard", d.note,
     ]),
   };
 })();

@@ -8,7 +8,7 @@
   if (!host) return;
   const body = U.frame(host, {
     title: "The scale tips toward pursuit — staged, and gated on reliability",
-    sub: "EVIDENCE WEIGHTS ON BOTH PANS · DASHED WEIGHTS = UPGRADE TRIGGERS NOT YET MET · HATCHED SEAL = SHARED FALSIFICATION · QUALITATIVE, NOT A SCORE · CLICK EVERYTHING",
+    sub: "EVIDENCE WEIGHTS ON BOTH PANS · DASHED WEIGHTS = UPGRADE TRIGGERS NOT YET MET · HATCHED SEAL = WHAT WOULD PROVE US WRONG · QUALITATIVE, NOT A SCORE · CLICK EVERYTHING",
     src: "Research compilation — report Ch. 10 synthesis (2026-09); every weight traces to a K anchor",
   });
   const W = 880, H = 580;
@@ -18,9 +18,9 @@
   const endY = s => beamY + Math.sin(tilt) * BL * s; // s=-1 left (bear, up), +1 right (bull, down)
 
   // short weight labels (full text in drill-down)
-  const bullShort = ["99.9993% DESTRUCTION", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD", "ENERGY INVERTS"];
-  const bearShort = ["30-YR GRAVEYARD", "$215K/$21M LOSS", "EBJ −43%", "INCINERATION BACK", "WATER CAN'T CARRY", "306 T/D MAX RUN"];
-  const upShort = ["PILOT ENERGY DATA", "EPA REVISION", "LANDFILL ELG"];
+  const bullShort = ["99.9993% DESTRUCTION", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD CLEANUP", "ENERGY INVERTS"];
+  const bearShort = ["30-YR GRAVEYARD", "$215K/$21M LOSS", "MARKET CUT −43%", "INCINERATION BACK", "WATER CAN'T CARRY", "306 T/DAY MAX RUN"];
+  const upShort = ["PILOT ENERGY DATA", "EPA REVISION", "LANDFILL PFAS LIMITS"];
 
   const root = svg.append("g");
 
@@ -29,7 +29,7 @@
   seal.append("rect").attr("x", 120).attr("y", 536).attr("width", 640).attr("height", 30).attr("fill", "rgba(194,47,78,.10)");
   for (let hx = 120; hx < 760; hx += 14)
     seal.append("line").attr("x1", hx).attr("y1", 566).attr("x2", hx + 8).attr("y2", 536).attr("stroke", neg).attr("stroke-width", 0.8).attr("opacity", 0.5);
-  const falsShort = ["SALT DATA REFUTES IT", "CERCLA MCLS VACATED", "INCINERATOR BUILD-OUT"];
+  const falsShort = ["SALT DATA REFUTES IT", "DRINKING-WATER LIMITS REMOVED", "INCINERATOR BUILD-OUT"];
   falsShort.forEach((f, i) => {
     const wX = 150 + i * 205;
     const st = seal.append("g");
@@ -37,13 +37,13 @@
     st.append("text").attr("x", wX + 95).attr("y", 554).attr("text-anchor", "middle")
       .attr("font-family", CH.MONO).attr("font-size", 7.6).attr("font-weight", 700).attr("fill", neg).text(f);
     CH.drill(st, () => ({
-      title: "FALSIFICATION LINE " + (i + 3 - 2), value: f,
+      title: "PROOF-KILLER " + (i + 3 - 2), value: f,
       sub: RPT.verdict.falsifiers[i].t + " — if this happens, the verdict flips regardless of demand-side evidence.",
       source: CH.srcLink(RPT.verdict.falsifiers[i].src),
     }));
   });
   seal.append("text").attr("x", 120).attr("y", 530).attr("font-family", CH.MONO).attr("font-size", 8.5)
-    .attr("fill", neg).attr("font-weight", 700).text("SHARED FALSIFICATION — EITHER CASE DIES IF THESE BREAK");
+    .attr("fill", neg).attr("font-weight", 700).text("WHAT WOULD PROVE US WRONG — EITHER CASE DIES IF THESE BREAK");
 
   // ── pillar + base ──
   root.append("rect").attr("x", CX - 9).attr("y", beamY).attr("width", 18).attr("height", 396).attr("fill", "#eef1f5").attr("stroke", ink).attr("stroke-width", 1.4);
@@ -95,7 +95,7 @@
       const wt = wg.append("text").attr("x", ex).attr("y", wy + 14.5).attr("text-anchor", "middle")
         .attr("font-family", CH.MONO).attr("font-size", 7.2).attr("font-weight", 600).attr("fill", "#fff").text(t);
       CH.drill(wg, () => ({
-        title: (side > 0 ? "BULL EVIDENCE" : "BEAR EVIDENCE"), value: t,
+        title: (side > 0 ? "EVIDENCE FOR" : "EVIDENCE AGAINST"), value: t,
         sub: srcList[i].t, source: CH.srcLink(srcList[i].src),
       }));
       if (CH.REDUCE) wg.style("opacity", 1);
@@ -104,7 +104,7 @@
     // case label
     g.append("text").attr("x", ex).attr("y", panY + 44).attr("text-anchor", "middle")
       .attr("font-family", CH.MONO).attr("font-size", 10).attr("font-weight", 700).attr("fill", col)
-      .text(side > 0 ? "THE BULL CASE" : "THE BEAR CASE");
+      .text(side > 0 ? "THE CASE FOR" : "THE CASE AGAINST");
     return g;
   }
   pan(-1, bearShort, inkMd, RPT.verdict.bear);
@@ -159,9 +159,9 @@
   const host = document.getElementById("horizon-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The demand clock: several of the risks are dated, and therefore tradeable",
+    title: "The demand clock: several of the risks are dated, and can be planned around",
     sub: "WALL-CHART TIMELINE 2023–2045 · INK = POLICY FRAMEWORK · BLUE = DEMAND CATALYST · RED FRAME = RISK/COMPETITION EVENT · 2026 = CURRENT WINDOW · CLICK PLAQUES",
-    src: "Industry & official — EPA, GAO, DoD, WHO, EU 2024/3019, CPCB/NGT · dates as published",
+    src: "Industry & official — US EPA, GAO, Defense Dept, WHO, EU wastewater directive 2024/3019, India's pollution board · dates as published",
   });
   const W = 880, H = 380, axisY = 316;
   // piecewise-linear time scale: dense recent decade expanded, long horizon compressed
@@ -225,5 +225,5 @@
 
   svg.append("text").attr("x", 56).attr("y", axisY + 42)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
-    .text("SCENARIO-TRIGGERED DEPLOYMENT: CAPITAL FOLLOWS DATED CLOCKS, NOT BLIND STAGING · EU UWWTD BUILD-OUT RUNS TO 2045 (DIRECTIVE TIMETABLE)");
+    .text("MONEY FOLLOWS DATED CLOCKS, NOT BLIND STAGING · THE EU WASTEWATER-DIRECTIVE BUILD-OUT RUNS TO 2045 (LEGAL TIMETABLE)");
 })();

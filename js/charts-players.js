@@ -9,7 +9,7 @@
   const body = U.frame(host, {
     title: "The graveyard is the context; the four survivors are the evidence",
     sub: "COMMERCIAL SCWO ENTITIES 1980–2026 · DASHED SPAN = GRADED DATE ESTIMATE · ✕ = EXITED · RIBBON = OUTCOME · CLICK LINES AND PLAQUES",
-    src: "Industry & official — SCWO literature reviews (2019/2021), NRC (2002), EPA OLEM · Company disclosure — vendor PRs, SEC EDGAR",
+    src: "Industry & official — SCWO literature reviews (2019/2021), US National Research Council (2002), US EPA waste office · Company disclosure — vendor press releases, SEC filings",
   });
   const W = 880, padT = 46, rowH = 40;
   const rows = RPT.players;
@@ -125,7 +125,7 @@
   // footnote
   svg.append("text").attr("x", tX0).attr("y", H - 18)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
-    .text("* GRADED DATE ESTIMATE [DERIVED] · RIBBON WIDTH ENCODES DEAL SIZE — UNDISCLOSED = HAIRLINE THROUGHOUT");
+    .text("* GRADED DATE ESTIMATE [DERIVED] · RIBBON WIDTH WOULD SHOW DEAL SIZE — UNDISCLOSED = HAIRLINE THROUGHOUT");
 
   CH.enter(host, () => {
     svg.selectAll("line[data-x1]").transition().duration(700).delay((d, i) => i * 45)

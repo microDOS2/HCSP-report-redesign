@@ -70,7 +70,7 @@
   const body = U.frame(host, {
     title: "The scale gap: where each competitor's offering begins",
     sub: "X = DEAL SIZE, $M, LOG SCALE · SOLID = EQUIPMENT A CUSTOMER CAN BUY · DASHED/HOLLOW = SERVICES & PILOTS, NOT SOLD UNITS · BLUE = SUB-$1M ZONE NO COMPETITOR SERVES · CLICK ANY LANE",
-    src: "Company primary + registry + synthesis — 374Water 10-Q/424B5/deck, GA-EMS deck & EPA record, Danish CVR & EPA MUDP, state takeback records (K151–K166)",
+    src: "Company primary + registry + synthesis — 374Water SEC filings & investor deck, General Atomics deck & EPA record, Danish company registry & Danish EPA grants, state take-back records (K151–K166)",
   });
 
   const W = 1000, H = 452;
@@ -184,7 +184,7 @@
     const mk = svg.append("line").attr("x1", bx0).attr("x2", bx0).attr("y1", cy - barH / 2 - 2).attr("y2", cy + barH / 2 + 2)
       .attr("stroke", ln.kind === "hcsp" ? ACC : INK).attr("stroke-width", 1.6);
     drill(mk);
-    const startLab = { w374: "$4.9M", ga: "3 gpm", aq: "$2M", rv: "$0.67M", hcsp: "$0.1M" }[ln.id];
+    const startLab = { w374: "$4.9M", ga: "3 gal/min", aq: "$2M", rv: "$0.67M", hcsp: "$0.1M" }[ln.id];
     const vl = svg.append("text").attr("x", bx0).attr("y", cy + barH / 2 + 15).attr("text-anchor", "middle")
       .attr("font-size", 9.5).attr("font-weight", 700).attr("fill", ln.kind === "hcsp" ? ACC : INK).text(startLab);
     drill(vl);
