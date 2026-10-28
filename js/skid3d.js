@@ -14,7 +14,7 @@
     reactor: {
       name: "SCWO reactor — pressure vessel",
       specs: "380–420 °C · 25 MPa (250 bar) · just above the critical point",
-      role: "The core: above 374 °C and 22.1 MPa, water is a single-phase fluid in which organics and oxygen are fully miscible and oxidize in seconds to minutes. Hydrogen combusts above 3,000 °F directly in the reactor, so salt deposition never starts — the manufacturer reports no salt issues.",
+      role: "The core: above 374 °C and 22.1 MPa, water enters a state that is neither liquid nor gas, in which organic waste and oxygen mix completely and the waste burns up in seconds to minutes. Hydrogen burns above 3,000 °F directly in the reactor, so salt deposition never starts — the manufacturer reports no salt issues.",
     },
     electrolyzer: {
       name: "Electrolyzer — self-fueling H₂ loop",
@@ -29,7 +29,7 @@
     separator: {
       name: "Separator / condenser",
       specs: "Outputs: 85–95% distilled water (<10 µS/cm) · inert sludge",
-      role: "Cools and depressurizes the reactor effluent. Distilled-quality water and a contained, mineralized sludge leave here; on concentrated feeds the train also exports power and cooling. The only gaseous stream is vented water vapor — no air permit.",
+      role: "Cools and depressurizes the reactor effluent. Distilled-quality water and a contained, fully broken-down sludge leave here; on concentrated feeds the train also exports power and cooling. The only gaseous stream is vented water vapor — no air permit.",
     },
     pump: {
       name: "High-pressure feed pump",

@@ -39,7 +39,7 @@
 (function () {
   const t = document.getElementById("call-table");
   if (!t) return;
-  const calls = { 1: "GO — direct entry, service pricing", 2: "GO, DISCIPLINED — premium streams only", 3: "HOLD — regional/crisis-gated beachheads", 4: "NO-GO for revenue — option value only" };
+  const calls = { 1: "GO — direct entry, service pricing", 2: "GO, DISCIPLINED — premium streams only", 3: "HOLD — regional/crisis-gated first markets", 4: "NO-GO for revenue — option value only" };
   t.innerHTML = `<thead><tr><th>#</th><th>Industry</th><th>Score /10</th><th>Tier</th><th>The call</th><th>Net time to earn back the cost (pending)</th></tr></thead>` +
     "<tbody>" + RPT.league.map((d, i) =>
       `<tr data-i="${i}" class="${d.tier === 1 ? "hl" : ""}"><td class="num">${d.rank}</td><td><b>${d.name}</b></td><td class="num">${d.score}</td><td class="num">${d.tier}</td><td>${calls[d.tier]}</td><td class="num">${d.payback}</td></tr>`).join("") + "</tbody>";
