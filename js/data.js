@@ -3116,3 +3116,64 @@ Object.assign(window.RPT, {
     { t: "Ammonia needs distance", d: "Ammonia is the industry's standard refrigerant, but it is toxic: charges above 10,000 lb trigger federal safety programs (OSHA PSM / EPA RMP), and the equipment is sited away from occupied buildings. For above-freezing cooling next to people, the lithium-bromide option avoids this entirely.", src: ["K85", "K84"] },
   ],
 });
+
+// ═══ §3C add-on — Materials recovery: the future second revenue stream (RPT.materials_recovery) ═══
+// Roadmap / R&D direction only — NOT a shipping feature. Anchors: K203 potash (CPCB route),
+// K204 Smackover DLE, K205 ARPA-E RECOVER, K206 derived nutrient/mixed-salt findings.
+Object.assign(window.RPT, {
+  materials_recovery: {
+    status: "ROADMAP — not a shipping feature",
+    intro: "Today's HCSP produces three things: clean water, energy, and a small amount of inert solid. Future versions would add separation steps — distillation, crystallization, and selective precipitation — that pull valuable substances out of the waste before or after the rest is destroyed, and sell them. That turns a disposal cost into a product: a second revenue stream on top of the destruction fees. Treat this as the manufacturer's roadmap and research direction, not a shipping feature — every stream below first has to pass a purity test and a market test.",
+    rows: [
+      {
+        sub: "Potash — potassium salts (sold as K2O fertilizer)",
+        source: "Distillery waste (vinasse / spent wash)",
+        path: "Evaporate and crystallize the mineral fraction left after the organics are destroyed — the route India's pollution board (CPCB) already accepts for distilleries.",
+        buyer: "Fertilizer blenders",
+        note: "One of the best-documented cases: India already accepts potash recovery from distillery waste, and reference plants exist with under-3-year payback.",
+        src: ["K203", "K61", "K62"],
+      },
+      {
+        sub: "Lithium",
+        source: "Oilfield produced-water and geothermal-type brines",
+        path: "Not inside the HCSP itself — a separate direct-lithium-extraction (DLE) plant next door, on the model of the Smackover project in Arkansas.",
+        buyer: "Battery-chemical makers",
+        note: "A long-term option, not an HCSP output by default: the one fully costed project needed $1.45 billion of its own plant to make the numbers work.",
+        src: ["K204", "K93"],
+      },
+      {
+        sub: "Nitrogen & phosphorus — ammonium sulfate, struvite",
+        source: "Factory-farm manure, sewage sludge, indoor-farm runoff",
+        path: "Strip the ammonia out of the stream and settle the phosphorus out as struvite before the organics are fully destroyed.",
+        buyer: "Fertilizer makers",
+        note: "Pays only if the nitrogen and phosphorus are kept in a recoverable form — fully destroyed, they leave as plain gas and inert solids worth nothing. The US energy department already funds exactly this kind of recovery.",
+        src: ["K205", "K206"],
+      },
+      {
+        sub: "Industrial salts — sodium chloride, calcium chloride",
+        source: "Very salty industrial wastewater (textile dyeing, chemical plants)",
+        path: "Fractional crystallization — boil the brine down and harvest each salt as it drops out, one at a time.",
+        buyer: "Chemical-feedstock users: chlor-alkali plants, dyers, road deicing",
+        note: "Salt is cheap as a commodity. This pays only when the site already needs the salt, or when disposing of it is expensive.",
+        src: ["K42", "K206"],
+      },
+      {
+        sub: "Specialty metals — nickel, copper, zinc, cobalt",
+        source: "Metal-finishing, plating and electronics waste",
+        path: "Leach the metals out of the solid residue with acid, then precipitate them one by one.",
+        buyer: "Metal recyclers and refiners",
+        note: "Works only on metal-rich feeds — a mixed sludge from many sources is not worth picking apart.",
+        src: ["K205", "K206"],
+      },
+      {
+        sub: "Silica — CMP slurry solids",
+        source: "Semiconductor polishing waste (chemical-mechanical polishing)",
+        path: "Recover the silica solids from the waste and clean them for reuse in abrasives or cement.",
+        buyer: "Materials suppliers",
+        note: "Buyers demand a purity certificate — no certificate, no sale.",
+        src: ["K206"],
+      },
+    ],
+    rule: "The honest rule: recovery only pays when you know exactly what is in the feed and can prove the recovered material is pure enough to sell. Otherwise the solids go to standard disposal — no one writes a check for 'sludge' as a generic product.",
+  },
+});

@@ -1303,3 +1303,19 @@ table.es-econ td { font-size: 13.5px; }
 .es-guard-t { font-size: 19px !important; }
 .es-guard-src { font-family: var(--mono); font-size: 12px !important; color: var(--ink-md) !important; margin-top: 12px; opacity: 1 !important; }
 .es-guard:hover .es-guard-src, .es-guard:focus-within .es-guard-src { opacity: 1 !important; }
+
+/* ── §3C materials-recovery roadmap block ── */
+.mr-badge {
+  display: inline-block; margin: 0 0 14px;
+  font-family: var(--mono); font-size: 12.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--neg); border: 1.5px solid var(--neg); border-radius: 4px;
+  padding: 5px 12px;
+}
+table.mr-table th { font-size: 12px; white-space: normal; min-width: 110px; }
+table.mr-table td { font-size: 14.5px; }
+.mr-row { cursor: pointer; }
+.mr-row:hover td { background: var(--paper-hi); }
+.mr-row:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.mr-sub { font-weight: 600; color: var(--ink); min-width: 170px; }
+.mr-note { color: var(--ink-md); }
