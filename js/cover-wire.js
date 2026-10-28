@@ -242,7 +242,7 @@
   if (!["a", "b", "c", "d"].includes(initial)) initial = "a";
   cur = initial;
   document.querySelectorAll("#cover-mode button").forEach(b => b.classList.toggle("on", b.dataset.mode === cur));
-  if (q) setArt(true);   // ?cover=… deep link opts in
+  if (q || new URLSearchParams(location.search).get("art") === "on") setArt(true);   // deep link opts in
   else stopAll();        // default: clean text, no animation
 
   // chips: smooth scroll — handled by js/shell.js (shared across all pages)
