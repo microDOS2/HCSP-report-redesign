@@ -175,7 +175,7 @@
   // ── Artwork is opt-in: nothing animates until SHOW ANIMATION is pressed ──
   let artOn = false;
   const artBtn = document.getElementById("art-toggle");
-  const narrowMQ = matchMedia("(max-width: 1280px)");
+  const narrowMQ = matchMedia("(max-width: 900px)");
 
   function stopAll() {
     COVER_A.setActive(false);
@@ -195,7 +195,10 @@
     else stopAll();
   }
 
-  if (artBtn) artBtn.addEventListener("click", () => setArt(!artOn));
+  if (artBtn) artBtn.addEventListener("click", () => {
+    setArt(!artOn);
+    if (artOn) window.scrollTo({ top: 0, behavior: "smooth" });
+  });
   // viewport shrinks past the art cutoff → art off, clean text
   (narrowMQ.addEventListener ? narrowMQ.addEventListener.bind(narrowMQ, "change") : narrowMQ.addListener.bind(narrowMQ))(() => { if (artOn) setArt(false); });
 

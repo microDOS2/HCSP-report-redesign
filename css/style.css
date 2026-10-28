@@ -96,7 +96,7 @@ a { color: var(--blue); }
 }
 html.cover-art .cover-stage { display: block; }
 #cover-canvas, #cover-canvas-x, #cover-canvas-w { position: absolute; inset: 0; width: 100%; height: 100%; }
-@media (max-width: 1280px) {
+@media (max-width: 900px) {
   html .cover-stage { display: none !important; }   /* small screens: clean text only */
   html .cover-mode, html .art-toggle { display: none !important; }
 }
