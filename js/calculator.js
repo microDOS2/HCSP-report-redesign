@@ -1,5 +1,5 @@
-// ═══ §3 · Interactive savings calculator — gross addressable savings from the
-//     savings_ladder benchmark ranges. No HCSP cost figures: net payback is pending
+// ═══ §3 · Interactive savings calculator — savings before our costs are known from the
+//     savings_ladder benchmark ranges. No HCSP cost figures: net time to earn back the cost is pending
 //     the manufacturer cost model, and the panel says so. ═══
 (function () {
   const host = document.getElementById("savings-calculator");
@@ -12,7 +12,7 @@
   <div class="calc">
     <div class="calc-head">
       <p class="calc-title">Savings calculator — what does your stream cost to make disappear today?</p>
-      <p class="calc-sub">GROSS SAVINGS BASIS — NET PAYBACK PENDING MANUFACTURER COST MODEL</p>
+      <p class="calc-sub">SAVINGS BEFORE OUR COSTS ARE KNOWN — NET TIME TO EARN BACK THE COST PENDING MANUFACTURER COST MODEL</p>
     </div>
     <div class="calc-grid">
       <div>
@@ -31,14 +31,14 @@
         </div>
       </div>
       <div class="calc-out">
-        <p class="calc-big-lab">Gross addressable savings / year</p>
+        <p class="calc-big-lab">Savings before our costs are known / year</p>
         <p class="calc-big" id="calc-big">—</p>
         <p class="calc-bench" id="calc-bench"></p>
         <div class="calc-bench" id="calc-barbox">
           <div class="cb-bar"><div class="cb-range" id="calc-range"></div><div class="cb-dot" id="calc-dot"></div></div>
           <div class="cb-lab"><span id="calc-lo"></span><span>STREAM BENCHMARK RANGE (LOG SCALE)</span><span id="calc-hi"></span></div>
         </div>
-        <p class="calc-note">Gross savings basis — net payback pending manufacturer cost model · benchmark ranges are documented incumbent costs from the savings ladder (dated sources in the chart drill-downs) · no HCSP cost or pricing figure is stated or implied</p>
+        <p class="calc-note">Savings before our costs are known — net time to earn back the cost pending manufacturer cost model · benchmark ranges are documented existing supplier costs from the savings ladder (dated sources in the chart drill-downs) · no HCSP cost or pricing figure is stated or implied</p>
       </div>
     </div>
   </div>`;

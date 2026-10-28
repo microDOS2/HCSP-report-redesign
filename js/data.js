@@ -5,10 +5,10 @@ window.RPT = {
   // ── Ch.3 v2 league table: fifteen industries, six-criterion weighted scores, /10 ──
   league: [
     { rank: 1, key: "pfas",    name: "PFAS destruction & landfill leachate", score: 8.0,  tier: 1, payback: "Pending — mfr cost model",
-      why: "Regulation-protected destruction demand vs. $1–28/gal relocation incumbents; federally validated 99.9993% destruction evidence.",
+      why: "Regulation-protected destruction demand vs. $1–28/gal existing waste-hauling suppliers; federally validated 99.9993% destruction evidence.",
       src: ["K8", "K2"] },
-    { rank: 2, key: "defense", name: "Defense / maritime / remote", score: 7.5,  tier: 1, payback: "Not modeled — procurement-gated",
-      why: "DoD carries >$9.3B future PFAS cleanup across 718 installations plus a statutory AFFF transition; 2–5× remote pricing premium.",
+    { rank: 2, key: "defense", name: "Defense / maritime / remote", score: 7.5,  tier: 1, payback: "Not modeled — gated by the buying process",
+      why: "DoD carries >$9.3B future PFAS cleanup across 718 installations plus a statutory firefighting-foam (AFFF) transition; 2–5× remote pricing premium.",
       src: ["K13", "K15"] },
     { rank: 3, key: "textile", name: "Textile/dyeing clusters (India ZLD wedge)", score: 7.4, tier: 1, payback: "Pending — mfr cost model",
       why: "Court-enforced zero liquid discharge with unsolved brine/sludge disposal; Tirupur built 18 ZLD plants (~$120M) and still lacks destruction.",
@@ -20,44 +20,44 @@ window.RPT = {
       why: "$1.5–15/gal solvent/API disposal plus AMR and EU producer-responsibility mandates monetize destruction.",
       src: ["K37", "K38"] },
     { rank: 6, key: "distill", name: "Distillery / ethanol vinasse (NEW in v2)", score: 7.0, tier: 2, payback: "Pending — mfr cost model",
-      why: "The standout v2 entrant: molasses spent wash at 100–160 g/L COD is autothermal, power-exporting feed, and India's CPCB forces ~270 molasses distilleries into energy-consuming thermal ZLD that HCSP replaces while exporting power. SAM $2–5B (India + Brazil, analyst build-up).",
+      why: "The standout v2 entrant: molasses spent wash at 100–160 g/L COD makes its own heat from the waste and exports power, and India's CPCB forces ~270 molasses distilleries into energy-consuming thermal ZLD that HCSP replaces while exporting power. Reachable market $2–5B (India + Brazil, analyst build-up).",
       src: ["K61", "K62", "K64"] },
     { rank: 7, key: "semi",    name: "Semiconductor side-streams", score: 6.75, tier: 2, payback: "Pending — mfr cost model",
       why: "PFAS permit fights on new fabs; solvent/CMP/concentrate side-streams at $1.8–4/gal. Bulk fab effluent is a 2/10 fit.",
       src: ["K40"] },
     { rank: 8, key: "bio",     name: "Municipal biosolids (crisis regions only)", score: 6.6, tier: 2, payback: "Pending — mfr cost model",
-      why: "$4.8B/yr US disposal bill and PFAS-driven pathway collapse; scale and power export improve economics modestly — but bimodal economics and 3–7-year procurement.",
+      why: "$4.8B/yr US disposal bill and PFAS-driven pathway collapse; scale and power export improve economics modestly — but bimodal economics and 3–7-year buying process.",
       src: ["K43", "K44", "K73"] },
     { rank: 9, key: "fnb",     name: "Food & beverage (side-streams only)", score: 6.3, tier: 3, payback: "Pending — mfr cost model",
-      why: "Anaerobic digestion owns bulk effluent; concentrated side-streams hauled at $45–120/1,000 gal pencil, and trigeneration cooling slots into existing ammonia refrigeration.",
+      why: "Anaerobic digestion owns bulk effluent; concentrated side-streams hauled at $45–120/1,000 gal pencil, and cooling from making three useful things at once — clean water, power, and cooling — slots into existing ammonia refrigeration.",
       src: ["K46", "K84"] },
     { rank: 10, key: "islands", name: "Islands / resorts / coastal municipalities (NEW)", score: 6.0, tier: 3, payback: "Pending — mfr cost model",
-      why: "The only vertical where all three outputs price near global maximums — power $0.30–0.52/kWh, desal-parity water $2–5/m³ — but feed is dilute and needs FOG/food-waste blending.",
+      why: "The only industry where all three outputs price near global maximums — power $0.30–0.52/kWh, desal-parity water $2–5/m³ — but feed is dilute and needs FOG/food-waste blending.",
       src: ["K65"] },
     { rank: 11, key: "og",     name: "Produced water (revised ↑, honest niche)", score: 4.75, tier: 3, payback: "Pending — mfr cost model",
       why: "Real only as 50–100k bbl/day salt-first hubs in Marcellus/Utica ($3–15/bbl trucking) or seismicity-constrained Permian pockets; Permian pipeline disposal at $0.55–1.81/bbl forecloses any basin-scale oxidation play. Niche viability pending the manufacturer cost model.",
       src: ["K93", "K94", "K100"] },
     { rank: 12, key: "cea",    name: "Indoor agriculture / CEA (briefing anchor)", score: 4.2, tier: 4, payback: "Service model only",
-      why: "~99.8%-water stream far below the autothermal threshold, sold to distressed customers; only 27.3% of US cannabis operators profitable (2024). Cooling/water co-benefits help only at the margin.",
+      why: "~99.8%-water stream far below the threshold where it makes its own heat from the waste, sold to distressed customers; only 27.3% of US cannabis operators profitable (2024). Cooling/water co-benefits help only at the margin.",
       src: ["K36", "K35"] },
-    { rank: 13, key: "cafo",   name: "CAFO manure (NEW)", score: 4.0, tier: 4, payback: "Not modeled — incumbent credits win",
+    { rank: 13, key: "cafo",   name: "CAFO manure (NEW)", score: 4.0, tier: 4, payback: "Not modeled — existing supplier credits win",
       why: "1.4B t/yr of feedstock but 85–92% water; digesters stacked with LCFS/RIN credits (>$50/MMBtu) monetize the same story better. Wedge: digestate elimination in land-constrained dairy belts (~0.8 ha/cow).",
       src: ["K66"] },
     { rank: 14, key: "mining", name: "Mining / remote camps (NEW)", score: 4.0, tier: 4, payback: "Opportunistic only",
-      why: "High value per unit — diesel at $0.30–1.10/kWh, haul avoidance, water scarcity — but small organic volumes per site and bespoke, commodity-cycle procurement.",
+      why: "High value per unit — diesel at $0.30–1.10/kWh, haul avoidance, water scarcity — but small organic volumes per site and bespoke, commodity-cycle buying process.",
       src: ["K67"] },
-    { rank: 15, key: "dc",     name: "Data centers, direct feed (NEW)", score: 3.0, tier: 4, payback: "Offtaker, not buyer",
+    { rank: 15, key: "dc",     name: "Data centers, direct feed (NEW)", score: 3.0, tier: 4, payback: "Buys the output, not the machine",
       why: "On-site waste is inorganic cooling-tower blowdown — not SCWO feed. The credible play is inverted: HCSP plants sited at waste-rich hosts sell power, cooling, and reclaimed water to data centers facing 4–7-year grid queues.",
       src: ["K68", "K69"] },
   ],
   tiers: [
     { tier: 1, band: "≥ 7.4", name: "Pursue now", posture: "Direct entry via concentrate-and-destroy trains; per-gallon service pricing under a wide umbrella." },
-    { tier: 2, band: "6.5–7.4", name: "Develop", posture: "Feed-disciplined selling into premium streams; for distillery, lead with energy-export economics against thermal ZLD incumbents." },
-    { tier: 3, band: "4.5–6.4", name: "Conditional / regional", posture: "Beachheads where the condition holds (Caribbean/Hawaii, Marcellus hubs, behind a concentrator); partner, don't blanket-market." },
-    { tier: 4, band: "< 4.5", name: "Weak fit", posture: "No revenue plan; CEA as a regulatory showcase, data centers as an offtaker strategy, NiFe-style niche options only." },
+    { tier: 2, band: "6.5–7.4", name: "Develop", posture: "Feed-disciplined selling into premium streams; for distillery, lead with energy-export economics against thermal ZLD existing suppliers." },
+    { tier: 3, band: "4.5–6.4", name: "Conditional / regional", posture: "First markets to enter, where the condition holds (Caribbean/Hawaii, Marcellus hubs, behind a concentrator); partner, don't blanket-market." },
+    { tier: 4, band: "< 4.5", name: "Weak fit", posture: "No revenue plan; CEA as a regulatory showcase, data centers as a buyer-of-the-output strategy, NiFe-style niche options only." },
   ],
 
-  // ── v3 addendum: the cost-savings lens — incumbent remediation cost per gallon, by vertical ──
+  // ── v3 addendum: the cost-savings lens — what existing suppliers charge to clean it up per gallon, by industry ──
   // Canonical dataset: research/hcsp_v3_savings_ladder.md. Manufacturer HCSP pricing TBD (early phase);
   // the reference contrast is qualitative only — HCSP: self-fueling loop, cost model pending — against
   // field SCWO service benchmarks ($1.63–4.88/gal, 374Water AirSCWO 6).
@@ -69,7 +69,7 @@ window.RPT = {
       note: "Haz-waste landfill $28/gal (Michigan 2020); incineration $5–10/gal — both capacity-constrained, and landfilling leaves CERCLA liability attached.",
       src: ["K9", "K10"] },
     { srank: 3,  key: "pfas",    vertical: "PFAS concentrates (leachate foamate / IX brine)", lo: 1.83, hi: 10,
-      note: "Incumbent SCWO services $6–10/gal; field-measured $1.63–4.88/gal (AirSCWO 6, Minnesota 3M-settlement project). Top-3 under BOTH lenses — the most robust finding.",
+      note: "Existing SCWO services $6–10/gal; field-measured $1.63–4.88/gal (AirSCWO 6, Minnesota 3M-settlement project). Top-3 under BOTH lenses — the most robust finding.",
       src: ["K21", "K54"] },
     { srank: 4,  key: "pharma",  vertical: "Pharma & biotech solvent/API waste", lo: 1.5, hi: 15,
       note: "Solvent/API disposal $1.50–3/gal standard, $5–15/gal hazardous-rated; halogenated streams reach $15–50+/gal.",
@@ -98,14 +98,14 @@ window.RPT = {
     { srank: 12, key: "fnb",     vertical: "F&B side-streams", lo: 0.045, hi: 0.12,
       note: "Concentrated side-streams hauled at $45–120/1,000 gal; anaerobic digestion owns bulk effluent.",
       src: ["K46"] },
-    { srank: 13, key: "distill", vertical: "Distillery vinasse (ZLD thermal incumbent)", lo: 0.007, hi: 0.010,
+    { srank: 13, key: "distill", vertical: "Distillery vinasse (ZLD thermal existing supplier)", lo: 0.007, hi: 0.010,
       note: "MEE + boiler incineration O&M benchmark $1.8–2.6/m³ (~1¢/gal) — a regulation + energy-export play, NOT a $/gal savings play.",
       src: ["K62", "K64"] },
     { srank: 14, key: "textile", vertical: "Textile ZLD clusters", lo: 0.007, hi: 0.010,
-      note: "ZLD train O&M $1.8–2.6/m³ (₹180–350/m³) — court-enforced compulsion drives the composite score; the incumbent stream costs ~1¢/gal.",
+      note: "ZLD train O&M $1.8–2.6/m³ (₹180–350/m³) — court-enforced compulsion drives the composite score; the existing supplier stream costs ~1¢/gal.",
       src: ["K42"] },
     { srank: 15, key: "dc",      vertical: "Data centers, direct feed", lo: null, hi: null, na: true,
-      note: "N/A — offtaker, no remediation stream. On-site waste is inorganic cooling-tower blowdown, not SCWO feed.",
+      note: "N/A — buyer of the output, no remediation stream. On-site waste is inorganic cooling-tower blowdown, not SCWO feed.",
       src: ["K68"] },
   ],
   savings_meta: {
@@ -114,17 +114,17 @@ window.RPT = {
     field_band: "$1.63–4.88/gal field SCWO service benchmark (374Water AirSCWO 6)",
     field_src: ["K54"],
     qualifier: "margin × volume = pool — $50/gal on a tiny stream can be a smaller prize than $5/gal on a ubiquitous one",
-    pending: "Manufacturer HCSP pricing is TBD (early phase): all unit-economics panels are ranked by addressable savings against incumbent cost, not by manufacturer margin.",
+    pending: "Manufacturer HCSP pricing is TBD (early phase): all cost-per-unit panels are ranked by addressable savings against existing supplier cost, not by manufacturer margin.",
     lenses: "The two lenses answer different questions — 'where is the margin umbrella?' (savings) vs. 'where do all forces align?' (composite).",
     src: ["K150"],
   },
 
-  // ── Ch.8.3 gross addressable savings by vertical — displaced incumbent baselines, US cost basis ──
-  // Net payback is deliberately NOT stated: it requires HCSP cost/price inputs, and the
-  // manufacturer cost model is pending. Bars were removed; incumbent baselines are market data.
+  // ── Ch.8.3 savings before our costs are known by industry — displaced existing supplier baselines, US cost basis ──
+  // Net time to earn back the cost is deliberately NOT stated: it requires HCSP cost/price inputs, and the
+  // manufacturer cost model is pending. Bars were removed; existing supplier baselines are market data.
   payback: [
     { key: "haz",    name: "Hazardous solvents (halogenated)", basis: "Displaced baseline $5–20/gal (to $50+ special)", kind: "destruction", src: ["K33"] },
-    { key: "pfas",   name: "PFAS concentrates",                basis: "vs. $5–10/gal incineration, $6–10/gal incumbent SCWO", kind: "destruction", src: ["K21", "K22"] },
+    { key: "pfas",   name: "PFAS concentrates",                basis: "vs. $5–10/gal incineration, $6–10/gal existing SCWO suppliers", kind: "destruction", src: ["K21", "K22"] },
     { key: "pharma", name: "Pharma / biotech high-strength",   basis: "$1.5–3/gal baseline, $5–15/gal hazardous-rated", kind: "destruction", src: ["K37"] },
     { key: "semi",   name: "Semiconductor side-streams",       basis: "$1.5–4/gal blended; multi-stream aggregation required", kind: "destruction", src: ["K40"] },
     { key: "ref",    name: "Refinery residuals (K-listed)",    basis: "$500/t mid-point baseline; $700–1,000/t service benchmark", kind: "disposal", src: ["K47"] },
@@ -148,19 +148,19 @@ window.RPT = {
   ],
   water_value: { v: 3.5, note: "US average commercial water + sewer, ~$3.53/m³ combined (EPA WaterSense 2024 data)", src: ["K31"] },
 
-  // ── Ch.4.1.2 / 8.2 incumbent destruction pricing umbrella ($/gal) ──
+  // ── Ch.4.1.2 / 8.2 what existing destruction suppliers charge umbrella ($/gal) ──
   umbrella: [
     { name: "HCSP power cost",             tbd: true, cls: "hcsp",  note: "TBD — manufacturer cost model pending. Operating energy is negligible per the manufacturer (self-fueling loop); no $/gal figure is attached to HCSP until the manufacturer publishes a cost model.", src: ["K22", "K1"] },
     { name: "HCSP fully loaded cost",      tbd: true, cls: "hcsp",  note: "TBD — manufacturer cost model pending. Earlier figures cited here came from SCWO industry literature and are not HCSP's costs.", src: ["K22", "K18"] },
     { name: "Deep-well injection",         lo: 1.0,  hi: 2.0,  cls: "inc",   note: "Relocation, not destruction; 'rarely available' — capacity-constrained", src: ["K9", "K10"] },
     { name: "HCSP service pricing",        tbd: true, cls: "hcsp2", note: "TBD — manufacturer cost model pending. The $2–5/gal 'viable band' in SCWO industry literature describes 374Water's WDS service economics, not HCSP pricing.", src: ["K21"] },
-    { name: "PFAS incineration",           lo: 5.0,  hi: 10.0, cls: "inc",   note: "Cheapest destructive incumbent; air-permit gauntlet, capacity-constrained", src: ["K9", "K10"] },
-    { name: "Incumbent SCWO service",      lo: 6.0,  hi: 10.0, cls: "inc",   note: "374Water WDS benchmark; claimed 1.5–2.5-yr payback at $4.5–6.0M site capital", src: ["K21"] },
+    { name: "PFAS incineration",           lo: 5.0,  hi: 10.0, cls: "inc",   note: "Cheapest destructive existing supplier; air-permit gauntlet, capacity-constrained", src: ["K9", "K10"] },
+    { name: "Existing SCWO service",      lo: 6.0,  hi: 10.0, cls: "inc",   note: "374Water Waste Destruction Services (WDS) benchmark; claimed 1.5–2.5-yr time to earn back the cost at $4.5–6.0M site capital", src: ["K21"] },
     { name: "Hazardous-waste landfill",    lo: 6.0,  hi: 28.0, cls: "inc",   note: "AFFF landfilled at $28/gal (Michigan 2020); CERCLA liability persists", src: ["K10"] },
     { name: "Halogenated-solvent disposal", lo: 15.0, hi: 50.0, cls: "inc",  note: "$15–20+/gal halogenated; specialty streams to $50+/gal", src: ["K33"] },
   ],
 
-  // ── Ch.8.1 TAM/SAM by vertical (SAM expressed in 10 m³/day module-equivalents) ──
+  // ── Ch.8.1 total market / reachable market by industry (reachable market expressed in 10 m³/day module-equivalents) ──
   sizing: [
     { key: "pharma", name: "Pharma & biotech",      mod_lo: 1050, mod_hi: 1050, unit: 50, sam: "$2.1–3.2B US one-time equipment", tam: "~$3.8B/yr global pharma wastewater (2030)",
       note: "~35% of 2,010 US establishments × 1.5 skids", src: ["K41", "K37"] },
@@ -170,12 +170,12 @@ window.RPT = {
       note: "20–40% of the 2030 destruction market; $2–5/gal viable vs $5–10/gal incineration", src: ["K21", "K8"] },
     { key: "haz",    name: "Hazardous organic liquids", mod_lo: 40, mod_hi: 150, unit: 50, sam: "$2–4B/yr (NA+EU)", tam: "$17–22B/yr global, →$35–45B by 2035",
       note: "40–150 modules ≈ $110–550M/yr service revenue for an entrant", src: ["K33"] },
-    { key: "ref",    name: "Refinery residuals",     mod_lo: 41,   mod_hi: 41,   unit: 50, sam: "$95–136M/yr", tam: "$447–638M/yr technical TAM (1995 DOE/API basis — dated)",
+    { key: "ref",    name: "Refinery residuals",     mod_lo: 41,   mod_hi: 41,   unit: 50, sam: "$95–136M/yr", tam: "$447–638M/yr technical total market (1995 DOE/API basis — dated)",
       note: "~41 module-equivalents; treatment + direct-disposal streams only", src: ["K47"] },
   ],
   market_meta: {
     sam_total: "~$9–20B/yr",
-    sam_note: "v1 verticals (~$4.6–10.4B/yr) plus the v2 additions — distillery $2–5B, CAFO $1–3B, islands $0.5–1.5B, mining $0.3–0.8B, produced-water niche $0.05–0.2B/yr, data centers $0.05–0.15B — sum to $8.5–21B/yr, rounded. Decade-horizon annualized envelope; overlap pushes the non-overlapping pool toward the lower half.",
+    sam_note: "v1 industries (~$4.6–10.4B/yr) plus the v2 additions — distillery $2–5B, CAFO $1–3B, islands $0.5–1.5B, mining $0.3–0.8B, produced-water niche $0.05–0.2B/yr, data centers $0.05–0.15B — sum to $8.5–21B/yr, rounded. Decade-horizon annualized envelope; overlap pushes the non-overlapping pool toward the lower half.",
     scwo_equipment: "$120–460M (2025)",
     scwo_note: "Resolved from a $120M–1.13B spread across research houses on taxonomy grounds; $1.13B outlier discarded as low-authority aggregation.",
     pfas_treatment: "$2.1–3.4B/yr",
@@ -188,7 +188,7 @@ window.RPT = {
     { k: "Core technology", v: "Supercritical water oxidation", note: "Continuous, fully automated", src: "K1" },
     { k: "Operating conditions", v: "380–420 °C · ~25 MPa (250 bar)", note: "Just above the critical point (374 °C, 22.1 MPa)", src: "K1" },
     { k: "Water recovery", v: "85–95% to distillate; <10 µS/cm", note: "Distilled-quality output", src: "K1" },
-    { k: "Solid residual", v: "Contained, inert sludge", note: "Mineralized salts/oxides", src: "K1" },
+    { k: "Solid residual", v: "Contained, inert sludge", note: "Completely broken-down salts/oxides", src: "K1" },
     { k: "Electrical load (startup/auxiliary)", v: "~75–95 kW", note: "180–228 kWh/m³-equivalent spec; operating energy self-fueled once started", src: "K1" },
     { k: "H₂ fuel loop (as briefed)", v: "~30–40 kg/day by on-demand electrolysis", note: "Self-fueling once started — fuel generated on demand from process water; see §1", src: "K1" },
     { k: "Footprint", v: "~8–10 m² · ≤3 m height · <75 dBA at 1 m", note: "Indoor-sited, container class", src: "K1" },
@@ -204,12 +204,12 @@ window.RPT = {
     { el: "Labor", basis: "Staffing for a 240-bar automated system — level pending manufacturer data", yr: "TBD", gal: "TBD", m3: "TBD", src: ["K53"] },
     { el: "Maintenance & materials", basis: "Corrosion/salt management was the historical industry risk of conventional preheater designs; HCSP's >3,000 °F in-reactor H₂ combustion eliminates salt deposition by design (manufacturer) — rate pending manufacturer data", yr: "TBD", gal: "TBD", m3: "TBD", src: ["K20", "K1"] },
     { el: "Oxidant, residue disposal, misc.", basis: "No chemicals claimed; mineral residue off-take — pending manufacturer data", yr: "TBD", gal: "TBD", m3: "TBD", src: ["K53"] },
-    { el: "Cash OpEx subtotal", basis: "", yr: "TBD", gal: "TBD", m3: "TBD", bold: true, src: ["K53"] },
-    { el: "CapEx amortization", basis: "Module CapEx TBD — the only verifiable market reference is the AirSCWO 6's $5.2M equipment-plus-operation contract (OC San)", yr: "TBD", gal: "TBD", m3: "TBD", src: ["K18"] },
+    { el: "Cash running cost subtotal", basis: "", yr: "TBD", gal: "TBD", m3: "TBD", bold: true, src: ["K53"] },
+    { el: "Purchase cost amortization", basis: "Module purchase cost TBD — the only verifiable market reference is the AirSCWO 6's $5.2M equipment-plus-operation contract (OC San)", yr: "TBD", gal: "TBD", m3: "TBD", src: ["K18"] },
     { el: "Fully loaded cost stack", basis: "TBD — manufacturer cost model pending; no $/gal or $/m³ is attached to HCSP", yr: "TBD", gal: "TBD", m3: "TBD", bold: true, src: ["K53"] },
   ],
 
-  // ── Ch.1.4 / 5.1 SCWO field · destiny flow (birth → outcome) ──
+  // ── Ch.1.4 / 5.1 SCWO field · who survived and who failed (birth → outcome) ──
   players: [
     { name: "MODAR", cohort: "The graveyard", from: 1980, to: 1996, outcome: "dead", out: "Exited",
       note: "1980s SCWO pioneer; pharma-waste destruction published 1988; the process never survived commercial scale-up.", src: ["K48"], graded: "derived" },
@@ -218,17 +218,17 @@ window.RPT = {
     { name: "HydroProcessing (Harlingen, TX)", cohort: "The graveyard", from: 2001, to: 2005, outcome: "dead", out: "Failed",
       note: "First US sewage-sludge SCWO plant; failed after ~4 years on pump durability, salt precipitation, corrosion, plugging.", src: ["K50"] },
     { name: "Blue Grass program (US Army)", cohort: "The graveyard", from: 2003, to: 2015, outcome: "dead", out: "Rejected at full scale",
-      note: ">99.9999% DRE over ~5,800 hot hours — but titanium/Hastelloy liner life of ~110 h implied 12 liner changes per campaign.", src: ["K51"], graded: "derived" },
+      note: ">99.9999% destruction-and-removal efficiency over ~5,800 hot hours — but titanium/Hastelloy liner life of ~110 h implied 12 liner changes per campaign.", src: ["K51"], graded: "derived" },
     { name: "Innoveox", cohort: "The graveyard", from: 2011, to: 2020, outcome: "dead", out: "Closed",
       note: "Listed on Euronext 2014; now closed.", src: ["K49"], graded: "derived" },
     { name: "Hanwha (Korea)", cohort: "The graveyard", from: 2012, to: 2022, outcome: "dead", out: "Both plants idle",
       note: "Built two full-scale Korean plants; neither still operating.", src: ["K49"], graded: "derived" },
-    { name: "General Atomics PERSES (iSCWO)", cohort: "Operating field", from: 2012, to: 2026, outcome: "operating", out: "Incumbent",
+    { name: "General Atomics PERSES (iSCWO)", cohort: "Operating field", from: 2012, to: 2026, outcome: "operating", out: "Existing supplier",
       note: "Commercial since ~2012; >6M gallons across ~200 waste types at >99.99%, EPA-verified; Tooele unit sidelined on reliability.", src: ["K17"] },
     { name: "Battelle PFAS Annihilator", cohort: "Operating field", from: 2015, to: 2023, outcome: "licensed", out: "Licensed to Revive",
-      note: "≥99.9% destruction across three AFFF formulations; fluoride mass balance confirms mineralization.", src: ["K16"], graded: "derived" },
+      note: "≥99.9% destruction across three AFFF formulations; fluoride mass balance confirms complete destruction.", src: ["K16"], graded: "derived" },
     { name: "374Water (NASDAQ: SCWO)", cohort: "Operating field", from: 2018, to: 2026, outcome: "operating", out: "Listed, pre-scale",
-      note: "FY2025 revenue $215,037 against a $21.0M net loss; going-concern language — first-mover risk is real.", src: ["K52"], graded: "derived" },
+      note: "FY2025 revenue $215,037 against a $21.0M net loss; auditors warn it may run out of money — first-mover risk is real.", src: ["K52"], graded: "derived" },
     { name: "Aquarden (SuperOx)", cohort: "Operating field", from: 2016, to: 2026, outcome: "operating", out: "Operating",
       note: "All-electric 5 t/day modular units in Denmark and France, incl. ArianeGroup explosives/PFAS.", src: ["K19"], graded: "derived" },
     { name: "Revive Environmental", cohort: "Operating field", from: 2022, to: 2026, outcome: "operating", out: "First permitted SCWO PFAS service",
@@ -251,9 +251,9 @@ window.RPT = {
       id: "w374", name: "374Water", form: "NASDAQ: SCWO · Durham/Morrisville NC · ~48 employees · AirSCWO",
       rows: [
         { lab: "Financial health", tone: "bad",
-          txt: "FY2025 revenue $215,037 against a $21.0M net loss; going-concern language in both the FY2025 10-K and the Q2 2026 10-Q; cash $1.78M at June 30 2026 vs $57.2M accumulated deficit. The $50M ATM is mostly decorative — baby-shelf rules on a ~$27M float leave ~$1.14M sellable.",
+          txt: "FY2025 revenue $215,037 against a $21.0M net loss; auditors warn it may run out of money in both the FY2025 10-K and the Q2 2026 10-Q; cash $1.78M at June 30 2026 vs $57.2M accumulated deficit. The $50M ATM is mostly decorative — baby-shelf rules on a ~$27M float leave ~$1.14M sellable.",
           drill: { title: "374WATER · FINANCIAL HEALTH", value: "$215K revenue · −$21.0M (FY2025)",
-            sub: "Q2 2026 10-Q (filed Aug 14 2026): cash $1,776,259, accumulated deficit $57.2M, H1 net loss $7.27M — 'substantial doubt regarding our ability to continue as a going concern.' Capital is distress-flavored: 10% convertible notes ($860K), a ~$630K secured note, and an ATM capped by baby-shelf rules at ~$1.14M despite the $50M headline. 1-for-10 reverse split Dec 2025 cured the Nasdaq bid-price deficiency." },
+            sub: "Q2 2026 10-Q (filed Aug 14 2026): cash $1,776,259, accumulated deficit $57.2M, H1 net loss $7.27M — 'substantial doubt regarding our ability to continue as a auditors warn it may run out of money.' Capital is distress-flavored: 10% convertible notes ($860K), a ~$630K secured note, and an ATM capped by baby-shelf rules at ~$1.14M despite the $50M headline. 1-for-10 reverse split Dec 2025 cured the Nasdaq bid-price deficiency." },
           src: ["K52", "K151", "K152"] },
         { lab: "Real vs pipeline customers", tone: "mid",
           txt: "Real: Orlando WDS hub ($812K demo → 5-yr license, the only recurring site), OC San AS6 (FAT passed Jun 2026 after ~4 years; loss-making contract, $1.6M provision), St. Cloud $600K grant-funded pilot (completed Sep 2026), Olathe $4.88M PO. Pipeline: DoD demos (DIU Success Memo earned Aug 2026), Crystal Clean, Arcadis MOU — claimed '$1.8B identified demand' is not booked orders.",
@@ -266,12 +266,12 @@ window.RPT = {
             sub: "The AS1 targets 0.25–0.5 MGD plants as a company-operated service, never a product; the AS30 is in development (first manufacturing late 2026) and AS100+ is a bespoke concept. Management's own pairing aims even the small unit at towns of ~2,500–5,000+; there is no sub-$1.5M offering of any kind." },
           src: ["K153", "K151"] },
         { lab: "Target-customer attributes", tone: "mid",
-          txt: "Large municipal POTWs (OC San 180 MGD, Orlando 40 MGD, Olathe 11 MGD), federal/defense programs (DIU, ESTCP, Navy, USAF subcontract), and TSDF hosts (Clean Earth, Crystal Clean). Deals are $0.5–1M pilots → $3–5M+ systems, multi-year cycles, riding state/federal grant money — US-only to date.",
+          txt: "Large municipal sewage treatment plants (OC San 180 MGD, Orlando 40 MGD, Olathe 11 MGD), federal/defense programs (DIU, ESTCP, Navy, USAF subcontract), and TSDF hosts (Clean Earth, Crystal Clean). Deals are $0.5–1M pilots → $3–5M+ systems, multi-year cycles, riding state/federal grant money — US-only to date.",
           drill: { title: "374WATER · WHO BUYS", value: "Utilities, DoD, TSDF hosts",
             sub: "No named private industrial, agricultural, or small-community customer exists anywhere in the filings or press record. Funding rides on state grants (MN LCCMR/ENRTF), state AFFF programs (NC), and federal DoD programs — not private operating budgets." },
           src: ["K154", "K153"] },
         { lab: "Scale-gap verdict", tone: "verdict",
-          txt: "Structurally locked out of the low end: 48 employees, one Orlando factory, two AS systems in existence at YE2025, a going-concern balance sheet, and customer-financed builds (50% at signing at Olathe). It cannot service a long tail of small sites even if it wanted to — the gap is capital structure, not marketing choice.",
+          txt: "Structurally locked out of the low end: 48 employees, one Orlando factory, two AS systems in existence at YE2025, a auditors-warn-it-may-run-out-of-money balance sheet, and customer-financed builds (50% at signing at Olathe). It cannot service a long tail of small sites even if it wanted to — the gap is capital structure, not marketing choice.",
           drill: { title: "374WATER · SCALE-GAP VERDICT", value: "Locked out below ~$4.9M",
             sub: "Milestone-funded manufacturing, one-at-a-time production, and a service-heavy model structurally prevent competing for a sub-$1M, self-operated, small-site buyer. The residual risk to HCSP is at the top: the Sept 2026 strategy targets regional centralized biosolids hubs ($500–1,000/dry-ton displacement)." },
           src: ["K151", "K152", "K153"] },
@@ -293,7 +293,7 @@ window.RPT = {
         { lab: "Smallest offering & deal", tone: "bad",
           txt: "The baseline is a 3 gpm (~4,300 gal/day hydraulic) containerized skid — 25×8×9.5 ft, ~20,800 lb — scaling only by parallel modules ('x 3 GPM'). No sub-3-gpm product, no published pricing, no trailerized rapid-deployment commercial service; realized deployments need RCRA-permitted hosts or government sponsorship.",
           drill: { title: "GENERAL ATOMICS · SMALLEST OFFERING", value: "3 gpm container — nothing smaller",
-            sub: "GA positions PERSES explicitly against 'lab and prototype systems' — it competes on industrial scale and maturity, the opposite end from small facilities. Industry SCWO cost estimates run $12–90/ton (CAPEX+OPEX), and Tooele lost on cost to offsite disposal." },
+            sub: "GA positions PERSES explicitly against 'lab and prototype systems' — it competes on industrial scale and maturity, the opposite end from small facilities. Industry SCWO cost estimates run $12–90/ton (purchase cost+running cost), and Tooele lost on cost to offsite disposal." },
           src: ["K156", "K157"] },
         { lab: "Target-customer attributes", tone: "mid",
           txt: "DoD environmental programs (ESTCP, DIU, demil depots), USACE/ERDC via primes (Bay West), large TSDFs as hosts (Clean Earth — demonstrating at, not selling to), UN/GEF international cleanups, occasional industrial (China). Multi-year, grant-anchored government capture; no commercial sales force.",
@@ -301,7 +301,7 @@ window.RPT = {
             sub: "Absent segments: municipal utilities buying directly, small industrial generators, landfill operators, airports (test feeds only), any service/throughput-pricing model, any financed or leased offering, any sub-$10M-scale packaged product." },
           src: ["K158", "K156"] },
         { lab: "Scale-gap verdict", tone: "verdict",
-          txt: "Not a competitor below program scale — a marginal product line inside a defense prime will not out-iterate a focused competitor on cost-down, containerized small units, or commercial service models. Dangerous only at the top: EPA-verified pedigree + balance sheet make it the default 'safe' incumbent for big government programs.",
+          txt: "Not a competitor below program scale — a marginal product line inside a defense prime will not out-iterate a focused competitor on cost-down, containerized small units, or commercial service models. Dangerous only at the top: EPA-verified pedigree + balance sheet make it the default 'safe' existing supplier for big government programs.",
           drill: { title: "GENERAL ATOMICS · SCALE-GAP VERDICT", value: "Government/national-program business only",
             sub: "For small/modular commercial business GA is presently not an effective competitor, and its structure makes that durable. Watch items: a DIU Success Memo for Charlotte; the announced Minnesota/Georgia on-site installs; a named commercial TSDF purchase (e.g., Clean Earth converting host to buyer)." },
           src: ["K158", "K155", "K157"] },
@@ -321,7 +321,7 @@ window.RPT = {
             sub: "ArianeGroup is essentially the only named industrial customer — and now markets ELIXIR™ as its own commercial service (fixed/mobile, purchase or leasing), a channel-capture risk for Aquarden. Municipal/utility customers are reached only indirectly via grant projects and treatment-train partners (ECT2, Puraffinity)." },
           src: ["K160", "K161"] },
         { lab: "Smallest offering & deal", tone: "bad",
-          txt: "One unit size: 5 t/d (≤12 m³/d) per reactor, scaling by parallelization only; all-electric at 80–300 kWh/m³. Third-party estimates put a unit at ~$2–10M capex. There is no small-format or low-capex product — small sites are reached only as waste generators shipping concentrate to a hub.",
+          txt: "One unit size: 5 t/d (≤12 m³/d) per reactor, scaling by parallelization only; all-electric at 80–300 kWh/m³. Third-party estimates put a unit at ~$2–10M purchase cost. There is no small-format or low-purchase-cost product — small sites are reached only as waste generators shipping concentrate to a hub.",
           drill: { title: "AQUARDEN · SMALLEST OFFERING", value: "5 t/d per reactor — nothing smaller",
             sub: "The Danish EPA's own PFAS-inator final report names the constraint: 'the main obstacle now for onsite implementation is the capacity and throughput.' Aquarden is structurally a concentrate-polishing technology — the last step of a treatment train, positioned there because it is 'expensive.'" },
           src: ["K160"] },
@@ -353,7 +353,7 @@ window.RPT = {
         { lab: "Smallest offering & deal", tone: "bad",
           txt: "Not an equipment vendor: destruction is centralized at two permitted fixed sites (~500 gal/day concentrate per Annihilator), and everyone else concentrates on-site and ships to Ohio/Michigan. The smallest real door is a state-aggregated program (NH: $668K for 10,000 gal ≈ $67/gal all-in); small generators are limited to <1,000 gal per owner per collection event.",
           drill: { title: "REVIVE · SMALLEST OFFERING", value: "~500 gal/day centralized · service only",
-            sub: "Units are containerized ('fits inside a pair of shipping containers') and historically called mobile, but commercial destruction happens under facility permits — permitting is the geographic bottleneck (the second site took until 2026). No published minimum batch, but freight, chain-of-custody, and program overhead impose a de facto minimum economic volume." },
+            sub: "Units are containerized ('fits inside a pair of shipping containers') and historically called mobile, but commercial destruction happens under facility permits — permitting is the geographic bottleneck (the second site took until 2026). No published minimum batch, but freight, chain-of-custody, and program overhead impose a unofficial but real minimum economic volume." },
           src: ["K163"] },
         { lab: "Target-customer attributes", tone: "mid",
           txt: "State environmental agencies/fire marshals as prime contractor (OH, NH, NC, NJ), landfill operators via the 4never consortium, airports, DoD demonstrations, and claimed Fortune-500 industrials/municipal utilities. Service contracts at a fixed cost per gallon — not equipment sales.",
@@ -361,7 +361,7 @@ window.RPT = {
             sub: "Freight-weighted to the Midwest/East (NH foam trucked to Michigan; NJ foam to Columbus); New England via the NEPS partnership; no West Coast presence until the GAC Renew expansion planned 2027. Small wastewater facilities face per-pound costs >6× large facilities under remove-and-destroy economics (Minnesota PCA)." },
           src: ["K163", "K166"] },
         { lab: "Scale-gap verdict", tone: "verdict",
-          txt: "Centralized, permit-moated, government/large-volume oriented: the open flank is on-site destruction for small/remote/continuous generators who cannot economically aggregate or ship concentrate to the Midwest. The catch: third-party Certificates of Annihilation (EPA Method 1633) are now the de facto procurement bar — HCSP must match that documentation to enter.",
+          txt: "Centralized, permit-moated, government/large-volume oriented: the open flank is on-site destruction for small/remote/continuous generators who cannot economically aggregate or ship concentrate to the Midwest. The catch: third-party Certificates of Annihilation (EPA Method 1633) are now the unofficial but real buying requirement — HCSP must match that documentation to enter.",
           drill: { title: "REVIVE · SCALE-GAP VERDICT", value: "On-site small generators left open — with a documentation bar",
             sub: "Caveats: Revive is not static — containerized units can deploy on-site (Detroit DoD demo) and Viking capital could contest the niche from above. And the niche is contested anyway: Aquagga (HALT) took Colorado at $40/gal; Claros and electrochemical/plasma players crowd the small end. The gap is real but not empty." },
           src: ["K163", "K164", "K165"] },
@@ -375,7 +375,7 @@ window.RPT = {
     rows: [
       { dim: "Financial health",
         cells: [
-          { txt: "Going concern · $215K FY2025 revenue vs −$21.0M loss · cash $1.78M (Jun 2026)", src: ["K52", "K151", "K152"] },
+          { txt: "Auditors warn it may run out of money · $215K FY2025 revenue vs −$21.0M loss · cash $1.78M (Jun 2026)", src: ["K52", "K151", "K152"] },
           { txt: "~$3.2B private defense prime; PERSES a marginal niche line", src: ["K155"] },
           { txt: "Negative equity −DKK 30.9M (2025) · 11 employees · owner-debt funded", src: ["K159"] },
           { txt: "Battelle + Viking JV; undisclosed revenue; CEO replaced Mar 2026", src: ["K162"] } ] },
@@ -387,7 +387,7 @@ window.RPT = {
           { txt: "~500 gal/day centralized service; small generators via state aggregation only", src: ["K163"] } ] },
       { dim: "Customer types",
         cells: [
-          { txt: "Municipal POTWs, DoD programs, TSDF hosts — all grant/government funded", src: ["K154"] },
+          { txt: "Municipal sewage treatment plants, DoD programs, TSDF hosts — all grant/government funded", src: ["K154"] },
           { txt: "DoD/DOE/USACE programs, defense primes, TSDF hosts, UN/GEF cleanups", src: ["K158", "K156"] },
           { txt: "EU defense/aerospace (ArianeGroup), airports, fire services — partner-delivered", src: ["K161", "K160"] },
           { txt: "State AFFF takebacks, landfill consortia, airports, DoD demos", src: ["K163"] } ] },
@@ -438,11 +438,11 @@ window.RPT = {
 
   // ── §4B watch items — events that would redraw the axis ──
   comp_watch: [
-    { item: "A DIU Success Memo for General Atomics", txt: "374Water earned its memo in August 2026 — a federal procurement pathway. GA's Charlotte demo memo is not yet public; if it lands, sole-source-style DoD scaling could follow and the incumbent becomes dangerous at the top of the market.", src: ["K158"] },
+    { item: "A DIU Success Memo for General Atomics", txt: "374Water earned its memo in August 2026 — a federal buying pathway. GA's Charlotte demo memo is not yet public; if it lands, sole-source-style DoD scaling could follow and the existing supplier becomes dangerous at the top of the market.", src: ["K158"] },
     { item: "ArianeGroup ELIXIR goes merchant", txt: "The 2026 ELIXIR datasheet sells fixed or mobile SCWO facilities, direct purchase or leasing, as ArianeGroup's own service — Toulouse next. The European channel is being captured by the prime, not the SCWO vendor.", src: ["K161"] },
     { item: "Revive's containerized pivot", txt: "Annihilator units fit in a pair of shipping containers and can deploy on-site (Detroit DoD demo, 2025). A well-capitalized Revive — Viking Global behind it — could contest the on-site niche from above before HCSP occupies it.", src: ["K163"] },
-    { item: "Aquagga HALT keeps winning the small end", txt: "Colorado chose Aquagga over Revive at a $40/gal program payment. The gap below $1M is real but contested — Aquagga, Claros, and electrochemical/plasma players crowd it even though the four SCWO incumbents don't serve it.", src: ["K165"] },
-    { item: "The Certificate of Annihilation becomes the procurement bar", txt: "Third-party verified destruction to EPA Method 1633 is now the de facto bid requirement (Revive's NC Phase 1, Jan 2026). HCSP's published prototype-data agenda — recommendation #1 — is the entry ticket, not a nicety.", src: ["K164"] },
+    { item: "Aquagga HALT keeps winning the small end", txt: "Colorado chose Aquagga over Revive at a $40/gal program payment. The gap below $1M is real but contested — Aquagga, Claros, and electrochemical/plasma players crowd it even though the four SCWO existing suppliers don't serve it.", src: ["K165"] },
+    { item: "The Certificate of Annihilation becomes the buying requirement", txt: "Third-party verified destruction to EPA Method 1633 is now the unofficial but real bid requirement (Revive's NC Phase 1, Jan 2026). To win customers, grants, and regulators, you must publish independent test results from the working prototype. That evidence is the price of admission — not an optional extra.", src: ["K164"] },
   ],
 
   // ── §4C customers & global footprint: per-company customer tables (research/cust_*.md, verified late 2026) ──
@@ -473,7 +473,7 @@ window.RPT = {
           src: ["K180", "K154"] },
         { cust: "DoD DIU/ESTCP demo at Clean Earth TSDF (Arcadis prime)", loc: "Detroit, MI", type: "Federal demo at industrial TSDF", value: "Undisclosed",
           status: "Completed Jul–Sep 2025; USACE ERDC TR-26-19 validation; DIU Success Memo Aug 2026",
-          caveat: "Six PFAS waste streams, ~900 gal over 80 runtime hours; >99.9% DRE liquids. The Success Memo opens an OTA procurement pathway.",
+          caveat: "Six PFAS waste streams, ~900 gal over 80 runtime hours; >99.9% destruction-and-removal in liquids. The Success Memo opens an OTA buying pathway.",
           src: ["K182"] },
         { cust: "DoD ESTCP / Colorado School of Mines", loc: "Peterson SFB, Colorado Springs, CO", type: "Federal demo + academic evaluation", value: "Undisclosed",
           status: "Completed 2025 — SAFF foam fractionate from PFAS-impacted sediment",
@@ -533,7 +533,7 @@ window.RPT = {
           src: ["K191"] },
         { cust: "GA-EMS San Diego full-scale test facility", loc: "San Diego, CA", type: "Vendor-owned; hosts customer-paid test campaigns", value: ">6M gal cumulative; 200+ waste streams",
           status: "Operating — incl. biosolids/AFFF tests for two unnamed Southern California waste-management firms (2023)",
-          caveat: "The credibility anchor (>99.99% DRE, EPA-verified) — a test facility, not a customer installation.",
+          caveat: "The credibility anchor (>99.99% destruction-and-removal, EPA-verified) — a test facility, not a customer installation.",
           src: ["K17", "K191"] },
       ],
     },
@@ -545,7 +545,7 @@ window.RPT = {
       rows: [
         { cust: "ArianeGroup — ELIXIR Unit 2 (PFAS)", loc: "Toulouse (île d'Empalot, Seveso site), France", type: "Defense/aerospace + commercial PFAS destruction hub", value: "€5.03M project / €1.59M French state aid",
           status: "Operating — delivered Jun 2024; prefecture authorization summer 2025", flag: "largest",
-          caveat: "Largest documented engagement — but €5.03M is ArianeGroup's ELIXIR project value (France 2030/Innov'Eau), not Aquarden's contract revenue (undisclosed; unit capex class est. $2–10M).",
+          caveat: "Largest documented engagement — but €5.03M is ArianeGroup's ELIXIR project value (France 2030/Innov'Eau), not Aquarden's contract revenue (undisclosed; unit purchase cost class est. $2–10M).",
           src: ["K192", "K161"] },
         { cust: "ArianeGroup — ELIXIR Unit 1 (energetics)", loc: "Saint-Médard-en-Jalles (Issac), Gironde, France", type: "Defense/aerospace energetics destruction service", value: "Undisclosed (unit est. $2–10M class)",
           status: "Operating industrial system since 2018 — 100–200 t/yr pyrotechnics per reactor",
@@ -593,7 +593,7 @@ window.RPT = {
           src: ["K195", "K163"] },
         { cust: "Ohio AFFF Takeback — Round 2", loc: "Ohio statewide", type: "State environmental agency", value: ">$13M directed (DuPont settlement)",
           status: "Funded — registration closed Sep 4, 2026; collection anticipated Nov 2026 (≥60,000 gal estimated remaining)",
-          caveat: "Round 2 vendor award structure not yet published; Battelle/Revive are the incumbents.",
+          caveat: "Round 2 vendor award structure not yet published; Battelle/Revive are the existing suppliers.",
           src: ["K195"] },
         { cust: "New Hampshire NHDES AFFF Takeback (first-in-nation)", loc: "New Hampshire (10 county events); destruction Columbus OH", type: "State environmental agency", value: "$668,258 (~10–12k gal, ~$67/gal all-in)", flag: "smallest",
           status: "Complete Aug 2024 — 125+ fire departments, ~250 foam formulations; Certificates of Processing issued",
@@ -683,7 +683,7 @@ window.RPT = {
     { y: 2024.7, label: "WHO AMR guidance", ev: "First global guidance on antibiotic-manufacturing waste", cls: "policy", src: ["K45"] },
     { y: 2025.7, label: "CERCLA retained", ev: "EPA announces it will retain and defend the designation; upheld by D.C. Circuit 2026", cls: "policy", src: ["K6"] },
     { y: 2026.2, label: "DoD moratorium lifted", ev: "PFAS incineration re-opens under a permit-based framework — competition and volume validation", cls: "risk", src: ["K11"] },
-    { y: 2026.3, label: "EPA guidance v3", ev: "Interim guidance still calls SCWO 'commercially unproven at scale' — revision is a dated de-risking event", cls: "risk", src: ["K55"] },
+    { y: 2026.3, label: "EPA guidance v3", ev: "Interim guidance still calls SCWO 'commercially unproven at scale' — revision is a dated event that makes it safer to invest", cls: "risk", src: ["K55"] },
     { y: 2026.75, label: "AFFF deadline", ev: "Statutory foam transition: ~1,000 facilities, >6,000 mobile assets, >$2.1B initial cost", cls: "demand", src: ["K14", "K15"] },
     { y: 2027.0, label: "NL near-zero N", ev: "Netherlands mandates near-zero nitrogen discharge in the world's most advanced greenhouse sector", cls: "policy", src: ["K35"] },
     { y: 2027.4, label: "Landfill ELG window", ev: "Proposed rulemaking anticipated 2026 → realistic finalization window 2026–2028; ~2,600 MSW landfills become mandatory buyers", cls: "demand", src: ["K7"] },
@@ -691,47 +691,47 @@ window.RPT = {
     { y: 2045.0, label: "EU UWWTD horizon", ev: "Recast directive (EU 2024/3019): quaternary micropollutant treatment with ≥80% EPR funding by pharma/cosmetics", cls: "policy", src: ["K38", "K56"] },
   ],
 
-  // ── Ch.9.2 variant portfolio ──
+  // ── Ch.9.2 models by industry ──
   variants: [
-    { v: "HCSP-PFAS", stream: "Leachate foam fractionate; AFFF stockpiles; IX regenerant brines", pre: "Foam fractionation (0.5–2% of feed volume, up to 100,000× concentration)", mat: "Inconel 625 core; HF-tolerant trims", model: "Mobile WDaaS, $2–5/gal", first: "Landfill operators, DoD installations, airport foam take-back", src: ["K8"] },
+    { v: "HCSP-PFAS", stream: "Leachate foam fractionate; AFFF stockpiles; IX regenerant brines", pre: "Foam fractionation (0.5–2% of feed volume, up to 100,000× concentration)", mat: "Inconel 625 core; HF-tolerant trims", model: "Mobile destruction service (we run it for you), $2–5/gal", first: "Landfill operators, DoD installations, airport foam take-back", src: ["K8"] },
     { v: "HCSP-RX", stream: "Pharma mother liquors, solvent-recovery bottoms, API concentrates (COD 2,000–80,000 mg/L)", pre: "Solvent segregation; none required for strong streams", mat: "Inconel 625; corrosion allowance for pH 2–12 feeds", model: "Equipment sale + validation documentation (GMP-adjacent)", first: "API plants in Indian clusters; US/EU pharma under AMR standards", src: ["K37"] },
     { v: "HCSP-FAB", stream: "Fab solvents/strippers, TMAH developer concentrate, RO/NF PFAS concentrate", pre: "Fab-native segregation; concentrate take-off at point of origin", mat: "Titanium-lined or HF-rated reactor; CaF₂-compatible polish", model: "Point-of-origin service at 30–70% of off-site disposal cost", first: "New AZ/TX/NY fabs under PFAS permit scrutiny", src: ["K40"] },
     { v: "HCSP-HAZ", stream: "Halogenated solvents, pesticide/POPs waste, chlorinated concentrates", pre: "None (streams arrive concentrated); chloride pre-screening", mat: "Inconel 625 at 600 °C (0.6 mm/yr demonstrated); titanium liner option", model: "Premium destruction service vs. $15–50+/gal incineration", first: "Agrochemical complexes, POPs stockpile programs, chemical parks", src: ["K33", "K57"] },
-    { v: "HCSP-BIO", stream: "Dewatered municipal biosolids/sludge cake (≥20–25% solids)", pre: "Screw-press/belt dewatering to autothermal cake", mat: "Standard Inconel core; grit/salt management package", model: "Regional WDaaS hub + mobile units; grant-funded demos", first: "Crisis-priced Northeast/Florida/California utilities", src: ["K43"] },
-    { v: "HCSP-AG", stream: "CEA nutrient runoff, RO reject, pesticide/CIP side streams", pre: "None economical at 1,000–1,500 mg/L TDS; destruction for pesticide side-streams", mat: "Standard core", model: "Service/lease only (customer base cannot fund CapEx)", first: "California cultivators in sewer-restricted jurisdictions", src: ["K36"] },
-    { v: "HCSP-VIN (v2)", stream: "Distillery/ethanol vinasse (spent wash), COD 100,000–160,000 mg/L; grain-ethanol thin stillage", pre: "None — the stream arrives autothermal; optional potash-from-solids recovery per the CPCB-accepted route", mat: "Standard Inconel 625 core; high-salt (potash-bearing) solids-management package", model: "ZLD compliance retrofit displacing MEE + boiler incineration; steam/power export credited against the distillery utility bill", first: "~270 Indian molasses distilleries under the CPCB mandate; Brazilian cane mills second", src: ["K61", "K62", "K63"] },
-    { v: "HCSP-TRI (v2)", stream: "Any concentrated feed (≥80–100 g/L COD) at hosts with continuous cooling demand: F&B, cold storage, district cooling", pre: "Host-dependent concentration train; feed blending to hold the autothermal threshold", mat: "Standard core + back-pressure/extraction turbine; LiBr chiller for ≥5 °C chilled water (COP 0.7–0.8) or NH₃–H₂O for sub-zero duty (COP 0.4–0.6)", model: "Energy-services contract: distilled water + power + chilled water sold to an anchor load; viable only at ≥500 RT continuous cooling load", first: "F&B and cold-storage complexes; district-cooling networks with metered tariffs", src: ["K84", "K85", "K83"] },
-    { v: "HCSP-ISL (v2)", stream: "Island/remote sewage sludge blended with FOG and food waste; remote-camp oily wastes", pre: "Dewatering plus FOG/food-waste blending to reach autothermal feed strength", mat: "Standard core, marinized enclosure; diesel-genset integration", model: "Build-own-operate micro-utility selling water, power, cooling at diesel/desal parity ($0.30–0.52/kWh; $2–5/m³); daily-cycled storage option", first: "Caribbean/USVI/Hawaii resort clusters and coastal municipalities; remote mine camps at $0.30–1.10/kWh diesel", src: ["K65", "K67"] },
+    { v: "HCSP-BIO", stream: "Dewatered municipal biosolids/sludge cake (≥20–25% solids)", pre: "Screw-press/belt dewatering to a cake that makes its own heat", mat: "Standard Inconel core; grit/salt management package", model: "Regional destruction service (we run it for you) hub + mobile units; grant-funded demos", first: "Crisis-priced Northeast/Florida/California utilities", src: ["K43"] },
+    { v: "HCSP-AG", stream: "CEA nutrient runoff, RO reject, pesticide/CIP side streams", pre: "None economical at 1,000–1,500 mg/L TDS; destruction for pesticide side-streams", mat: "Standard core", model: "Service/lease only (customer base cannot fund purchase cost)", first: "California cultivators in sewer-restricted jurisdictions", src: ["K36"] },
+    { v: "HCSP-VIN (v2)", stream: "Distillery/ethanol vinasse (spent wash), COD 100,000–160,000 mg/L; grain-ethanol thin stillage", pre: "None — the stream arrives strong enough to make its own heat; optional potash-from-solids recovery per the CPCB-accepted route", mat: "Standard Inconel 625 core; high-salt (potash-bearing) solids-management package", model: "ZLD compliance retrofit displacing MEE + boiler incineration; steam/power export credited against the distillery utility bill", first: "~270 Indian molasses distilleries under the CPCB mandate; Brazilian cane mills second", src: ["K61", "K62", "K63"] },
+    { v: "HCSP-TRI (v2)", stream: "Any concentrated feed (≥80–100 g/L COD) at hosts with continuous cooling demand: F&B, cold storage, district cooling", pre: "Host-dependent concentration train; feed blending to hold the threshold where it makes its own heat from the waste", mat: "Standard core + back-pressure/extraction turbine; LiBr chiller for ≥5 °C chilled water (COP 0.7–0.8) or NH₃–H₂O for sub-zero duty (COP 0.4–0.6)", model: "Energy-services contract: distilled water + power + chilled water sold to an anchor load; viable only at ≥500 RT continuous cooling load", first: "F&B and cold-storage complexes; district-cooling networks with metered tariffs", src: ["K84", "K85", "K83"] },
+    { v: "HCSP-ISL (v2)", stream: "Island/remote sewage sludge blended with FOG and food waste; remote-camp oily wastes", pre: "Dewatering plus FOG/food-waste blending to reach feed strength that makes its own heat", mat: "Standard core, marinized enclosure; diesel-genset integration", model: "Build-own-operate micro-utility selling water, power, cooling at diesel/desal parity ($0.30–0.52/kWh; $2–5/m³); daily-cycled storage option", first: "Caribbean/USVI/Hawaii resort clusters and coastal municipalities; remote mine camps at $0.30–1.10/kWh diesel", src: ["K65", "K67"] },
   ],
 
-  // ── Ch.10.2 risk register ──
+  // ── Ch.10.2 what could go wrong ──
   risks: [
     { r: "Regulatory rollback slows the PFAS demand clock", like: "Medium-High", impact: "High", mit: "Anchor on CERCLA liability and state action (11+ states on AFFF), not federal deadlines", ev: "EBJ cut its 30-yr PFAS market estimate 43%, $230B → $132B (2025)", src: ["K12"] },
-    { r: "EPA guidance lag blocks permits", like: "Medium", impact: "Medium-High", mit: "State-level permits and ESTCP/DIU validation; guidance cycle as dated de-risking trigger", ev: "April 2026 interim guidance: 'commercially unproven at scale' — while Revive operates a permitted system", src: ["K55", "K16"] },
+    { r: "EPA guidance lag blocks permits", like: "Medium", impact: "Medium-High", mit: "State-level permits and ESTCP/DIU validation; guidance cycle as a dated trigger that makes it safer to invest", ev: "April 2026 interim guidance: 'commercially unproven at scale' — while Revive operates a permitted system", src: ["K55", "K16"] },
     { r: "Historical SCWO salt/corrosion failures (other designs)", like: "Low", impact: "Medium (residual: validation, not physics)", mit: "HCSP's >3,000 °F (≈1,650 °C) in-reactor hydrogen combustion prevents salt deposition by design (manufacturer reports no salt issues) — consistent with in-reactor hydrothermal-flame salt-management research; residual item = third-party publication of prototype long-run data on salty feeds", ev: "Corrosion and salt plugging — not chemistry — killed prior conventional-preheater plants (HydroProcessing, Hanwha); 16–26 mm/yr in lesser alloys", src: ["K20", "K57", "K50", "K1"] },
-    { r: "First-mover fragility / capital intensity", like: "High", impact: "High", mit: "Asset-light service entry; milestone-gated CapEx; underwrite the 374Water trajectory, not its deck", ev: "$215,037 FY2025 revenue vs. $21.0M net loss; going-concern language", src: ["K52"] },
+    { r: "First-mover fragility / capital intensity", like: "High", impact: "High", mit: "Asset-light service entry; milestone-gated purchase cost; underwrite the 374Water trajectory, not its deck", ev: "$215,037 FY2025 revenue vs. $21.0M net loss; auditors warn it may run out of money", src: ["K52"] },
     { r: "Incineration re-opening erodes the PFAS niche", like: "Medium (occurred)", impact: "Medium", mit: "Compete on permitting speed, community-opposition risk, on-site liability elimination", ev: "DoD lifted the moratorium Feb 20–Mar 3, 2026 — because waste overflowed storage", src: ["K11"] },
-    { r: "Customer capital constraints", like: "High", impact: "Medium", mit: "WDaaS and lease structures; grant-funded demonstrations", ev: "~27% of cannabis operators profitable; 14 CEA bankruptcies in 2025; municipal procurement 3–7 years", src: ["K36", "K44"] },
-    { r: "Feed-dependence of all economics", like: "Medium", impact: "High", mit: "Gate every sale on COD screening (≥60–150 g/L or upstream concentrate)", ev: "Autothermal needs ~120–150 g/L COD; near-zero net power only above ~30 g/L organics", src: ["K58", "K59"] },
+    { r: "Customer capital constraints", like: "High", impact: "Medium", mit: "Destruction service (we run it for you) and lease structures; grant-funded demonstrations", ev: "~27% of cannabis operators profitable; 14 CEA bankruptcies in 2025; municipal buying process 3–7 years", src: ["K36", "K44"] },
+    { r: "Feed-dependence of all economics", like: "Medium", impact: "High", mit: "Gate every sale on COD screening (≥60–150 g/L or upstream concentrate)", ev: "Making its own heat from the waste needs ~120–150 g/L COD; near-zero net power only above ~30 g/L organics", src: ["K58", "K59"] },
     { r: "Regional grid-price exposure (auxiliary draw & export value)", like: "Medium", impact: "Medium", mit: "Sequence by grid price (TX/MEA first); EU export value contingent on the heat-integrated variant", ev: "US industrial power spans ~6.6 ¢ (TX) to ~24 ¢ (CA commercial) — tripling what auxiliary draw costs and exported kWh earn", src: ["K23", "K24"] },
     { r: "Independent documentation of the self-fueling energy balance", like: "Medium", impact: "Medium", mit: "Publish prototype data — the on-demand hydrogen loop is manufacturer-stated and prototype-backed; independent verification converts the claim into a diligence asset", ev: "Per the manufacturer briefing: fuel generated on demand from process water, negligible net energy cost once started; a working prototype exists", src: ["K1"] },
     { r: "Scale-up beyond the demonstrated envelope (new in v2)", like: "High", impact: "High", mit: "Build the ladder as parallel trains (effective exponent n ≈ 0.85), never giant single vessels; stage-gate each rung on availability data from the rung below", ev: "No SCWO plant above 306 t/d has ever operated; the two largest ever built are both defunct; the LANL 5,000 m³/day design anchoring hub economics is a study, not a plant", src: ["K76", "K96", "K72"] },
     { r: "Storage/supply-chain sole-sourcing — NiFe (new in v2)", like: "Medium", impact: "Medium", mit: "Default to LFP for standby/black-start on every unit; dual-source NiFe (Chinese TN-series) only for daily-cycled remote variants; track the UCLA nanostructured revival as a 5–10-yr option", ev: "The dominant US NiFe vendor went bankrupt June 2023 leaving a Chinese-only supply base; NiFe self-discharges 20–30%/month and costs ~$400–1,000/kWh against $70/kWh LFP packs", src: ["K91", "K87", "K88"] },
   ],
 
-  // ── Verdict scale evidence (P18) — v2: fifteen industries, scale & crossover added ──
+  // ── The bottom line evidence (P18) — v2: fifteen industries, scale & crossover added ──
   verdict: {
     bull: [
-      { t: "Federally validated destruction: 99.9993% DRE on AFFF (USACE ERDC)", src: ["K2"] },
-      { t: "Incumbent umbrella $5–28/gal vs. an HCSP that is self-fueling once started (cost model pending)", src: ["K9", "K10", "K22"] },
+      { t: "Federally validated destruction: 99.9993% destruction-and-removal on firefighting foam (USACE ERDC)", src: ["K2"] },
+      { t: "Existing supplier umbrella $5–28/gal vs. an HCSP that is self-fueling once started (cost model pending)", src: ["K9", "K10", "K22"] },
       { t: "No-air-permit moat: sealed system vs. 24 combustors at 88–92% utilization", src: ["K34", "K1"] },
       { t: "Dated demand clocks: AFFF Oct-2026, landfill ELG 2026–28, CPCB distillery ZLD, MCL 2031", src: ["K14", "K7", "K62"] },
       { t: "DoD liability >$9.3B across 718 installations", src: ["K13"] },
-      { t: "Scale + feed strength invert the energy line: net-zero ~35–40 g/L COD, −60 kWhₑ/m³ export at 150 g/L, $9–20B/yr consolidated SAM", src: ["K73", "K70"] },
+      { t: "Scale + feed strength invert the energy line: net-zero ~35–40 g/L COD, −60 kWhₑ/m³ export at 150 g/L, $9–20B/yr consolidated reachable market", src: ["K73", "K70"] },
     ],
     bear: [
       { t: "30-year graveyard: corrosion and salt plugging, not chemistry, killed conventional designs — HCSP's documented design answer (>3,000 °F in-reactor combustion; no salt issues reported) still needs published prototype data", src: ["K49", "K50", "K1"] },
-      { t: "Listed leader: $215k revenue vs. $21.0M loss, going-concern language", src: ["K52"] },
+      { t: "Listed leader: $215k revenue vs. $21.0M loss, auditors warn it may run out of money", src: ["K52"] },
       { t: "EBJ downgraded the 30-yr PFAS pool 43% on deregulation", src: ["K12"] },
       { t: "DoD re-opened the incineration pathway (Feb–Mar 2026)", src: ["K11"] },
       { t: "Water value ~$3.5/m³ cannot carry module economics — the business must be priced as destruction, with energy export above ~35–60 g/L COD", src: ["K23", "K31"] },
@@ -760,21 +760,21 @@ window.RPT = {
   ],
 
   // ── Ch.11.2 v2 scale ladder: four rungs on dilute aqueous feed (COD 5–20 g/L, non-autothermal base) ──
-  // Cost and CapEx figures were removed: they came from a modeled stack, not from the
+  // Cost and purchase cost figures were removed: they came from a modeled stack, not from the
   // manufacturer — HCSP cost model pending. Net-energy (kWh/m³) ranges are kept as
   // energy-balance model outputs, not costs.
   scale_ladder: [
     { m3d: 10,   name: "Module",        kwh: [130, 250],
-      note: "130–250 kWh/m³ brackets the 294 kWh/m³ AirSCWO 6 field point on weak concentrate. Module CapEx and $/m³ cost: TBD — manufacturer cost model pending (market reference: AirSCWO 6's $5.2M equipment-plus-operation contract at OC San).", src: ["K70", "K18", "K54"] },
+      note: "130–250 kWh/m³ brackets the 294 kWh/m³ AirSCWO 6 field point on weak concentrate. Module purchase cost and $/m³ cost: TBD — manufacturer cost model pending (market reference: AirSCWO 6's $5.2M equipment-plus-operation contract at OC San).", src: ["K70", "K18", "K54"] },
     { m3d: 100,  name: "Industrial hub", kwh: [80, 160],
       note: "The rung where HCSP crosses into treatment-market territory — overlaps hazardous/biosolids disposal bands; matches the vendor's ~$50/wet t projection at 30 t/d. Cost: TBD — manufacturer cost model pending.", src: ["K70", "K71"] },
     { m3d: 1000, name: "Plant",         kwh: [45, 110],
-      note: "First rung where autothermal operation + ORC bottoming pays; LANL base case 55.8 kWhₑ/m³ at 5,000 m³/d brackets the low end. Cost: TBD — manufacturer cost model pending.", src: ["K70", "K72"] },
+      note: "First rung where operation that makes its own heat from the waste + ORC bottoming pays; LANL base case 55.8 kWhₑ/m³ at 5,000 m³/d brackets the low end. Cost: TBD — manufacturer cost model pending.", src: ["K70", "K72"] },
     { m3d: 1900, name: "Regional hub (500k gpd)", kwh: [35, 88],
-      note: "No train above ~306 t/d has ever operated; the LANL 5,000 m³/day design is a study, not a plant — its $2–3/m³ is an autothermal design bound for the technology class, not an HCSP price. HCSP cost: TBD — manufacturer cost model pending.", src: ["K70", "K76", "K72"] },
+      note: "No train above ~306 t/d has ever operated; the LANL 5,000 m³/day design is a study, not a plant — its $2–3/m³ is an design bound for a system that makes its own heat for the technology class, not an HCSP price. HCSP cost: TBD — manufacturer cost model pending.", src: ["K70", "K76", "K72"] },
   ],
   scale_meta: {
-    exponent: "CapEx scales at n ≈ 0.5–0.7 per train (NETL/LANL basis); modular parallelization blends the plant-level exponent toward 0.85 — every case above ~100 m³/day is priced on the pessimistic branch.",
+    exponent: "purchase cost scales at n ≈ 0.5–0.7 per train (NETL/LANL basis); modular parallelization blends the plant-level exponent toward 0.85 — every case above ~100 m³/day is priced on the pessimistic branch.",
     physics: "Gross duty is scale-invariant at ~866 kWh_th/m³ (25→400 °C at 25 MPa) plus ~9 kWhₑ/m³ pumping; what scale buys is heat-exchanger area.",
     limit: "The largest single-train SCWO plant ever reported processed 306 t/d; every larger concept — including the LANL 5,000 m³/day design — is a study, not a plant.",
     src: ["K74", "K75", "K76", "K79"],
@@ -792,20 +792,20 @@ window.RPT = {
       { name: "Fab bulk effluent", cod: [0.5, 5], side: "below", note: "12,000–23,000 m³/day per fab of dilute stream treated conventionally at $0.5–2/m³ — a 100–400× cost gap no SCWO configuration closes.", src: ["K40"] },
       { name: "Corn-ethanol stillage", cod: [27, 27], side: "below", note: "~27 g/L — just under the line; needs blending or mild concentration.", src: ["K103"] },
       { name: "Produced water", cod: [1, 20], side: "below", note: "Organic loading in most basins far below the LANL design assumption; salinity is an inorganic problem SCWO does not solve.", src: ["K72", "K59"] },
-      { name: "Dewatered biosolids", cod: [70, 90], side: "above", note: "Sludge COD >70 g/L (Ringsjöverket operated autothermally) — crosses into export territory.", src: ["K78"] },
+      { name: "Dewatered biosolids", cod: [70, 90], side: "above", note: "Sludge COD >70 g/L (Ringsjöverket operated with heat from the waste itself) — crosses into export territory.", src: ["K78"] },
       { name: "Brazilian raw vinasse", cod: [77, 77], side: "above", note: "Independently measured 77 g/L total COD.", src: ["K102"] },
-      { name: "Molasses vinasse", cod: [100, 160], side: "above", note: "100–160 g/L — the strongest SCWO-native feed in the vertical scan; squarely in the export band.", src: ["K61"] },
+      { name: "Molasses vinasse", cod: [100, 160], side: "above", note: "100–160 g/L — the strongest SCWO-native feed in the industry scan; squarely in the export band.", src: ["K61"] },
       { name: "Pharma mother liquors", cod: [80, 200], side: "above", note: "Segregated strong streams well above the 2–80 g/L bulk-effluent range.", src: ["K37"] },
     ],
     ceiling: "Sludge-fed plants corroborate the export ceiling: SCWO at 10% dry solids is a net energy producer with 3.0–3.5 MWh/tDS recoverable (WSAA 2025).",
     src: ["K73", "K77"],
   },
 
-  // ── Ch.12 v2 trigeneration: heat-allocation cascade, 1,000 m³/day @ 100 g/L COD, 80% heat recovery ──
+  // ── Ch.12 v2 trigeneration: map of where the heat goes, 1,000 m³/day @ 100 g/L COD, 80% heat recovery ──
   trigen: {
     basis: "1,000 m³/day plant, 100 g/L COD feed, 80% heat recovery, 8,000 operating h/yr",
     gross: 16.1,       // MW_th reaction heat (13.88 kJ/g COD)
-    preheat: 6.5,      // MW_th internal preheat duty — the price of autothermal operation (~60% of gross)
+    preheat: 6.5,      // MW_th internal preheat duty — the price of operation that makes its own heat from the waste (~60% of gross)
     surplus: 9.6,      // MW_th exportable
     surplus_range: [6.4, 11.2],  // heat-recovery efficiency 70–85%
     power: 1.4,        // MW_e via back-pressure/extraction turbine (high-temperature slice)
@@ -836,7 +836,7 @@ window.RPT = {
       verdict: "DEFAULT — standard UPS/black-start battery on every HCSP unit", role: "default",
       note: "Wins every row that governs standby duty, most by an order of magnitude: NiFe loses in 30 days roughly what LFP loses in a year. Weaknesses — thermal-runaway onset ~270 °C (lowest-risk Li-ion) and no sub-0 °C charging — are manageable inside a conditioned skid. Dominant, oversupplied supply chain (BNEF Dec 2025).", src: ["K88", "K89"] },
     { chem: "Lead-acid (VRLA)", cycles: "300–800 @ 80% DoD", calendar: "3–5 yr real UPS life", selfdis: "~2–4%/mo", rte: "75–85%", cost: "~$150–200/kWh", density: "30–50 Wh/kg",
-      verdict: "FALSE ECONOMY — cheapest credible standby, but 3–5-yr replacement cadence on a 20-yr plant", role: "incumbent",
+      verdict: "FALSE ECONOMY — cheapest credible standby, but 3–5-yr replacement cadence on a 20-yr plant", role: "existing supplier",
       note: "The UPS incumbent: low self-discharge, no thermal runaway. But real-world life is 3–5 years regardless of 10-yr design ratings, usable DoD only 30–50%, and life halves every 8–10 °C above 25 °C — multiplying logistics cost at exactly the remote sites where NiFe is attractive.", src: ["K89"] },
     { chem: "Vanadium redox flow", cycles: ">10,000 (effectively unlimited)", calendar: "~12–25 yr (stack ~12 yr)", selfdis: "Near-zero in tanks", rte: "~65–75%", cost: "~$300–750/kWh installed", density: "16–35 Wh/L (very bulky)",
       verdict: "EXCLUDED — a utility-storage answer, not a skid-mounted backup answer", role: "excluded",
@@ -862,7 +862,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling; annual state IUPs (summer-fall)",
     "match": 4,
-    "notes": "FY2026 is the final IIJA/BIL supplemental year (incl. $225M CWSRF emerging-contaminants tranche); FY27 House proposal ~16% cut; WRDA 2026 would add emerging-contaminants eligibility. Access via POTW/utility partner on state IUP.",
+    "notes": "FY2026 is the final IIJA/BIL supplemental year (incl. $225M CWSRF emerging-contaminants tranche); FY27 House proposal ~16% cut; WRDA 2026 would add emerging-contaminants eligibility. Access via sewage treatment plant/utility partner on state IUP.",
     "url": "https://www.epa.gov/cwsrf",
     "src": [
       "K109"
@@ -1048,11 +1048,11 @@ Object.assign(window.RPT, {
     "award": "OSG ~$280M/yr authorized; DW resilience first round $9.5M; Wastewater Efficiency <=$4M/recipient; Alternative Water Source $2M FY26 start-up",
     "access": "No—via utility partner",
     "fit": "Water; Power",
-    "vertical": "Stormwater/water reuse; POTW biosolids-to-energy; alternative supply",
+    "vertical": "Stormwater/water reuse; sewage treatment plant biosolids-to-energy; alternative supply",
     "status": "WATCH",
     "deadline": "Periodic NOFOs; Wastewater Efficiency authorization lapses after FY26 (watch WRDA 2026); Alternative Water Source first solicitation anticipated",
     "match": 3,
-    "notes": "Municipalities/POTWs/water authorities only - company as technology vendor; Wastewater Efficiency Grant Pilot (DWWIA 50202) fits biosolids-to-power but is minimally funded; Alternative Water Source (DWWIA 50203) received first-ever $2M FY26 appropriation.",
+    "notes": "Municipalities/sewage treatment plants/water authorities only - company as technology vendor; Wastewater Efficiency Grant Pilot (DWWIA 50202) fits biosolids-to-power but is minimally funded; Alternative Water Source (DWWIA 50203) received first-ever $2M FY26 appropriation.",
     "url": "https://www.epa.gov/cwsrf/sewer-overflow-and-stormwater-reuse-municipal-grants-program",
     "src": [
       "K149"
@@ -1223,7 +1223,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling applications (Program Guidance issued May 13 2026); EDFP conditional-commitment authority to Sep 30 2028",
     "match": 3,
-    "notes": "Realistic only at >=$50-100M capex given diligence costs; GHG-reduction requirement removed by OBBBA; waste-to-power adding firm capacity can fit 'output increase / grid reliability' categories; SEFI co-support lowers thresholds; borrower-paid subsidy possible but expensive.",
+    "notes": "Realistic only at >=$50-100M purchase cost given diligence costs; GHG-reduction requirement removed by OBBBA; waste-to-power adding firm capacity can fit 'output increase / grid reliability' categories; SEFI co-support lowers thresholds; borrower-paid subsidy possible but expensive.",
     "url": "https://www.energy.gov/documents/doe-edf-title-17-energy-financing-program-guidance-2026-05-13",
     "src": [
       "K149"
@@ -1375,7 +1375,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "FY28 solicitations expected ~Dec 2026-Jan 2027, pre-proposals ~Mar 2027 (FY27 in selection Sept 2026)",
     "match": 5,
-    "notes": "Best overall near-term defense target: TRL 5-7 demos at DoD sites - exactly HCSP's maturation stage; SCWO precedent ER23-7939 (foam fractionation + SCWO); FY27 topics included Water Resilience and Energy Resilience; FY27 budget $125.1M; Oct 2026 AFFF transition deadline drives FY28 demand.",
+    "notes": "Best overall near-term defense target: TRL 5–7 (mid-stage proof) demos at DoD sites - exactly HCSP's maturation stage; SCWO precedent ER23-7939 (foam fractionation + SCWO); FY27 topics included Water Resilience and Energy Resilience; FY27 budget $125.1M; Oct 2026 AFFF transition deadline drives FY28 demand.",
     "url": "https://www.serdp-estcp.org/Funding-Opportunities/ESTCP-Solicitations",
     "src": [
       "K119"
@@ -1561,11 +1561,11 @@ Object.assign(window.RPT, {
     "award": "No SRF maximum; ~$12.5M Prop 1 recycling grants proposed FY26-27; $20M stormwater principal-forgiveness cap",
     "access": "No—via utility partner",
     "fit": "Water; PFAS destruction; Power",
-    "vertical": "Biosolids/PFAS destruction at POTWs; recycled water",
+    "vertical": "Biosolids/PFAS destruction at sewage treatment plants; recycled water",
     "status": "ACTIVE",
     "deadline": "Rolling/annual IUP; applications via FAAST portal",
     "match": 4,
-    "notes": "Vendor route = partner with a POTW applicant; WRFP fits the distilled-water output; emerging-contaminants IUP supplements fit PFAS destruction.",
+    "notes": "Vendor route = partner with a sewage treatment plant applicant; WRFP fits the distilled-water output; emerging-contaminants IUP supplements fit PFAS destruction.",
     "url": "https://www.waterboards.ca.gov/water_issues/programs/grants_loans/",
     "src": [
       "K149"
@@ -1713,7 +1713,7 @@ Object.assign(window.RPT, {
     "award": "Fund balance ~$376M (post FY26 clawback); awards >$50M require Joint Legislative Water Committee review",
     "access": "Yes",
     "fit": "Water",
-    "vertical": "Wastewater reclamation to potable/distilled; fab/data-center offtakers",
+    "vertical": "Wastewater reclamation to potable/distilled; fab/data-center buyers of the output",
     "status": "ACTIVE",
     "deadline": "In-State Water Augmentation funding cycle OPEN since Nov 17 2025",
     "match": 5,
@@ -1844,14 +1844,14 @@ Object.assign(window.RPT, {
     "level": "State",
     "agency": "NJDEP / NJ Water Bank",
     "type": "Settlement fund",
-    "award": "$795M fund; >=$150M to Water Bank for POTWs; >=$90M to counties for AFFF sites; SFY26 IUPs ~$900M clean-water + ~$790M drinking-water baseline",
+    "award": "$795M fund; >=$150M to Water Bank for sewage treatment plants; >=$90M to counties for AFFF sites; SFY26 IUPs ~$900M clean-water + ~$790M drinking-water baseline",
     "access": "No—via utility partner",
     "fit": "PFAS destruction",
-    "vertical": "POTW PFAS capital upgrades; AFFF sites (fire academies, airports)",
+    "vertical": "sewage treatment plant PFAS capital upgrades; AFFF sites (fire academies, airports)",
     "status": "ACTIVE",
     "deadline": "Program design rolling out post court approval (Aug 7 2026) - engage now",
     "match": 5,
-    "notes": "Time-sensitive: ~$2.5B DuPont/3M settlements approved Aug 7 2026; no/low-interest loans + principal forgiveness for POTW PFAS capital upgrades; AFFF-destruction services fit the Orlando hub model; shape project pipelines while the program forms.",
+    "notes": "Time-sensitive: ~$2.5B DuPont/3M settlements approved Aug 7 2026; no/low-interest loans + principal forgiveness for sewage treatment plant PFAS capital upgrades; AFFF-destruction services fit the Orlando hub model; shape project pipelines while the program forms.",
     "url": "https://dep.nj.gov/3m/",
     "src": [
       "K112"
@@ -1885,11 +1885,11 @@ Object.assign(window.RPT, {
     "award": "$50M bond proposed; project-scale pilots",
     "access": "No—via utility partner",
     "fit": "PFAS destruction",
-    "vertical": "Biosolids/sludge PFAS destruction at POTWs",
+    "vertical": "Biosolids/sludge PFAS destruction at sewage treatment plants",
     "status": "WATCH",
     "deadline": "Bond vote expected by May 2026 - OUTCOME UNCONFIRMED, verify before relying",
     "match": 4,
-    "notes": "DEP/MEWEA/Brown & Caldwell study explicitly recommends funding PFAS destruction pilot studies; York Sewer District pursuing a 2028 modular SCWO pilot; Anson Madison regional PFAS center seeking funds; IIJA EC CWSRF overlay available to ME POTWs.",
+    "notes": "DEP/MEWEA/Brown & Caldwell study explicitly recommends funding PFAS destruction pilot studies; York Sewer District pursuing a 2028 modular SCWO pilot; Anson Madison regional PFAS center seeking funds; IIJA EC CWSRF overlay available to ME sewage treatment plants.",
     "url": "https://www.maine.gov/dep/spills/topics/pfas/",
     "src": [
       "K149"
@@ -1984,7 +1984,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling (membership required)",
     "match": 4,
-    "notes": "Businesses of any size eligible; funded by Fund for Lake Michigan, MMSD, Wells Fargo; MMSD pilot->demo->procurement pathway proven (Tomorrow Water Proteus advanced to 2.25-MGD commercial demo, Mar 2026).",
+    "notes": "Businesses of any size eligible; funded by Fund for Lake Michigan, MMSD, Wells Fargo; MMSD pilot->demo->buying pathway proven (Tomorrow Water Proteus advanced to 2.25-MGD commercial demo, Mar 2026).",
     "url": "https://www.mmsd.com/about-us/news/funding-available-for-pilot-program",
     "src": [
       "K149"
@@ -2117,7 +2117,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "2027 cohort applications open November 2026, close December 2026; program Apr-Nov 2027",
     "match": 5,
-    "notes": "The best-aligned water-sector accelerator; 2026 cohort explicitly featured PFAS detection/destruction and sludge-destruction startups (AxNano, Beyond the Dome) - HCSP's category confirmed in-scope; eligibility: incorporated <7 yrs, revenue <$5M, equity raised <$10M; Asia track relevant to distillery/island verticals.",
+    "notes": "The best-aligned water-sector accelerator; 2026 cohort explicitly featured PFAS detection/destruction and sludge-destruction startups (AxNano, Beyond the Dome) - HCSP's category confirmed in-scope; eligibility: incorporated <7 yrs, revenue <$5M, equity raised <$10M; Asia track relevant to distillery/island industries.",
     "url": "https://www.imagineh2o.org/apply/",
     "src": [
       "K130"
@@ -2155,7 +2155,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "2026 pre-proposals closed Mar 17 2026; next cycle expected ~Q1 2027; eight open research projects announced Jul 2026",
     "match": 4,
-    "notes": "Projects must be sponsored by a WRF-subscribing utility; HCSP participates as technology/research partner; results published sector-wide - strong de-risking for the municipal market; also Emerging Opportunities Program for urgent PFAS issues.",
+    "notes": "Projects must be sponsored by a WRF-subscribing utility; HCSP participates as technology/research partner; results published sector-wide - makes it much safer to invest in the municipal market; also Emerging Opportunities Program for urgent PFAS issues.",
     "url": "https://www.waterrf.org/research",
     "src": [
       "K134"
@@ -2326,7 +2326,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling TAG scouting; BREW 2.0 2027 applications expected fall 2026",
     "match": 3,
-    "notes": "No direct funding but high-value validation: TAG pitches vetted technologies (TRL 7+) to curated utility groups (e.g. Western US Wastewater TAG at OC San); LIFT evaluations de-risk utility procurement; PFAS-destruction hardware precedent (Aquagga is a BREW alumnus).",
+    "notes": "No direct funding but high-value validation: TAG pitches vetted technologies (TRL 7+) to curated utility groups (e.g. Western US Wastewater TAG at OC San); LIFT evaluations make utility buying safer; PFAS-destruction hardware precedent (Aquagga is a BREW alumnus).",
     "url": "https://isleutilities.com/technology-approval-group-tag/",
     "src": [
       "K149"
@@ -2385,7 +2385,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Challenge-based calls on specific themes; monitor challenges.adb.org",
     "match": 5,
-    "notes": "The cleanest true grant for a for-profit SCWO vendor: technology providers apply directly for pilots in ADB developing member countries, including Pacific island states. Top pick for the islands vertical — distilled water + destruction + power export is a strong pilot narrative.",
+    "notes": "The cleanest true grant for a for-profit SCWO vendor: technology providers apply directly for pilots in ADB developing member countries, including Pacific island states. Top pick for the islands industry — distilled water + destruction + power export is a strong pilot narrative.",
     "url": "https://challenges.adb.org/en/challenges/tic",
     "src": [
       "K167"
@@ -2461,7 +2461,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling - join research consortia and co-fund pilots",
     "match": 4,
-    "notes": "Launched Climate Week NYC (Sept/Oct 2025) targeting the water footprint of AI/data-center infrastructure and AI-for-water. The strongest non-dilutive entry into the data-center vertical; also a utility pilot-hosting channel.",
+    "notes": "Launched Climate Week NYC (Sept/Oct 2025) targeting the water footprint of AI/data-center infrastructure and AI-for-water. The strongest non-dilutive entry into the data-center industry; also a utility pilot-hosting channel.",
     "url": "https://watercenter.sas.upenn.edu",
     "src": [
       "K171"
@@ -2511,14 +2511,14 @@ Object.assign(window.RPT, {
     "level": "Private-foundation",
     "agency": "Breakthrough Energy",
     "type": "Grant",
-    "award": "Explorer $50-250K true grants (TRL 0-2, university/lab-based); Innovator Fellows up to $500K as a SAFE (dilutive)",
+    "award": "Explorer $50-250K true grants (TRL 0–2 (the earliest, least-proven stage), university/lab-based); Innovator Fellows up to $500K as a SAFE (dilutive)",
     "access": "Yes",
     "fit": "Power",
     "vertical": "Pre-venture climate tech - biosolids/landfill-methane avoidance + fossil-displacing power export angle",
     "status": "OPEN-DEADLINE",
     "deadline": "Next concept-paper deadline Nov 2, 2026 (annual)",
     "match": 2,
-    "notes": "Hard screen: technology must credibly cut/remove >=500 Mt CO2e/yr at scale - a genuine fit risk for a water/PFAS-destruction story. Explorer grants are TRL 0-2 (lab stage; holders may keep academic posts); the Innovator Fellow SAFE is dilutive, not a grant.",
+    "notes": "Hard screen: technology must credibly cut/remove >=500 Mt CO2e/yr at scale - a genuine fit risk for a water/PFAS-destruction story. Explorer grants are TRL 0–2 (the earliest, least-proven stage) (lab stage; holders may keep academic posts); the Innovator Fellow SAFE is dilutive, not a grant.",
     "url": "https://www.breakthroughenergy.org",
     "src": [
       "K174"
@@ -2556,7 +2556,7 @@ Object.assign(window.RPT, {
     "status": "ACTIVE",
     "deadline": "Rolling; pilots typically with local partners",
     "match": 3,
-    "notes": "IDB Lab funds innovation pilots with entrepreneurs (often via local partners); IDB Invest finances LAC-based private projects directly. Blue-bond proceeds target sustainable water management across LAC - the Caribbean distillery and islands verticals fit.",
+    "notes": "IDB Lab funds innovation pilots with entrepreneurs (often via local partners); IDB Invest finances LAC-based private projects directly. Blue-bond proceeds target sustainable water management across LAC - the Caribbean distillery and islands industries fit.",
     "url": "https://bidlab.org/en",
     "src": [
       "K176"
@@ -2564,7 +2564,7 @@ Object.assign(window.RPT, {
   },
   {
     "id": "G-091",
-    "program": "Caribbean Development Bank (procurement route)",
+    "program": "Caribbean Development Bank (supplier route)",
     "level": "International/NGO",
     "agency": "Caribbean Development Bank",
     "type": "Sub-grant via partner",
@@ -2575,7 +2575,7 @@ Object.assign(window.RPT, {
     "status": "WATCH",
     "deadline": "No direct company window identified; access is as supplier/EPC partner on CDB-financed water and wastewater projects",
     "match": 3,
-    "notes": "Procurement route: HCSP is the supplier/EPC partner to a government borrower on CDB-financed island water projects - high strategic relevance to the islands vertical, zero proposal-writing leverage.",
+    "notes": "Buying process route: HCSP is the supplier/EPC partner to a government borrower on CDB-financed island water projects - high strategic relevance to the islands industry, zero proposal-writing leverage.",
     "url": "https://www.caribank.org",
     "src": [
       "K177"
@@ -2668,11 +2668,11 @@ Object.assign(window.RPT, {
     "id": "G-053",
     "program": "NJ PFAS Abatement Fund ($795M) via NJ Water Bank",
     "type": "Settlement fund",
-    "award": "$795M fund; >=$150M to Water Bank for POTWs; >=$90M to counties for AFFF sites; SFY26 IUPs ~$900M clean-water + ~$790M drinking-water baseline",
+    "award": "$795M fund; >=$150M to Water Bank for sewage treatment plants; >=$90M to counties for AFFF sites; SFY26 IUPs ~$900M clean-water + ~$790M drinking-water baseline",
     "status": "ACTIVE",
     "deadline": "Program design rolling out post court approval (Aug 7 2026) - engage now",
     "match": 5,
-    "why": "NJ $795M PFAS Abatement Fund approved Aug 7 2026 - program design forming NOW; >=$150M routed to POTWs via the Water Bank; engage NJDEP/Water Bank while project pipelines form.",
+    "why": "NJ $795M PFAS Abatement Fund approved Aug 7 2026 - program design forming NOW; >=$150M routed to sewage treatment plants via the Water Bank; engage NJDEP/Water Bank while project pipelines form.",
     "access": "No—via utility partner",
     "src": [
       "K112"
@@ -2845,7 +2845,7 @@ Object.assign(window.RPT, {
     { fate: "expanding", name: "3M public-water-system settlement (MDL 2873)", amount: "$10.5–12.5B · >$3.5B paid", note: "Installments run through 2033–2036; >6,600 water systems registered claims. The administrator pays utilities, not vendors — sell downstream of the checks.", src: ["K111"] },
     { fate: "expanding", name: "Tyco + BASF settlements", amount: "$1.07B · payouts began 2026", note: "$750M Tyco and $316.5M BASF payments began Mar–Apr 2026; DuPont/Chemours/Corteva $1.185B distributing since Oct 2025.", src: ["K111"] },
     { fate: "expanding", name: "BIL PFAS water money — final year", amount: "$5B EC-SDC · $4B DWSRF · $1B CWSRF-EC", note: "EPA announced the last $1B EC-SDC year in May 2026 and reaffirmed $4B of DWSRF PFAS money; the CWSRF Emerging Contaminants supplement ($225M FY26) covers landfill leachate at 100% forgiveness. FY2026 is the last allotment year.", src: ["K109", "K127"] },
-    { fate: "expanding", name: "NJ PFAS Abatement Fund", amount: "$795M (≥$150M to POTWs)", note: "Court-approved Aug 7 2026; routed through the NJ Water Bank. Program design is forming now — engage NJDEP while the pipeline forms.", src: ["K112"] },
+    { fate: "expanding", name: "NJ PFAS Abatement Fund", amount: "$795M (≥$150M to sewage treatment plants)", note: "Court-approved Aug 7 2026; routed through the NJ Water Bank. Program design is forming now — engage NJDEP while the pipeline forms.", src: ["K112"] },
     { fate: "expanding", name: "WI Acts 200/201", amount: ">$130M", note: "Signed June 2026; grants to municipalities AND privately owned landfills for on-site leachate/biosolids treatment, ≤20% match — the most direct state door a destruction vendor has had.", src: ["K113"] },
     { fate: "expanding", name: "TX Water Fund / Prop 4", amount: "up to $20B (2027–2047)", note: "Sales-tax dedication with produced-water treatment explicitly named; 2026 is the rulemaking and positioning year.", src: ["K126"] },
     { fate: "expanding", name: "NC DEQ PFAS funding", amount: "$90M+", note: "$55M state budget + ~$35M Cape Fear (Mar 2026) + BIL SRF-EC; funds construction in drinking water, wastewater, and landfill leachate — rolling through Nov 2 2026.", src: ["K132"] },
@@ -2858,7 +2858,7 @@ Object.assign(window.RPT, {
     { y: 2026.74, label: "DWPR proposals due", date: "2026-09-29 · 4:00 pm MT", cls: "hard", closed: true, ev: "CLOSED — Reclamation DWPR FY2026 NOFO proposals were due Sep 29 2026: $5.7M total; lab ≤$300K / pilot ≤$800K federal; for-profits apply directly; produced water and municipal wastewater are named source waters. Annual cycle — pre-position for the FY2027 NOFO.", src: ["K116"] },
     { y: 2026.75, label: "ONR BAA closes", date: "2026-09-30", cls: "hard", closed: true, ev: "CLOSED — ONR Long-Range BAA N0001425SB001 stopped accepting full proposals Sep 30 2026. The waste-heat-driven SCWO white paper (expeditionary/shipboard water and waste destruction) carries over to the successor BAA — verify the current solicitation before submitting.", src: ["K117"] },
     { y: 2026.79, label: "SERDP FY28 SON", date: "~Oct–Nov 2026", cls: "window", ev: "SERDP FY28 solicitation expected ~Oct–Nov 2026; FY2027 budget fully funded at $60.8M; direct SCWO precedents (ER20-5350). Pre-position for an Environmental Restoration SON.", src: ["K118"] },
-    { y: 2026.81, label: "NJ fund pipeline forms", date: "post Aug 7 2026", cls: "forming", ev: "NJ $795M PFAS Abatement Fund court-approved Aug 7 2026; ≥$150M to POTWs via the Water Bank. Engage NJDEP while program design and project pipelines form.", src: ["K112"] },
+    { y: 2026.81, label: "NJ fund pipeline forms", date: "post Aug 7 2026", cls: "forming", ev: "NJ $795M PFAS Abatement Fund court-approved Aug 7 2026; ≥$150M to sewage treatment plants via the Water Bank. Engage NJDEP while program design and project pipelines form.", src: ["K112"] },
     { y: 2026.83, label: "DoW SBIR FY27 R1", date: "~Oct 2026 pre-release", cls: "window", ev: "Watch for NAVFAC water/PFAS topics succeeding N254-123 (expeditionary greywater reuse) and N233-117 (PFAS defluorination; AFCEC/USACE named Phase III transition partners).", src: ["K120"] },
     { y: 2026.87, label: "NC rolling close", date: "through Nov 2 2026", cls: "hard", ev: "NC DEQ funds PFAS construction in drinking water, wastewater, and landfill leachate; rolling quarterly deadlines through Nov 2 2026.", src: ["K132"] },
     { y: 2026.92, label: "Imagine H2O 2027 apps", date: "Nov–Dec 2026", cls: "hard", ev: "Zero-equity accelerator applications for the 2027 cohort; PFAS and sludge destruction are named cohort themes; ~$25K award plus the Water Innovation Pilot Fund (~$50–150K recoverable pilot grants).", src: ["K130"] },

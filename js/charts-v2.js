@@ -1,4 +1,4 @@
-// ═══ v2 charts: scale ladder (cost curve), energy crossover, trigeneration heat cascade ═══
+// ═══ v2 charts: scale ladder (cost curve), the point where the system powers itself, where the heat goes (three outputs at once) ═══
 
 /* ────────────────────────────────────────────────────────────
    12 · The scale ladder — net energy across four rungs (log capacity
@@ -88,7 +88,7 @@
   CH.halo(b2s);
   CH.drill(b2.select("rect"), () => ({
     title: "FULLY LOADED COST — ALL RUNGS", value: "TBD — pending",
-    sub: "Scale moves net energy (top panel); what it does to cost cannot be stated until the manufacturer publishes a cost model. Literature cost figures for the SCWO technology class (e.g., LANL's $2–3/m³ autothermal design bound) are design studies, not HCSP prices.",
+    sub: "Scale moves net energy (top panel); what it does to cost cannot be stated until the manufacturer publishes a cost model. Literature cost figures for the SCWO technology class (e.g., LANL's $2–3/m³ design bound for a system that makes its own heat) are design studies, not HCSP prices.",
     source: CH.srcLink(["K70", "K72"]),
   }));
 
@@ -127,7 +127,7 @@
     CH.drill(g, () => ({
       title: `${d.m3d.toLocaleString("en-US")} M³/DAY · ${d.name.toUpperCase()}`,
       value: `Net energy ${d.kwh[0]}–${d.kwh[1]} kWh/m³ · cost TBD`,
-      sub: `Net energy ${d.kwh[0]}–${d.kwh[1]} kWh/m³ on dilute feed (energy-balance model output, not a cost). CapEx and $/m³: TBD — manufacturer cost model pending. ` + d.note,
+      sub: `Net energy ${d.kwh[0]}–${d.kwh[1]} kWh/m³ on dilute feed (energy-balance model output, not a cost). purchase cost and $/m³: TBD — manufacturer cost model pending. ` + d.note,
       source: CH.srcLink(d.src),
     }));
     rungEls.push(g);
@@ -142,10 +142,10 @@
   CH.halo(xot);
   const xot2 = xo.append("text").attr("x", x(30)).attr("y", p1.y0 + 25)
     .attr("font-family", CH.MONO).attr("font-size", 8).attr("fill", inkLo)
-    .text("SEE THE CROSSOVER CHART BELOW · AUTOTHERMAL FLIPS THE SIGN; THE LADDER ONLY MOVES THE INTERCEPT");
+    .text("SEE THE POINT WHERE THE SYSTEM POWERS ITSELF CHART BELOW · MAKING ITS OWN HEAT FROM THE WASTE FLIPS THE SIGN; THE LADDER ONLY MOVES THE INTERCEPT");
   CH.halo(xot2);
   CH.drill(xo, () => ({
-    title: "THE CROSSOVER ANNOTATION", value: "net-zero ~35–40 g/L COD",
+    title: "THE POINT WHERE THE SYSTEM POWERS ITSELF ANNOTATION", value: "net-zero ~35–40 g/L COD",
     sub: "Scale moves the intercept — how much a dilute stream costs to process; feed strength moves the slope — whether the process consumes or produces energy at all. " + RPT.scale_meta.limit,
     source: CH.srcLink(["K73", "K76"]),
   }));
@@ -154,7 +154,7 @@
   const lim = svg.append("g").style("opacity", 0);
   const lt = lim.append("text").attr("x", x(1900)).attr("y", p2.y0 - 26).attr("text-anchor", "end")
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", neg).attr("font-weight", 700)
-    .text("⚠ LARGEST TRAIN EVER RUN: 306 T/D — EVERYTHING ABOVE IS INTERPOLATED DESIGN ECONOMICS");
+    .text("⚠ LARGEST TRAIN EVER RUN: 306 T/D — EVERYTHING ABOVE IS ESTIMATED DESIGN ECONOMICS");
   CH.halo(lt);
   CH.drill(lim, () => ({
     title: "SCALE-UP HONESTY", value: "306 t/d max, ever",
@@ -183,15 +183,15 @@
 })();
 
 /* ────────────────────────────────────────────────────────────
-   13 · The energy crossover — net kWhₑ/m³ vs feed COD,
+   13 · The point where the system powers itself — net kWhₑ/m³ vs feed COD,
    net-zero line, export region, measured stream markers
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("crossover-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The crossover decides which verticals pay: net-zero at ~35–40 g/L COD, export from ~60",
-    sub: "NET ELECTRICITY KWHₑ/M³ (POSITIVE = IMPORTED, NEGATIVE = EXPORTED) × FEED COD G/L · HUB LINE = LANL MODEL WITH RANKINE POWER RECOVERY · DASHED BAND = 10 M³/DAY MODULE, NO POWER CYCLE · CLICK MARKERS",
+    title: "The point where the system powers itself decides which industries pay: net-zero at ~35–40 g/L COD, export from ~60",
+    sub: "NET ELECTRICITY KWHₑ/M³ (POSITIVE = IMPORTED, NEGATIVE = EXPORTED) × FEED COD G/L · HUB LINE = LANL MODEL WITH STEAM-CYCLE (RANKINE) POWER RECOVERY · DASHED BAND = 10 M³/DAY MODULE, NO POWER CYCLE · CLICK MARKERS",
     src: "Industry & official — LANL/OSTI 1990108 (2022), Concawe 25-6 (2025), WSAA (2025) · stream COD: measured values, each dated",
   });
   const W = 880, H = 566;
@@ -267,7 +267,7 @@
   CH.halo(mbl);
   CH.drill(mband, () => ({
     title: "MODULE WITHOUT A POWER CYCLE", value: "130–250 → ~0 kWhₑ/m³",
-    sub: "A 10 m³/day module can approach but not profitably cross the zero line; a hub with a Rankine/ORC bottoming stage crosses at ~35–40 g/L and exports thereafter. Scale without concentration buys cheaper imports; concentration without scale forfeits the conversion hardware.",
+    sub: "A 10 m³/day module can approach but not profitably cross the zero line; a hub with a steam/ORC bottoming stage crosses at ~35–40 g/L and exports thereafter. Scale without concentration buys cheaper imports; concentration without scale forfeits the conversion hardware.",
     source: CH.srcLink(["K73", "K104", "K70"]),
   }));
 
@@ -284,7 +284,7 @@
   CH.halo(hubLab);
   CH.drill(hubPath, () => ({
     title: "HUB WITH POWER RECOVERY (LANL MODEL)", value: "+18 → −60 kWhₑ/m³",
-    sub: "Net electricity falls from +18 kWhₑ/m³ imported to −60 exported as feed rises 0→~160 g/L COD, with a reheat-Rankine cycle converting 37.8% of recovered heat. Independent brackets: self-sufficiency demonstrated >60 g/L; electricity generation judged possible >100 g/L; theoretical autothermal floor ~20–30 g/L organics.",
+    sub: "Net electricity falls from +18 kWhₑ/m³ imported to −60 exported as feed rises 0→~160 g/L COD, with a reheated steam power cycle (Rankine) converting 37.8% of recovered heat. Independent brackets: self-sufficiency demonstrated >60 g/L; electricity generation judged possible >100 g/L; theoretical floor for making its own heat ~20–30 g/L organics.",
     source: CH.srcLink(["K73", "K76"]),
   }));
 
@@ -320,7 +320,7 @@
     CH.halo(lt);
     CH.drill(g, () => ({
       title: s.name.toUpperCase(), value: (s.cod[0] === s.cod[1] ? s.cod[0] : s.cod[0] + "–" + s.cod[1]) + " g/L COD",
-      sub: (above ? "Above the crossover — the feed pays the plant. " : "Below the crossover — screening rejects this as a direct feed. ") + s.note,
+      sub: (above ? "Above the point where the system powers itself — the feed pays the plant. " : "Below the point where the system powers itself — screening rejects this as a direct feed. ") + s.note,
       source: CH.srcLink(s.src),
     }));
     if (CH.REDUCE) g.style("opacity", 1);
@@ -328,7 +328,7 @@
   });
   svg.append("text").attr("x", mL).attr("y", railY + 26 + 4 * 21 + 12)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
-    .text("MEASURED STREAM COD — BLUE MARKERS CLEAR THE CROSSOVER; GREY NEVER WILL");
+    .text("MEASURED STREAM COD — BLUE MARKERS CLEAR THE POINT WHERE THE SYSTEM POWERS ITSELF; GREY NEVER WILL");
 
   CH.enter(host, () => {
     ex.transition().duration(500).style("opacity", 1);
@@ -344,7 +344,7 @@
 })();
 
 /* ────────────────────────────────────────────────────────────
-   14 · Trigeneration heat-allocation cascade — 16.1 MW_th gross
+   14 · Where the heat goes when making three useful things at once — 16.1 MW_th gross
    → 6.5 preheat → 9.6 surplus → 1.4 MW_e + 4.9 MW_c, plus the
    per-MWh_th monetization hierarchy
 ──────────────────────────────────────────────────────────── */
@@ -429,7 +429,7 @@
   const n3 = node(NX.surplus - 40, preBlockY, 150, preH, "rgba(66,86,106,.10)", inkMd);
   const preLab = lab(NX.surplus + 35, preBlockY + preH / 2 - 4, "PREHEAT 6.5 MW_TH", { anchor: "middle", size: 8, col: inkMd });
   preLab.append("tspan").attr("x", NX.surplus + 35).attr("dy", "1.35em").text("— RECIRCULATED");
-  lab(NX.surplus + 35, preBlockY + preH + 14, "THE PRICE OF AUTOTHERMAL OPERATION · ~60% OF GROSS", { anchor: "middle", size: 7.5, col: inkLo, bold: false });
+  lab(NX.surplus + 35, preBlockY + preH + 14, "THE PRICE OF OPERATION THAT MAKES ITS OWN HEAT FROM THE WASTE · ~60% OF GROSS", { anchor: "middle", size: 7.5, col: inkLo, bold: false });
   // dashed return arrow to gross bar
   cas.append("path").attr("d", `M${NX.surplus - 40},${preBlockY + preH / 2} C${NX.gross - 60},${preBlockY} ${NX.gross - 60},${gY + gH - 20} ${NX.gross},${gY + gH - 10}`)
     .attr("fill", "none").attr("stroke", inkMd).attr("stroke-width", 1.2).attr("stroke-dasharray", "4 3");
@@ -500,15 +500,15 @@
   CH.enter(host, () => cas.transition().duration(600).style("opacity", 1));
   if (CH.REDUCE) cas.style("opacity", 1);
 
-  // ── walkthrough registration (heat-allocation cascade) ──
+  // ── walkthrough registration (map of where the heat goes) ──
   window.CXT = window.CXT || { table: {}, walk: {} };
   CXT.walk["heat-chart"] = {
-    title: "The heat cascade, step by step",
+    title: "Where the heat goes, step by step",
     steps: [
       { el: nodes[0].el, label: "Gross reaction heat — 16.1 MW_th",
         cap: "Oxidizing the feed releases 16.1 MW of heat — the energy content of the waste itself, arriving free with every cubic meter processed." },
       { el: nodes[2].el, label: "Preheat takes its cut — 6.5 MW_th",
-        cap: "First the plant pays itself: 6.5 MW recirculates to preheat incoming feed toward 400 °C. That is the price of autothermal operation — about 60% of gross heat never leaves the plant." },
+        cap: "First the plant pays itself: 6.5 MW recirculates to preheat incoming feed toward 400 °C. That is the price of operation that makes its own heat from the waste — about 60% of gross heat never leaves the plant." },
       { el: nodes[1].el, label: "Exportable surplus — 9.6 MW_th",
         cap: "What remains is 9.6 MW of exportable surplus (6.4–11.2 across the 70–85% heat-recovery band). Only this slice can earn revenue." },
       { el: nodes[3].el, label: "The turbine split",

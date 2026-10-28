@@ -39,7 +39,7 @@
     skid: {
       name: "Base frame — container-class skid",
       specs: "8–10 m² footprint · ≤3 m height · <75 dBA at 1 m",
-      role: "Indoor-sited and deployable at the point of waste generation, not at a central plant. Module CapEx is TBD — manufacturer cost model pending; the AirSCWO 6's $5.2M contract is the market reference point, not an HCSP price.",
+      role: "Indoor-sited and deployable at the point of waste generation, not at a central plant. Module purchase cost is TBD — manufacturer cost model pending; the AirSCWO 6's $5.2M contract is the market reference point, not an HCSP price.",
     },
     piping: {
       name: "High-pressure piping train",

@@ -1073,3 +1073,21 @@ table.dt.cust-dt th, table#geo-table.dt th { font-size: 12px; }
   font-family: var(--mono); font-size: 12px; line-height: 1.6;
 }
 #geo-table td.gm-cell { min-width: 130px; }
+
+/* ── "The words we use" glossary box (page footers) ── */
+details.glossary {
+  border-top: 1px solid var(--line-lo); padding-top: 16px; margin: 6px 0 22px;
+}
+details.glossary summary {
+  font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--ink-md); cursor: pointer;
+}
+details.glossary summary:hover { color: var(--red); }
+details.glossary dl { margin: 14px 0 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 34px; }
+details.glossary dl > div { display: flex; gap: 10px; align-items: baseline; }
+details.glossary dt {
+  font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  color: var(--ink); white-space: nowrap; min-width: 92px;
+}
+details.glossary dd { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink-md); }
+@media (max-width: 700px) { details.glossary dl { grid-template-columns: 1fr; } }

@@ -17,7 +17,7 @@
     { id: "pre",   x: -1.4, y: 0, w: 5.2, d: 8.0, h: 2.5, z: 1.1, sep: 7.0,
       head: "HP PUMP + ELECTRIC PREHEATER", sub: "75–95 kW · 180–228 kWh/m³ gross", col: PAL.inkMd, k: "K23" },
     { id: "rx",    x: 3.6, y: 0, w: 5.4, d: 5.4, h: 6.8, z: 1.1, sep: 11.4, cyl: true,
-      head: "SCWO REACTOR", sub: "380–420 °C · 25 MPa · 99.9993% DRE ✓", col: PAL.red, k: "K2" },
+      head: "SCWO REACTOR", sub: "380–420 °C · 25 MPa · 99.9993% DESTRUCTION ✓", col: PAL.red, k: "K2" },
     { id: "sep",   x: 8.6, y: 0, w: 6.2, d: 3.6, h: 3.6, z: 1.1, sep: 16.2, drum: true,
       head: "SEPARATOR + POLISH", sub: "85–95% water, sludge · power/cooling export", col: PAL.redHi, k: "K1" },
   ];

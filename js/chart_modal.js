@@ -11,9 +11,9 @@
   const usd = v => "$" + v;
   const EXPLAIN = {
     "league-chart": {
-      take: "Fifteen industries scored on six criteria — the top of the ranking is an economics verdict, not a technology verdict: concentrated feeds paired with high incumbent disposal prices.",
-      axes: "Bars read left→right as weighted score out of 10. Color marks the tier (blue = pursue now); the right column states net payback status — pending the manufacturer cost model everywhere.",
-      table: () => ({ cols: ["Rank", "Industry", "Score /10", "Tier", "Net payback", "Rationale"],
+      take: "Fifteen industries scored on six criteria — the top of the ranking is an economics verdict, not a technology verdict: concentrated feeds paired with high existing supplier disposal prices.",
+      axes: "Bars read left→right as weighted score out of 10. Color marks the tier (blue = pursue now); the right column states net time to earn back the cost status — pending the manufacturer cost model everywhere.",
+      table: () => ({ cols: ["Rank", "Industry", "Score /10", "Tier", "Net time to earn back the cost", "Rationale"],
         rows: RPT.league.map(d => ["#" + d.rank, d.name, String(d.score), "Tier " + d.tier, d.payback, d.why]) }),
     },
     "energy-chart": {
@@ -23,20 +23,20 @@
         rows: RPT.energy_floor.map(d => [d.region, `$${d.lo}–${d.hi}`, d.idx ? d.idx + "/25" : "—", d.note]) }),
     },
     "umbrella-chart": {
-      take: "Incumbent destruction and disposal runs $1–2/gal to $15–50+/gal — all public market data; HCSP's own cost and pricing are TBD until the manufacturer publishes a cost model.",
-      axes: "Log-scale $/gal bands. Ink bands are incumbent pathways; blue hatched bands are HCSP — deliberately empty (TBD). The red marker is the $28/gal Michigan AFFF panic-buying ceiling.",
+      take: "Existing supplier destruction and disposal runs $1–2/gal to $15–50+/gal — all public market data; HCSP's own cost and pricing are TBD until the manufacturer publishes a cost model.",
+      axes: "Log-scale $/gal bands. Ink bands are existing supplier pathways; blue hatched bands are HCSP — deliberately empty (TBD). The red marker is the $28/gal Michigan AFFF panic-buying ceiling.",
       table: () => ({ cols: ["Pathway", "$/gal", "Basis"],
         rows: RPT.umbrella.map(d => [d.name, d.tbd ? "TBD — mfr cost model pending" : `$${d.lo}–${d.hi}${d.hi >= 50 ? "+" : ""}`, d.note]) }),
     },
     "payback-chart": {
-      take: "The savings ladder is a cliff: destruction-priced baselines make the widest gross addressable savings; disposal-priced baselines depend on compulsion or crisis. Net payback in years is withheld everywhere.",
-      axes: "Each row is a vertical; the chip states the shared status (net payback pending) and the text gives the displaced incumbent baseline. Blue rows are destruction-priced, ink rows disposal-priced.",
-      table: () => ({ cols: ["Vertical", "Displaced incumbent baseline", "Baseline type"],
+      take: "The savings ladder is a cliff: destruction-priced baselines make the widest savings before our costs are known; disposal-priced baselines depend on compulsion or crisis. Net time to earn back the cost in years is withheld everywhere.",
+      axes: "Each row is an industry; the chip states the shared status (time to earn back the cost: pending) and the text gives the displaced existing-supplier baseline. Blue rows are destruction-priced, ink rows disposal-priced.",
+      table: () => ({ cols: ["Vertical", "Displaced existing supplier baseline", "Baseline type"],
         rows: RPT.payback.map(d => [d.name, d.basis, d.kind]) }),
     },
     "savings-chart": {
-      take: "Ranked by what incumbents charge per gallon to remediate each stream, halogenated solvents and defense AFFF lead; PFAS concentrates are top-3 under both this lens and the composite score.",
-      axes: "Bars are incumbent remediation cost per gallon on a log axis (toggle $/m³ or a linear axis on the chart). Dashed outline = low-confidence data; the blue note is the HCSP reference — no $/gal attached.",
+      take: "Ranked by what existing suppliers charge per gallon to remediate each stream, halogenated solvents and defense AFFF lead; PFAS concentrates are top-3 under both this lens and the composite score.",
+      axes: "Bars are what existing suppliers charge to clean it up per gallon on a log axis (toggle $/m³ or a linear axis on the chart). Dashed outline = low-confidence data; the blue note is the HCSP reference — no $/gal attached.",
     },
     "evidence-chart": {
       take: "The 10 m³/day skid, with the report's hardest numbers hung on the components that carry them — throughput, 380–420 °C / 25 MPa, 75–95 kW auxiliary spec, ~$3.5/m³ water credit, and TBD where the manufacturer owes data.",
@@ -47,9 +47,9 @@
       axes: "X = temperature (°C), Y = pressure (MPa). Numbered nodes are the four stages (try the walkthrough); the dashed blue branch is the self-fueling H₂ loop; the shaded region is supercritical water.",
     },
     "sizing-chart": {
-      take: "The serviceable market counted in machines: roughly 1,800–3,200 skid-equivalents across five core verticals — consolidated serviceable demand ≈ $9–20B/yr.",
+      take: "The reachable market counted in machines: roughly 1,800–3,200 skid-equivalents across five core industries — consolidated reachable demand ≈ $9–20B/yr.",
       axes: "One skid glyph = 50 module-equivalents (10 m³/day each). Solid glyphs are the modeled low case; hollow dashed glyphs are the upside; clipped glyphs are fractional.",
-      table: () => ({ cols: ["Vertical", "Module-equivalents", "SAM", "TAM", "Note"],
+      table: () => ({ cols: ["Vertical", "Module-equivalents", "reachable market", "total market", "Note"],
         rows: RPT.sizing.map(d => [d.name, d.mod_lo === d.mod_hi ? "≈" + d.mod_lo.toLocaleString("en-US") : d.mod_lo.toLocaleString("en-US") + "–" + d.mod_hi.toLocaleString("en-US"), d.sam, d.tam, d.note]) }),
     },
     "scale-chart": {
@@ -59,9 +59,9 @@
         rows: RPT.scale_ladder.map(d => [d.name, d.m3d.toLocaleString("en-US") + " m³/day (" + Math.round(d.m3d * 264.172).toLocaleString("en-US") + " gpd)", `${d.kwh[0]}–${d.kwh[1]}`, "TBD — mfr cost model pending", d.note]) }),
     },
     "crossover-chart": {
-      take: "Net-zero sits near ~35–40 g/L COD with a power cycle; from ~60 g/L the plant exports electricity — feed strength, not scale, decides which verticals pay.",
-      axes: "X = feed COD (g/L), Y = net electricity kWhₑ/m³ (positive = imported, negative = exported). The blue line is the LANL hub model with Rankine recovery; the dashed band is a 10 m³/day module without a power cycle; the rail lists measured stream CODs.",
-      table: () => ({ cols: ["Stream", "COD g/L", "Crossover position", "Note"],
+      take: "Net-zero sits near ~35–40 g/L COD with a power cycle; from ~60 g/L the plant exports electricity — feed strength, not scale, decides which industries pay.",
+      axes: "X = feed COD (g/L), Y = net electricity kWhₑ/m³ (positive = imported, negative = exported). The blue line is the LANL hub model with steam-cycle (Rankine) recovery; the dashed band is a 10 m³/day module without a power cycle; the rail lists measured stream CODs.",
+      table: () => ({ cols: ["Stream", "COD g/L", "Position vs. the self-powering point", "Note"],
         rows: RPT.crossover.streams.map(s => [s.name, s.cod[0] === s.cod[1] ? String(s.cod[0]) : s.cod[0] + "–" + s.cod[1], s.side === "above" ? "Above (exports)" : "Below (rejected)", s.note]) }),
     },
     "heat-chart": {
@@ -70,7 +70,7 @@
       table: () => ({ cols: ["Quantity", "Value", "Reading"],
         rows: [
           ["Gross reaction heat", RPT.trigen.gross + " MW_th", "13.88 kJ/g COD at 1,000 m³/day, 100 g/L"],
-          ["Internal preheat duty", RPT.trigen.preheat + " MW_th", "The price of autothermal operation (~60% of gross)"],
+          ["Internal preheat duty", RPT.trigen.preheat + " MW_th", "The price of operation that makes its own heat from the waste (~60% of gross)"],
           ["Exportable surplus", RPT.trigen.surplus + " MW_th", "Range " + RPT.trigen.surplus_range.join("–") + " across 70–85% recovery"],
           ["Power output", RPT.trigen.power + " MWₑ", "Back-pressure/extraction turbine, high-temp slice"],
           ["Cooling output", RPT.trigen.cooling + " MW_c", "≈1,392 RT via NH₃–H₂O absorption at COP 0.6"],
@@ -98,9 +98,9 @@
       axes: "Each line is an entity's lifespan (dashed span = graded date estimate); ✕ marks an exit; hairline ribbons flow to outcome plaques (deal sizes undisclosed).",
     },
     "vendor-chart": {
-      take: "Four verifiable operators on a shared TRL axis — throughput classes are different bases, shown for class and never divided into each other.",
-      axes: "Each panel: scale class, TRL range on the 1–9 axis, energy posture, cost benchmark, and the key constraint.",
-      table: () => ({ cols: ["Vendor", "Scale", "TRL", "Energy", "Cost benchmark", "Key constraint"],
+      take: "Four verifiable operators on a shared TRL (how proven the technology is) axis — throughput classes are different bases, shown for class and never divided into each other.",
+      axes: "Each panel: scale class, readiness (TRL) range on the 1–9 axis, energy posture, cost benchmark, and the key constraint.",
+      table: () => ({ cols: ["Vendor", "Scale", "TRL (readiness, 1–9)", "Energy", "Cost benchmark", "Key constraint"],
         rows: RPT.vendors.map(v => [v.name, v.scale, `${v.trl[0]}–${v.trl[1]}`, v.energy, v.cost, v.constraint]) }),
     },
     "scalegap-chart": {

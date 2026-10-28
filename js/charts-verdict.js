@@ -1,7 +1,7 @@
 // ═══ §5 verdict: balance scale (P18) + regulatory catalyst horizon (P3 wall chart) ═══
 
 /* ────────────────────────────────────────────────────────────
-   10 · Verdict scale — the two cases, weighed
+   10 · The bottom line — the two cases, weighed
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("verdict-chart");
@@ -18,7 +18,7 @@
   const endY = s => beamY + Math.sin(tilt) * BL * s; // s=-1 left (bear, up), +1 right (bull, down)
 
   // short weight labels (full text in drill-down)
-  const bullShort = ["99.9993% DRE", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD", "ENERGY INVERTS"];
+  const bullShort = ["99.9993% DESTRUCTION", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD", "ENERGY INVERTS"];
   const bearShort = ["30-YR GRAVEYARD", "$215K/$21M LOSS", "EBJ −43%", "INCINERATION BACK", "WATER CAN'T CARRY", "306 T/D MAX RUN"];
   const upShort = ["PILOT ENERGY DATA", "EPA REVISION", "LANDFILL ELG"];
 
@@ -143,7 +143,7 @@
     .attr("font-size", 8.5).attr("fill", inkMd).text("RELIABILITY, NOT DEMAND, IS THE GATE");
   CH.drill(rd, () => ({
     title: "CURRENT VERDICT", value: "Pursue, staged",
-    sub: "The opportunity is real but not yet banked: ~$9–20B/yr consolidated serviceable demand across fifteen industries, contingent on third-party publication of prototype long-run data confirming the manufacturer's salt-free combustion design (>3,000 °F in-reactor H₂ — the documented answer to the failure mode that killed conventional SCWO) — and, new in v2, on scaling in parallel trains rather than unproven giant vessels. Qualitative reading, not a score.",
+    sub: "The opportunity is real but not yet banked: ~$9–20B/yr consolidated reachable demand across fifteen industries, contingent on third-party publication of prototype long-run data confirming the manufacturer's salt-free combustion design (>3,000 °F in-reactor H₂ — the documented answer to the failure mode that killed conventional SCWO) — and, new in v2, on scaling in parallel trains rather than unproven giant vessels. Qualitative reading, not a score.",
     source: CH.srcLink(["K53", "K20", "K70"]),
   }));
 

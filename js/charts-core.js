@@ -1,4 +1,4 @@
-// ═══ Chart kit (window.CH) + §0/§3 core charts: league, grid price context, umbrella, payback ═══
+// ═══ Chart kit (window.CH) + §0/§3 core charts: league, grid price context, umbrella, time to earn back the cost ═══
 window.CH = (() => {
   const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const MONO = 'Menlo, Consolas, monospace', SERIF = '"et-book", Palatino, Georgia, serif';
@@ -78,16 +78,16 @@ window.CH = (() => {
 })();
 
 /* ────────────────────────────────────────────────────────────
-   1 · League table hero — fifteen industries, weighted score /10,
-   tier-colored, payback annotation (Ch. 3.1.1 v2)
+   1 · Ranking hero — fifteen industries, weighted score /10,
+   tier-colored, time to earn back the cost annotation (Ch. 3.1.1 v2)
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("league-chart");
   if (!host) return;
   const body = U.frame(host, {
     title: "Fifteen industries, one physics filter — and the ranking is still an economics verdict",
-    sub: "WEIGHTED SIX-CRITERION SCORE /10 · COLOR = TIER · RIGHT COLUMN = NET PAYBACK (PENDING MANUFACTURER COST MODEL) · CLICK ANY BAR FOR THE RATIONALE",
-    src: "Research compilation — cross-verified composites of dimension studies D1–D10 + v2 dimension V2D3 (2026-09), v2 league table",
+    sub: "WEIGHTED SIX-CRITERION SCORE /10 · COLOR = TIER · RIGHT COLUMN = NET TIME TO EARN BACK THE COST (PENDING MANUFACTURER COST MODEL) · CLICK ANY BAR FOR THE RATIONALE",
+    src: "Research compilation — cross-verified composites of dimension studies D1–D10 + v2 dimension V2D3 (2026-09), v2 ranking",
   });
   const W = 880, rowH = 50, padT = 32, H = padT + rowH * RPT.league.length + 46;
   const mL = 236, mR = 210;
@@ -122,7 +122,7 @@ window.CH = (() => {
   bars.each(function (d) {
     CH.drill(d3.select(this), () => ({
       title: `RANK ${d.rank} · ${tierName[d.tier]}`, value: d.score.toFixed(2).replace(/0$/, "") + " / 10",
-      sub: d.why + " Net payback: " + d.payback + " (gross addressable savings basis — net payback pending the manufacturer cost model).",
+      sub: d.why + " Net time to earn back the cost: " + d.payback + " (savings before our costs are known — pending the manufacturer cost model).",
       source: CH.srcLink(d.src),
     }));
   });
@@ -143,13 +143,13 @@ window.CH = (() => {
   const pb = rows.append("text")
     .attr("x", x(10) + 14).attr("y", rowH / 2 + 3.5)
     .attr("font-family", CH.MONO).attr("font-size", 9).attr("fill", "#42566a")
-    .text(d => { const s = "PAYBACK " + d.payback.toUpperCase(); return s.length > 24 ? s.slice(0, 23).replace(/[ ,;–—(/-]+$/, "") + " …" : s; });
+    .text(d => { const s = d.payback.toUpperCase(); return s.length > 30 ? s.slice(0, 29).replace(/[ ,;–—(/-]+$/, "") + " …" : s; });
   pb.style("font-style", d => /^pending/i.test(d.payback) ? "italic" : "normal");
   CH.halo(pb);
   pb.each(function (d) {
     CH.drill(d3.select(this), () => ({
-      title: "NET PAYBACK · " + d.name.toUpperCase().slice(0, 34), value: d.payback,
-      sub: "Net payback is pending the manufacturer cost model — rankings here use a gross addressable savings basis against documented incumbent costs. Payback is a stream-selection variable, not a technology variable. " + d.why,
+      title: "NET TIME TO EARN BACK THE COST · " + d.name.toUpperCase().slice(0, 34), value: d.payback,
+      sub: "Net time to earn back the cost is pending the manufacturer cost model — rankings here use savings before our costs are known, measured against documented existing-supplier costs. Time to earn back the cost is a stream-selection variable, not a technology variable. " + d.why,
       source: CH.srcLink(d.src),
     }));
   });
@@ -286,8 +286,8 @@ window.CH = (() => {
   const host = document.getElementById("umbrella-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The incumbent umbrella runs $1–2/gal to $15–50+/gal — HCSP's own cost and pricing are TBD",
-    sub: "LOG SCALE $/GAL · INK = INCUMBENT PATHWAYS (PUBLIC MARKET DATA) · BLUE HATCH = HCSP — TBD, MANUFACTURER COST MODEL PENDING · CLICK ANY BAND FOR BASIS",
+    title: "The existing supplier umbrella runs $1–2/gal to $15–50+/gal — HCSP's own cost and pricing are TBD",
+    sub: "LOG SCALE $/GAL · INK = EXISTING SUPPLIER PATHWAYS (PUBLIC MARKET DATA) · BLUE HATCH = HCSP — TBD, MANUFACTURER COST MODEL PENDING · CLICK ANY BAND FOR BASIS",
     src: "Company disclosure & official — disposal pricing guides (2025), 374Water investor materials (vendor-flagged), report Ch. 8.2 model [derived]",
   });
   const W = 880, rowH = 40, padT = 40, H = padT + rowH * RPT.umbrella.length + 44;
@@ -374,14 +374,14 @@ window.CH = (() => {
 })();
 
 /* ────────────────────────────────────────────────────────────
-   4 · Payback by vertical — the cliff (Ch. 8.3)
+   4 · Time to earn back the cost by industry — the cliff (Ch. 8.3)
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("payback-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The savings cliff: gross addressable savings vs incumbent cost — net payback pending",
-    sub: "GROSS ADDRESSABLE SAVINGS BASIS · DISPLACED INCUMBENT BASELINES FROM PRICED DISPOSAL TARIFFS · BLUE = DESTRUCTION-PRICED BASELINE · INK = DISPOSAL-PRICED · NET PAYBACK PENDING MANUFACTURER COST MODEL — NO PAYBACK YEARS ARE STATED · CLICK ANY ROW",
+    title: "The savings cliff: savings before our costs are known vs existing supplier cost — net time to earn back the cost pending",
+    sub: "SAVINGS BEFORE OUR COSTS ARE KNOWN · DISPLACED EXISTING-SUPPLIER BASELINES FROM PRICED DISPOSAL TARIFFS · BLUE = DESTRUCTION-PRICED BASELINE · INK = DISPOSAL-PRICED · TIME TO EARN BACK THE COST PENDING MANUFACTURER COST MODEL — NO EARN-BACK YEARS ARE STATED · CLICK ANY ROW",
     src: "Research compilation — report Ch. 8.3 (2026-09), per-vertical baselines from priced disposal tariffs",
   });
   const W = 880, rowH = 46, padT = 40, H = padT + rowH * RPT.payback.length + 46;
@@ -391,7 +391,7 @@ window.CH = (() => {
   // framing note where the year axis used to be
   const fn = svg.append("text").attr("x", mL).attr("y", padT - 14).attr("text-anchor", "start")
     .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("font-weight", 700).attr("fill", "#2251ff")
-    .text("PAYBACK YEARS REQUIRE HCSP COST INPUTS — WITHHELD UNTIL THE MANUFACTURER PUBLISHES A COST MODEL");
+    .text("YEARS TO EARN BACK THE COST REQUIRE HCSP COST INPUTS — WITHHELD UNTIL THE MANUFACTURER PUBLISHES A COST MODEL");
   CH.halo(fn);
 
   const rows = svg.selectAll("g.r").data(RPT.payback).join("g")
@@ -413,13 +413,13 @@ window.CH = (() => {
         .text("? NO EQUIPMENT CASE");
       CH.drill(gapG.select("rect"), () => ({
         title: d.name.toUpperCase(), value: "Service model only",
-        sub: d.basis + ". The physics forecloses an equipment sale: dilute runoff cannot approach autothermal operation, so energy cost exceeds any disposal saving.",
+        sub: d.basis + ". The physics rules out an equipment sale: dilute runoff never reaches the point where the system makes its own heat from the waste, so energy cost exceeds any disposal saving.",
         source: CH.srcLink(d.src),
       }));
       return;
     }
     const col = d.kind === "destruction" ? "#2251ff" : "#42566a";
-    // pending chip: gross-savings basis, net payback withheld
+    // pending chip: savings before our costs are known, net time to earn back the cost withheld
     const chipW = 216;
     const chipG = g.append("g").style("opacity", 0);
     const chip = chipG.append("rect").attr("x", mL).attr("y", 2).attr("width", chipW).attr("height", 15).attr("rx", 2)
@@ -427,15 +427,15 @@ window.CH = (() => {
       .attr("stroke", col).attr("stroke-dasharray", "4 3").attr("stroke-width", 1);
     const cl = chipG.append("text").attr("x", mL + 10).attr("y", 13)
       .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("font-weight", 700).attr("fill", col)
-      .text("NET PAYBACK PENDING");
+      .text("EARN-BACK TIME PENDING");
     CH.halo(cl);
     const basis = g.append("text").attr("x", mL + chipW + 12).attr("y", 13)
       .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", "#42566a").style("opacity", 0)
       .text(d.basis.length > 52 ? d.basis.slice(0, 51).replace(/[ ,;–—-]+$/, "") + " …" : d.basis);
     CH.halo(basis);
     [chip, cl, basis].forEach(s => CH.drill(s, () => ({
-      title: d.name.toUpperCase(), value: "Net payback: pending",
-      sub: "Gross addressable savings basis — displaced incumbent baseline: " + d.basis + ". Net payback cannot be stated without HCSP cost inputs; it is pending the manufacturer cost model. " + (d.kind === "destruction"
+      title: d.name.toUpperCase(), value: "Net earn-back time: pending",
+      sub: "Savings before our costs are known — displaced existing supplier baseline: " + d.basis + ". Net time to earn back the cost cannot be stated without HCSP cost inputs; it is pending the manufacturer cost model. " + (d.kind === "destruction"
         ? "The displaced baseline is destruction-priced — the sales conversation concerns capacity and permitting speed, not price."
         : "The baseline is disposal-priced — the decision hinges on regulatory compulsion, grant funding, or crisis pricing."),
       source: CH.srcLink(d.src),
@@ -454,7 +454,7 @@ window.CH = (() => {
 })();
 
 /* ────────────────────────────────────────────────────────────
-   5 · THE SAVINGS LADDER (v3 signature) — incumbent remediation cost $/gal,
+   5 · THE SAVINGS LADDER (v3 signature) — what existing suppliers charge to clean it up $/gal,
    log scale, HCSP reference reduced to a qualitative pending note (hcsp_v3_savings_ladder.md)
 ──────────────────────────────────────────────────────────── */
 (function () {
@@ -464,8 +464,8 @@ window.CH = (() => {
   const compByKey = {};
   RPT.league.forEach(d => { compByKey[d.key] = d; });
   const body = U.frame(host, {
-    title: "The Savings Ladder — what incumbents charge to make each gallon disappear",
-    sub: "INCUMBENT REMEDIATION COST — UNIT & AXIS TOGGLES BELOW (SESSION ONLY) · HCSP REFERENCE: SELF-FUELING LOOP, COST MODEL PENDING — NO $/GAL ATTACHED · DASHED OUTLINE = LOW CONFIDENCE · CLICK ANY BAR FOR VALUE + BASIS + DATED SOURCE",
+    title: "The Savings Ladder — what existing suppliers charge to make each gallon disappear",
+    sub: "WHAT EXISTING SUPPLIERS CHARGE TO CLEAN IT UP — UNIT & AXIS TOGGLES BELOW (SESSION ONLY) · HCSP REFERENCE: SELF-FUELING LOOP, COST MODEL PENDING — NO $/GAL ATTACHED · DASHED OUTLINE = LOW CONFIDENCE · CLICK ANY BAR FOR VALUE + BASIS + DATED SOURCE",
     src: "Research compilation — report v3 addendum (2026-09), all values previously sourced in the dim research · " + CH.srcStr(["K150"]),
   });
   const GAL2M3 = 264.172; // 1 US gallon = 0.00378541 m³ → $/gal × 264.172 = $/m³
@@ -569,9 +569,9 @@ window.CH = (() => {
           .attr("fill", "rgba(194,47,78,.07)").attr("stroke", "#c22f4e").attr("stroke-dasharray", "4 3").attr("stroke-width", 1);
         gapG.append("text").attr("x", mL + 10).attr("y", 14)
           .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("font-weight", 700).attr("fill", "#c22f4e")
-          .text("N/A — OFFTAKER, NO STREAM");
+          .text("N/A — BUYER OF THE OUTPUT, NO STREAM");
         CH.drill(gapG.select("rect"), () => ({
-          title: "SAVINGS #" + d.srank + " · " + d.vertical.toUpperCase(), value: "N/A — offtaker",
+          title: "SAVINGS #" + d.srank + " · " + d.vertical.toUpperCase(), value: "N/A — buyer of the output",
           sub: d.note + " The credible play is inverted: HCSP plants at waste-rich hosts sell power, cooling, and reclaimed water across the fence.",
           source: CH.srcLink(d.src.concat(["K150"])),
         }));
@@ -626,10 +626,10 @@ window.CH = (() => {
   // modal "view as table" data
   window.CXT = window.CXT || { table: {}, walk: {} };
   CXT.table["savings-chart"] = {
-    cols: ["Savings rank", "Vertical", "Incumbent cost $/gal", "$/m³ (×264.172)", "Confidence", "Basis"],
+    cols: ["Savings rank", "Vertical", "Existing supplier cost $/gal", "$/m³ (×264.172)", "Confidence", "Basis"],
     rows: data.map(d => [
       "#" + d.srank, d.vertical,
-      d.na ? "N/A — offtaker" : "$" + d.lo + "–" + d.hi + (d.plus ? "+" : ""),
+      d.na ? "N/A — buyer of the output" : "$" + d.lo + "–" + d.hi + (d.plus ? "+" : ""),
       d.na ? "—" : "$" + (d.lo * GAL2M3).toFixed(2) + "–" + (d.hi * GAL2M3).toFixed(2) + (d.plus ? "+" : ""),
       d.lowConf ? "LOW" : "standard", d.note,
     ]),

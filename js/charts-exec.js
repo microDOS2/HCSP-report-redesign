@@ -73,15 +73,15 @@
     { sx: 278, sy: 277, px: 96, py: 226, anchor: "start", head: "10 M³/DAY", sub: "≈0.925M GAL/YR THROUGHPUT",
       val: "10 m³/day", basis: "Rated throughput (~2,640 gal/day); ~0.9M gal/yr at 90% utilization — sized to a mid-size industrial site's generation rate.", src: ["K1"] },
     { sx: 560, sy: 196, px: 636, py: 128, anchor: "start", head: "380–420 °C · 25 MPA", sub: "JUST ABOVE THE CRITICAL POINT",
-      val: "380–420 °C · 25 MPa", basis: "Water above 374 °C and 22.1 MPa is a single-phase fluid in which organics and oxygen are fully miscible and oxidize in seconds to minutes.", src: ["K1"] },
+      val: "380–420 °C · 25 MPa", basis: "Water above 374 °C and 22.1 MPa enters a state that is neither liquid nor gas, in which organic waste and oxygen mix completely and oxidize in seconds to minutes.", src: ["K1"] },
     { sx: 602, sy: 320, px: 700, py: 210, anchor: "start", head: "75–95 KW", sub: "STARTUP/AUX SPEC · GRID-PRICE CONTEXT",
       val: "75–95 kW", basis: "Startup/auxiliary draw spec (180–228 kWh/m³-equivalent × 8.62 ¢/kWh US industrial ≈ $15–20/m³-equivalent). Operating energy itself is negligible per the manufacturer — the self-fueling hydrogen loop generates fuel on demand from process water; grid price values the auxiliary draw and exported kWh.", src: ["K23", "K1"] },
     { sx: 690, sy: 306, px: 706, py: 366, anchor: "start", head: "≈$3.5/M³", sub: "RECOVERED-WATER VALUE (BYPRODUCT)",
       val: "≈ $3.53/m³", basis: "85–95% distilled recovery at <10 µS/cm earns a credit worth roughly US average commercial water + sewer tariffs — valuable, never sufficient to carry the economics.", src: ["K31", "K1"] },
-    { sx: 500, sy: 150, px: 300, py: 96, anchor: "middle", head: "PRICING TBD", sub: "VS $5–28/GAL DOCUMENTED INCUMBENTS",
-      val: "TBD — pending", basis: "HCSP service pricing is TBD — manufacturer cost model pending. The documented incumbents it would undercut: incineration $5–10/gal, incumbent SCWO service $6–10/gal, hazardous landfilling of AFFF at $28/gal (Michigan 2020).", src: ["K21", "K10"] },
-    { sx: 196, sy: 379, px: 60, py: 336, anchor: "start", head: "CAPEX TBD", sub: "MFR COST MODEL PENDING",
-      val: "TBD — pending", basis: "HCSP module CapEx is TBD — manufacturer cost model pending. The market reference point is the only verifiable commercial SCWO transaction of this class: the AirSCWO 6's $5.2M equipment-plus-operation contract inside a $7.9M OC San project.", src: ["K18"] },
+    { sx: 500, sy: 150, px: 300, py: 96, anchor: "middle", head: "PRICING TBD", sub: "VS $5–28/GAL DOCUMENTED EXISTING SUPPLIERS",
+      val: "TBD — pending", basis: "HCSP service pricing is TBD — manufacturer cost model pending. The documented existing suppliers it would undercut: incineration $5–10/gal, existing SCWO service $6–10/gal, hazardous landfilling of AFFF at $28/gal (Michigan 2020).", src: ["K21", "K10"] },
+    { sx: 196, sy: 379, px: 60, py: 336, anchor: "start", head: "PURCHASE COST TBD", sub: "MFR COST MODEL PENDING",
+      val: "TBD — pending", basis: "HCSP module purchase cost is TBD — manufacturer cost model pending. The market reference point is the only verifiable commercial SCWO transaction of this class: the AirSCWO 6's $5.2M equipment-plus-operation contract inside a $7.9M OC San project.", src: ["K18"] },
     { sx: 432, sy: 172, px: 120, py: 132, anchor: "start", head: "NO AIR PERMIT", sub: "SEALED SYSTEM VENTS WATER VAPOR",
       val: "The hidden moat", basis: "~24 permitted US RCRA combustors run at 88–92% utilization with one new unit in three decades; a sealed system bypasses the multi-year air-permitting gauntlet.", src: ["K1", "K34"] },
     { sx: 440, sy: 424, px: 440, py: 446, anchor: "middle", head: "8–10 M² FOOTPRINT", sub: "CONTAINER CLASS · ≤3 M · <75 DBA",
@@ -158,7 +158,7 @@
   sc.append("line").attr("x1", x(374)).attr("x2", x(374)).attr("y1", y(22.1)).attr("y2", y(30)).attr("stroke", blue).attr("stroke-dasharray", "4 4").attr("stroke-width", 1);
   sc.append("line").attr("x1", x(374)).attr("x2", x(600)).attr("y1", y(22.1)).attr("y2", y(22.1)).attr("stroke", blue).attr("stroke-dasharray", "4 4").attr("stroke-width", 1);
   const scl = sc.append("text").attr("x", x(500)).attr("y", y(28.2)).attr("text-anchor", "middle")
-    .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("fill", blue).text("SUPERCRITICAL REGION — ORGANICS + O₂ FULLY MISCIBLE");
+    .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("fill", blue).text("SUPERCRITICAL REGION — WASTE + OXYGEN MIX COMPLETELY");
   CH.halo(scl);
   // critical point
   svg.append("circle").attr("cx", x(374)).attr("cy", y(22.1)).attr("r", 4).attr("fill", blue).attr("stroke", "#fff").attr("stroke-width", 1.6);
@@ -215,11 +215,11 @@
     { n: 1, t: 25, p: 0.6, dx: 12, dy: 26, name: "HP PUMP", note: "PRESSURIZE TO 250 BAR",
       sub: "Feed arrives concentrated (≥60–150 g/L COD, or an upstream concentrate). Pressurization is the first of two energy inputs.", src: ["K58", "K1"] },
     { n: 2, t: 290, p: 25, dx: -10, dy: -34, name: "PREHEAT — H₂/O₂ COMBUSTION", note: "SELF-FUELING LOOP · 75–95 KW STARTUP/AUX SPEC",
-      sub: "Per the briefing: on-demand electrolysis of a portion of the process water → clean H₂/O₂ combustion supplies the preheat. Self-fueling once started, negligible net energy cost in operation; the 75–95 kW grid spec covers startup and auxiliary draw. Autothermal feeds (>~30 g/L organics) carry more of the duty themselves.", src: ["K1", "K59"] },
+      sub: "Per the briefing: on-demand electrolysis of a portion of the process water → clean H₂/O₂ combustion supplies the preheat. Self-fueling once started, negligible net energy cost in operation; the 75–95 kW grid spec covers startup and auxiliary draw. Feeds strong enough to make their own heat (>~30 g/L organics) carry more of the duty themselves.", src: ["K1", "K59"] },
     { n: 3, t: 400, p: 25, dx: 26, dy: -12, name: "SCWO REACTOR", note: "ORGANICS → CO₂ + H₂O · SECONDS",
-      sub: "Complete mineralization in seconds to minutes: 99.9993% PFAS DRE federally validated (USACE ERDC). Salts precipitate in supercritical water — the failure mode that killed conventional preheater designs — but HCSP combusts hydrogen above 3,000 °F (≈1,650 °C) directly in the reactor, preventing salt deposition; the manufacturer reports no salt issues, consistent with in-reactor hydrothermal-flame research.", src: ["K2", "K20", "K1"] },
+      sub: "Complete destruction in seconds to minutes: 99.9993% PFAS destruction-and-removal efficiency federally validated (USACE ERDC). Salts precipitate in supercritical water — the failure mode that killed conventional preheater designs — but HCSP combusts hydrogen above 3,000 °F (≈1,650 °C) directly in the reactor, preventing salt deposition; the manufacturer reports no salt issues, consistent with in-reactor hydrothermal-flame research.", src: ["K2", "K20", "K1"] },
     { n: 4, t: 90, p: 0.8, dx: 30, dy: -22, name: "SEPARATOR + POLISH", note: "85–95% DISTILLED WATER + INERT SLUDGE OUT",
-      sub: "Cool, separate, let down. Distilled-quality output (<10 µS/cm) earns a ~$3.5/m³ byproduct credit; the contained inert sludge is the mineralized residue.", src: ["K1", "K31"] },
+      sub: "Cool, separate, let down. Distilled-quality output (<10 µS/cm) earns a ~$3.5/m³ byproduct credit; the contained inert sludge is the fully broken-down residue.", src: ["K1", "K31"] },
   ];
   const nodes = svg.append("g");
   const stageEls = [];
@@ -266,7 +266,7 @@
       { el: stageEls[1], label: "Stage 2 · Preheat (self-fueling H₂ loop)",
         cap: "The pressurized stream is heated toward 400 °C. Per the manufacturer, the heat comes from combusting hydrogen generated on demand from the process water itself — so grid power covers only startup and auxiliary draw." },
       { el: stageEls[2], label: "Stage 3 · SCWO reactor",
-        cap: "Past 374 °C and 22.1 MPa, water turns supercritical: organics and oxygen become fully miscible and oxidize in seconds. PFAS, solvents, and sludge are mineralized to CO₂, water, and inert salts." },
+        cap: "Past 374 °C and 22.1 MPa, water turns supercritical: organic waste and oxygen mix completely and the waste burns up in seconds. PFAS, solvents, and sludge are completely broken down to CO₂, water, and inert salts." },
       { el: stageEls[3], label: "Stage 4 · Separator + polish",
         cap: "The stream cools and depressurizes. What leaves is distilled-quality water (85–95% recovery), CO₂, and a contained inert sludge — nothing but water vapor vents, so no air permit is needed." },
     ],
@@ -278,16 +278,16 @@
 })();
 
 /* ────────────────────────────────────────────────────────────
-   7 · The market in machines — SAM as skid-equivalent arrays (P1)
+   7 · The market in machines — reachable market as skid-equivalent arrays (P1)
    1 skid glyph = 50 module-equivalents; solid = low case, hollow dashed = upside
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("sizing-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The serviceable market, counted in machines: ~1,800–3,200 skid-equivalents",
+    title: "The reachable market, counted in machines: ~1,800–3,200 skid-equivalents",
     sub: "1 SKID = 50 MODULE-EQUIVALENTS (10 M³/DAY EACH) · SOLID = MODELED LOW CASE · HOLLOW DASHED = UPSIDE · CLIPPED = FRACTIONAL · MANUFACTURER COST INPUTS PENDING — ADDRESSABLE-SAVINGS BASIS · CLICK ROWS",
-    src: "Research compilation — report Ch. 8.1 TAM/SAM consolidation (2026-09); per-vertical assumptions in drill-downs",
+    src: "Research compilation — report Ch. 8.1 total market / reachable market consolidation (2026-09); per-vertical assumptions in drill-downs",
   });
   const W = 880, rowH = 58, padT = 56, H = padT + rowH * RPT.sizing.length + 64;
   const mL = 216;
@@ -346,12 +346,12 @@
     for (let i = 0; i < nUp; i++) { glyph(field, gx, 2, false, 1); gx += GW + GAP; }
     const sam = g.append("text").attr("x", mL).attr("y", 52)
       .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", "#42566a")
-      .text(("SAM " + d.sam + " · TAM " + d.tam).length > 96 ? ("SAM " + d.sam + " · TAM " + d.tam).slice(0, 94).replace(/[ ,;–—-]+$/, "") + " …" : "SAM " + d.sam + " · TAM " + d.tam);
+      .text(("reachable market " + d.sam + " · total market " + d.tam).length > 96 ? ("reachable market " + d.sam + " · total market " + d.tam).slice(0, 94).replace(/[ ,;–—-]+$/, "") + " …" : "reachable market " + d.sam + " · total market " + d.tam);
     CH.halo(sam);
     CH.drill(field, () => ({
       title: d.name.toUpperCase(),
       value: d.mod_lo === d.mod_hi ? `≈${d.mod_lo.toLocaleString("en-US")} module-equiv.` : `${d.mod_lo.toLocaleString("en-US")}–${d.mod_hi.toLocaleString("en-US")} module-equiv.`,
-      sub: "SAM: " + d.sam + ". TAM: " + d.tam + ". " + d.note + ".",
+      sub: "Reachable market: " + d.sam + ". Total market: " + d.tam + ". " + d.note + ".",
       source: CH.srcLink(d.src),
     }));
     if (!CH.REDUCE) {
@@ -363,14 +363,14 @@
   // consolidated note
   const nt = svg.append("text").attr("x", mL).attr("y", H - 30)
     .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("fill", "#051c2c").attr("font-weight", 700)
-    .text("CONSOLIDATED SERVICEABLE DEMAND ≈ $9–20B/YR — ROUGHLY DOUBLE V1 ONCE THE V2 POOLS ARE ADDED");
+    .text("CONSOLIDATED REACHABLE DEMAND ≈ $9–20B/YR — ROUGHLY DOUBLE V1 ONCE THE V2 POOLS ARE ADDED");
   CH.halo(nt);
   const nt2 = svg.append("text").attr("x", mL).attr("y", H - 15)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", "#42566a")
     .text("V2 ADDS DISTILLERY $2–5B, CAFO $1–3B, ISLANDS $0.5–1.5B, MINING $0.3–0.8B · PRODUCED WATER SHRUNK TO A NICHE");
   CH.halo(nt2);
   CH.drill(nt, () => ({
-    title: "CONSOLIDATED SAM (V2)", value: "~$9–20B /yr",
+    title: "CONSOLIDATED reachable market (V2)", value: "~$9–20B /yr",
     sub: RPT.market_meta.sam_note + " " + RPT.market_meta.scwo_note,
     source: CH.srcLink(["K53", "K8", "K64"]),
   }));

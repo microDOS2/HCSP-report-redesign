@@ -1,7 +1,7 @@
-// ═══ §4 players: destiny flow (P2) + vendor small multiples (P9-style panel) ═══
+// ═══ §4 players: who survived and who failed (P2) + vendor small multiples (P9-style panel) ═══
 
 /* ────────────────────────────────────────────────────────────
-   8 · Destiny flow — forty years of SCWO, flowing to outcomes
+   8 · Who survived and who failed — forty years of SCWO, flowing to outcomes
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("destiny-chart");
@@ -141,7 +141,7 @@
     svg.selectAll(".plaque").style("opacity", 1);
   }
 
-  // ── walkthrough registration (the destiny flow) ──
+  // ── walkthrough registration (the who survived and who failed) ──
   window.CXT = window.CXT || { table: {}, walk: {} };
   CXT.walk["destiny-chart"] = {
     title: "Forty years of SCWO, in four moves",
@@ -165,14 +165,14 @@
 })();
 
 /* ────────────────────────────────────────────────────────────
-   9 · Vendor benchmark — four verifiable operators, shared TRL axis
+   9 · Vendor benchmark — four verifiable operators, shared TRL (how proven the technology is) axis
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("vendor-chart");
   if (!host) return;
   const body = U.frame(host, {
     title: "Four verifiable operators — and the benchmark the HCSP must beat",
-    sub: "SHARED TRL AXIS (1–9) · THROUGHPUT CLASSES ARE DIFFERENT BASES — SHOWN FOR CLASS, NEVER DIVIDED · CLICK PANELS",
+    sub: "SHARED TRL (HOW PROVEN THE TECHNOLOGY IS) AXIS (1–9) · THROUGHPUT CLASSES ARE DIFFERENT BASES — SHOWN FOR CLASS, NEVER DIVIDED · CLICK PANELS",
     src: "Company disclosure — 374Water 10-K (2026-03-31), General Atomics, Aquarden (2024–25) · Industry & official — EPA interim guidance v3 (2026-04)",
   });
   const W = 880, H = 316, padT = 22, padB = 56;
@@ -191,7 +191,7 @@
       .attr("font-size", 14.5).attr("fill", main ? blue : ink).text(v.name);
     g.append("text").attr("x", 0).attr("y", 31).attr("font-family", CH.MONO).attr("font-size", 8.5)
       .attr("fill", inkLo).each(function () { CH.wrap2(d3.select(this), ("SCALE " + v.scale).toUpperCase(), 22); });
-    // TRL range
+    // TRL (how proven the technology is) range
     g.append("text").attr("x", 0).attr("y", 66).attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkMd)
       .text("TECHNOLOGY READINESS");
     g.append("line").attr("x1", trlX(1)).attr("x2", trlX(9)).attr("y1", 84).attr("y2", 84).attr("stroke", "#dbe2ea").attr("stroke-width", 3).attr("stroke-linecap", "round");
@@ -213,7 +213,7 @@
     const cst = g.append("text").attr("x", 0).attr("y", 242).attr("font-family", CH.SERIF).attr("font-style", "italic")
       .attr("font-size", 11.5).attr("fill", inkMd).text(v.constraint.length > 34 ? v.constraint.slice(0, 33) + "…" : v.constraint);
     CH.drill(g, () => ({
-      title: v.name.toUpperCase(), value: `TRL ${v.trl[0]}–${v.trl[1]}`,
+      title: v.name.toUpperCase(), value: `TRL ${v.trl[0]}–${v.trl[1]} (how proven the technology is, 1–9)`,
       sub: `Scale: ${v.scale}. Energy: ${v.energy}. Cost: ${v.cost}. Constraint: ${v.constraint}.`,
       source: CH.srcLink(v.src),
     }));
