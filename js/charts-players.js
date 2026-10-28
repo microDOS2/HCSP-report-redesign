@@ -37,7 +37,7 @@
   CH.drill(cenT, () => ({
     title: "THE GRAVEYARD CENSUS", value: "~6 plants (2021)",
     sub: RPT.field_stats.note + " — mainly corrosion, plugging, and economics.",
-    source: CH.srcStr(RPT.field_stats.src),
+    source: CH.srcLink(RPT.field_stats.src),
   }));
 
   // cohort kickers
@@ -74,7 +74,7 @@
     CH.drill(g, () => ({
       title: "OUTCOME · " + o.label, value: rows.filter(r => r.outcome === o.id).length + " entities",
       sub: rows.filter(r => r.outcome === o.id).map(r => r.name).join(" · "),
-      source: CH.srcStr(["K49"]),
+      source: CH.srcLink(["K49"]),
     }));
   });
 
@@ -115,10 +115,10 @@
     CH.drill(line, () => ({
       title: r.name.toUpperCase() + (r.graded ? " · DATES GRADED [DERIVED]" : ""),
       value: `${r.from}–${r.to === 2026 ? "today" : r.to} → ${r.out}`,
-      sub: r.note, source: CH.srcStr(r.src),
+      sub: r.note, source: CH.srcLink(r.src),
     }));
     if (end) CH.drill(end, () => ({
-      title: r.name.toUpperCase(), value: "✕ " + r.out, sub: r.note, source: CH.srcStr(r.src),
+      title: r.name.toUpperCase(), value: "✕ " + r.out, sub: r.note, source: CH.srcLink(r.src),
     }));
   });
 
@@ -215,7 +215,7 @@
     CH.drill(g, () => ({
       title: v.name.toUpperCase(), value: `TRL ${v.trl[0]}–${v.trl[1]}`,
       sub: `Scale: ${v.scale}. Energy: ${v.energy}. Cost: ${v.cost}. Constraint: ${v.constraint}.`,
-      source: CH.srcStr(v.src),
+      source: CH.srcLink(v.src),
     }));
     if (CH.REDUCE) { g.style("opacity", 1); rb.attr("width", rb.attr("data-w")); }
     else {

@@ -381,6 +381,18 @@ h3 { font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 
 #drill-card .d-src { font-family: var(--mono); font-size: 10px; color: #8595a6; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.14); }
 #drill-card .d-close { position: absolute; top: 6px; right: 10px; color: #8595a6; cursor: pointer; background: none; border: 0; font-size: 14px; }
 
+/* clickable source references — every K-anchor / program source links to the original (new tab) */
+.src-link { color: var(--red); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(34,81,255,.55); cursor: pointer; }
+.src-link:hover { color: var(--red-hi, #1233b8); text-decoration-color: currentColor; }
+.src-link:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; border-radius: 2px; }
+.src-derived { color: inherit; opacity: .85; font-style: italic; }
+/* dark surfaces (drill card, explainer side panel): brighten the accent for contrast */
+#drill-card .src-link, .cxm-src .src-link, #drill-card .src-derived { color: #8fa6ff; }
+#drill-card .src-link:hover, .cxm-src .src-link:hover { color: #c2d0ff; }
+#drill-card .src-link { text-decoration-color: rgba(143,166,255,.6); }
+.src-row .src-link { font-weight: 600; }
+table.grant-dt .g-ag.src-link { font-size: 10.5px; font-family: var(--mono); }
+
 /* appendix */
 #sec-sources { padding: 100px 0 80px; border-top: 1px solid var(--line-lo); }
 #source-list { margin-top: 4px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; align-items: start; }

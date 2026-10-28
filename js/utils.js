@@ -142,7 +142,7 @@ window.U = (() => {
     el.appendChild(body);
     if (src) {
       const s = document.createElement("p");
-      s.className = "chart-src"; s.textContent = "Source · " + src;
+      s.className = "chart-src"; s.innerHTML = "Source · " + (window.KLINKIFY ? KLINKIFY(src) : src);
       el.appendChild(s);
     }
     return body;

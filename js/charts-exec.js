@@ -104,7 +104,7 @@
     const u = g.append("text").attr("x", s.px).attr("y", s.py + 16).attr("text-anchor", s.anchor)
       .attr("font-family", CH.MONO).attr("font-size", 9).attr("fill", inkMd).text(s.sub);
     CH.halo(u);
-    CH.drill(g, () => ({ title: s.head, value: s.val, sub: s.basis, source: CH.srcStr(s.src) }));
+    CH.drill(g, () => ({ title: s.head, value: s.val, sub: s.basis, source: CH.srcLink(s.src) }));
     return g;
   });
 
@@ -207,7 +207,7 @@
   CH.drill(h2, () => ({
     title: "THE SELF-FUELING H₂ LOOP", value: "Negligible net energy in operation",
     sub: "Per the manufacturer briefing: a portion of the process water is electrolyzed on demand and the clean H₂/O₂ is combusted for SCWO process heat — fuel is generated as needed, never purchased or stored in bulk, at negligible net energy cost once started. A working prototype exists; grid power covers only startup/auxiliary draw (75–95 kW spec).",
-    source: CH.srcStr(["K1", "K60"]),
+    source: CH.srcLink(["K1", "K60"]),
   }));
 
   // stage nodes
@@ -237,7 +237,7 @@
       .attr("text-anchor", s.n === 2 ? "end" : "start")
       .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", "#42566a").text(s.note);
     CH.halo(t2);
-    CH.drill(g, () => ({ title: `STAGE ${s.n} · ${s.name}`, value: s.note, sub: s.sub, source: CH.srcStr(s.src) }));
+    CH.drill(g, () => ({ title: `STAGE ${s.n} · ${s.name}`, value: s.note, sub: s.sub, source: CH.srcLink(s.src) }));
   });
 
   // feed label
@@ -352,7 +352,7 @@
       title: d.name.toUpperCase(),
       value: d.mod_lo === d.mod_hi ? `≈${d.mod_lo.toLocaleString("en-US")} module-equiv.` : `${d.mod_lo.toLocaleString("en-US")}–${d.mod_hi.toLocaleString("en-US")} module-equiv.`,
       sub: "SAM: " + d.sam + ". TAM: " + d.tam + ". " + d.note + ".",
-      source: CH.srcStr(d.src),
+      source: CH.srcLink(d.src),
     }));
     if (!CH.REDUCE) {
       field.attr("opacity", 0);
@@ -372,6 +372,6 @@
   CH.drill(nt, () => ({
     title: "CONSOLIDATED SAM (V2)", value: "~$9–20B /yr",
     sub: RPT.market_meta.sam_note + " " + RPT.market_meta.scwo_note,
-    source: CH.srcStr(["K53", "K8", "K64"]),
+    source: CH.srcLink(["K53", "K8", "K64"]),
   }));
 })();

@@ -21,7 +21,7 @@
           </tr>`).join("")}
         </tbody>
       </table></div>
-      <p class="chart-src">Source · ${CH.srcStr(t.src)} — ${t.note}</p>
+      <p class="chart-src">Source · ${CH.srcLink(t.src)} — ${t.note}</p>
     </div>`).join("");
   RPT.cust_tables.forEach(t => {
     host.querySelectorAll(`table[data-t="${t.id}"] tr[data-r]`).forEach(tr => {
@@ -31,7 +31,7 @@
         title: t.company.toUpperCase() + (r.flag ? " · " + r.flag.toUpperCase() : "") + " · " + r.cust.toUpperCase().slice(0, 44),
         value: r.value,
         sub: (r.caveat ? r.caveat + " " : "") + r.status + ".",
-        source: CH.srcStr(r.src), x: e.clientX, y: e.clientY,
+        source: CH.srcLink(r.src), x: e.clientX, y: e.clientY,
       });
     });
   });
@@ -76,11 +76,11 @@
       title: row.co.toUpperCase() + " · " + G.cols[+td.dataset.c].toUpperCase(),
       value: MARKS[cell.m][1] || "No presence",
       sub: cell.note,
-      source: CH.srcStr(cell.src), x: e.clientX, y: e.clientY,
+      source: CH.srcLink(cell.src), x: e.clientX, y: e.clientY,
     });
   });
   const note = document.createElement("p");
   note.className = "chart-src";
-  note.textContent = "Source · " + CH.srcStr(G.src) + " — " + G.note;
+  note.innerHTML = "Source · " + CH.srcLink(G.src) + " — " + G.note;
   table.parentElement.appendChild(note);
 })();

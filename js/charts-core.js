@@ -72,7 +72,9 @@ window.CH = (() => {
     io.observe(host);
   }
   function srcStr(ids) { return window.KSTR ? KSTR(ids) : (ids || []).join(" "); }
-  return { REDUCE, MONO, SERIF, svg, halo, drill, enter, srcStr, fitText, fitTextSoon, wrap2 };
+  // HTML variant: every K-anchor rendered as a clickable link to the original source (new tab)
+  function srcLink(ids) { return window.KLINK ? KLINK(ids) : srcStr(ids); }
+  return { REDUCE, MONO, SERIF, svg, halo, drill, enter, srcStr, srcLink, fitText, fitTextSoon, wrap2 };
 })();
 
 /* ────────────────────────────────────────────────────────────
@@ -121,7 +123,7 @@ window.CH = (() => {
     CH.drill(d3.select(this), () => ({
       title: `RANK ${d.rank} · ${tierName[d.tier]}`, value: d.score.toFixed(2).replace(/0$/, "") + " / 10",
       sub: d.why + " Net payback: " + d.payback + " (gross addressable savings basis — net payback pending the manufacturer cost model).",
-      source: CH.srcStr(d.src),
+      source: CH.srcLink(d.src),
     }));
   });
 
@@ -134,7 +136,7 @@ window.CH = (() => {
   vals.each(function (d) {
     CH.drill(d3.select(this), () => ({
       title: `RANK ${d.rank} · ${d.name.toUpperCase().slice(0, 40)}`, value: d.score + " / 10",
-      sub: d.why, source: CH.srcStr(d.src),
+      sub: d.why, source: CH.srcLink(d.src),
     }));
   });
 
@@ -148,7 +150,7 @@ window.CH = (() => {
     CH.drill(d3.select(this), () => ({
       title: "NET PAYBACK · " + d.name.toUpperCase().slice(0, 34), value: d.payback,
       sub: "Net payback is pending the manufacturer cost model — rankings here use a gross addressable savings basis against documented incumbent costs. Payback is a stream-selection variable, not a technology variable. " + d.why,
-      source: CH.srcStr(d.src),
+      source: CH.srcLink(d.src),
     }));
   });
 
@@ -165,7 +167,7 @@ window.CH = (() => {
   CH.drill(cliff.select("line"), () => ({
     title: "THE 4.5 CLIFF", value: "Tier 3 → Tier 4",
     sub: "Every market scoring 6.0 or above sits high on feed concentration or disposal-price protection; every market below 4.5 fails both. Produced water's +1.25 v2 revision still leaves it in the conditional zone — a real niche, not a basin-scale play.",
-    source: CH.srcStr(["K70", "K100"]),
+    source: CH.srcLink(["K70", "K100"]),
   }));
 
   CH.enter(host, () => {
@@ -211,7 +213,7 @@ window.CH = (() => {
   CH.drill(gap.select("rect"), () => ({
     title: "WHY DESTRUCTION PRICING", value: "$3.5/m³ water value",
     sub: "Recovered water earns ~$3.5/m³ — a byproduct credit that can never carry the business on its own. The product must be priced as destruction, not water; energy export adds revenue on concentrated feeds. HCSP operating energy cost itself is negligible per the manufacturer (self-fueling hydrogen loop).",
-    source: CH.srcStr(["K31", "K25", "K1"]),
+    source: CH.srcLink(["K31", "K25", "K1"]),
   }));
 
   const rows = svg.selectAll("g.r").data(RPT.energy_floor).join("g")
@@ -246,7 +248,7 @@ window.CH = (() => {
     [bx, lb].forEach(s => CH.drill(s, () => ({
       title: d.region.toUpperCase(), value: `$${d.lo.toFixed(1)}–${d.hi.toFixed(1)} /m³-equiv`,
       sub: "Grid price context, not an operating-cost floor: 75–95 kW startup/auxiliary spec (180–228 kWh/m³-equivalent) × regional industrial power price. HCSP operating energy cost is negligible per the manufacturer (self-fueling loop) — the prices shown matter for auxiliary draw and for valuing exported kWh on concentrated feeds. " + d.note,
-      source: CH.srcStr(d.src),
+      source: CH.srcLink(d.src),
     })));
     g.datum(Object.assign({}, d, { _bx: bx, _lb: lb, _nt: note }));
   });
@@ -262,7 +264,7 @@ window.CH = (() => {
   CH.drill(wl.select("line"), () => ({
     title: "RECOVERED-WATER VALUE", value: "≈ $3.53 /m³",
     sub: RPT.water_value.note + ". The distilled output is a byproduct credit; water sales alone cannot carry the business — destruction pricing and energy export do.",
-    source: CH.srcStr(RPT.water_value.src),
+    source: CH.srcLink(RPT.water_value.src),
   }));
 
   CH.enter(host, () => {
@@ -318,8 +320,8 @@ window.CH = (() => {
         .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("font-weight", 700).attr("fill", col)
         .text("TBD — MANUFACTURER COST MODEL PENDING");
       CH.halo(tlab);
-      CH.drill(trect, () => ({ title: d.name.toUpperCase(), value: "TBD — pending", sub: d.note, source: CH.srcStr(d.src) }));
-      CH.drill(tlab, () => ({ title: d.name.toUpperCase(), value: "TBD — pending", sub: d.note, source: CH.srcStr(d.src) }));
+      CH.drill(trect, () => ({ title: d.name.toUpperCase(), value: "TBD — pending", sub: d.note, source: CH.srcLink(d.src) }));
+      CH.drill(tlab, () => ({ title: d.name.toUpperCase(), value: "TBD — pending", sub: d.note, source: CH.srcLink(d.src) }));
       return;
     }
     const bar = g.append("rect").attr("x", x(d.lo)).attr("y", 2).attr("height", 15).attr("rx", 2)
@@ -339,7 +341,7 @@ window.CH = (() => {
     CH.halo(lab);
     [bar, lab].forEach(s => CH.drill(s, () => ({
       title: d.name.toUpperCase(), value: `$${d.lo}–${d.hi}${d.hi >= 50 ? "+" : ""} /gal`,
-      sub: d.note, source: CH.srcStr(d.src),
+      sub: d.note, source: CH.srcLink(d.src),
     })));
   });
 
@@ -353,7 +355,7 @@ window.CH = (() => {
   CH.drill(cm.select("text"), () => ({
     title: "THE PANIC-BUYING CEILING", value: "$28 /gal",
     sub: "The ceiling panic-buying sets when destruction capacity is scarce — landfilling, not destruction; CERCLA liability persists.",
-    source: CH.srcStr(["K10"]),
+    source: CH.srcLink(["K10"]),
   }));
 
   CH.enter(host, () => {
@@ -412,7 +414,7 @@ window.CH = (() => {
       CH.drill(gapG.select("rect"), () => ({
         title: d.name.toUpperCase(), value: "Service model only",
         sub: d.basis + ". The physics forecloses an equipment sale: dilute runoff cannot approach autothermal operation, so energy cost exceeds any disposal saving.",
-        source: CH.srcStr(d.src),
+        source: CH.srcLink(d.src),
       }));
       return;
     }
@@ -436,7 +438,7 @@ window.CH = (() => {
       sub: "Gross addressable savings basis — displaced incumbent baseline: " + d.basis + ". Net payback cannot be stated without HCSP cost inputs; it is pending the manufacturer cost model. " + (d.kind === "destruction"
         ? "The displaced baseline is destruction-priced — the sales conversation concerns capacity and permitting speed, not price."
         : "The baseline is disposal-priced — the decision hinges on regulatory compulsion, grant funding, or crisis pricing."),
-      source: CH.srcStr(d.src),
+      source: CH.srcLink(d.src),
     })));
   });
 
@@ -534,7 +536,7 @@ window.CH = (() => {
     CH.drill(fl.select("rect"), () => ({
       title: "THE REFERENCE CONTRAST", value: "TBD — cost model pending",
       sub: "HCSP is self-fueling once started (manufacturer-stated negligible net energy, self-fueling hydrogen loop) — but no manufacturer cost model has been published, so no $/gal figure is attached to HCSP. The market reference points are " + SM.field_band + ". " + SM.pending,
-      source: CH.srcStr(["K22", "K54", "K150"]),
+      source: CH.srcLink(["K22", "K54", "K150"]),
     }));
 
     // ── rows ──
@@ -571,7 +573,7 @@ window.CH = (() => {
         CH.drill(gapG.select("rect"), () => ({
           title: "SAVINGS #" + d.srank + " · " + d.vertical.toUpperCase(), value: "N/A — offtaker",
           sub: d.note + " The credible play is inverted: HCSP plants at waste-rich hosts sell power, cooling, and reclaimed water across the fence.",
-          source: CH.srcStr(d.src.concat(["K150"])),
+          source: CH.srcLink(d.src.concat(["K150"])),
         }));
         return;
       }
@@ -598,7 +600,7 @@ window.CH = (() => {
         title: "SAVINGS #" + d.srank + " · " + d.vertical.toUpperCase().slice(0, 44),
         value: band$(d) + " " + unitLab,
         sub: d.note + (c ? " Composite lens: #" + c.rank + " (" + c.score + "/10) — " + (d.srank < c.rank ? "elevated" : d.srank > c.rank ? "demoted" : "unchanged") + " under the savings lens. " : "") + (d.lowConf ? "Flagged LOW CONFIDENCE (sparse data). " : "") + SM.qualifier + ".",
-        source: CH.srcStr(d.src.concat(["K150"])),
+        source: CH.srcLink(d.src.concat(["K150"])),
       })));
     });
 

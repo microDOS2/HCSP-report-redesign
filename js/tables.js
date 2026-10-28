@@ -6,14 +6,14 @@
   if (!t) return;
   const sp = document.getElementById("spec-src");
   if (sp) { const b = document.createElement("button"); b.className = "src"; b.textContent = "◆"; b.setAttribute("data-drill-keep", "");
-    b.onclick = e => { e.stopPropagation(); U.showDrill({ title: "SOURCE OF THE SPECIFICATION", value: "HCSP technical briefing", sub: "Submitted to the California State Water Resources Control Board; initially positioned for indoor-agriculture wastewater.", source: CH.srcStr(["K1"]), x: e.clientX, y: e.clientY }); };
+    b.onclick = e => { e.stopPropagation(); U.showDrill({ title: "SOURCE OF THE SPECIFICATION", value: "HCSP technical briefing", sub: "Submitted to the California State Water Resources Control Board; initially positioned for indoor-agriculture wastewater.", source: CH.srcLink(["K1"]), x: e.clientX, y: e.clientY }); };
     sp.appendChild(b); }
   t.innerHTML = `<thead><tr><th>Parameter</th><th>Value (per briefing)</th><th>Analyst note</th></tr></thead>` +
     "<tbody>" + RPT.spec.map(r => `<tr data-k="${r.src}"><td><b>${r.k}</b></td><td class="num">${r.v}</td><td>${r.note}</td></tr>`).join("") + "</tbody>";
   t.querySelectorAll("tr[data-k]").forEach(tr => {
     const r = RPT.spec.find(s => s.k === tr.cells[0].textContent);
     tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
-    tr.onclick = e => U.showDrill({ title: r.k.toUpperCase(), value: r.v, sub: r.note + ".", source: CH.srcStr([r.src]), x: e.clientX, y: e.clientY });
+    tr.onclick = e => U.showDrill({ title: r.k.toUpperCase(), value: r.v, sub: r.note + ".", source: CH.srcLink([r.src]), x: e.clientX, y: e.clientY });
   });
 })();
 
@@ -30,7 +30,7 @@
     tr.onclick = e => U.showDrill({
       title: r.el.toUpperCase(), value: r.gal === "TBD" ? "TBD — pending" : r.gal + " /gal",
       sub: (r.basis ? r.basis + ". " : "") + "Per-module stack on ~0.9M gal/yr throughput. HCSP has no published cost benchmark — every $ figure is TBD pending the manufacturer cost model. The SCWO industry literature's calibration points ($0.04–0.37/gal large scale; $0.5–2.0/gal skid scale) describe the technology class, not HCSP.",
-      source: CH.srcStr(r.src), x: e.clientX, y: e.clientY,
+      source: CH.srcLink(r.src), x: e.clientX, y: e.clientY,
     });
   });
 })();
@@ -46,7 +46,7 @@
   t.querySelectorAll("tr[data-i]").forEach(tr => {
     const d = RPT.league[+tr.dataset.i];
     tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
-    tr.onclick = e => U.showDrill({ title: d.name.toUpperCase(), value: d.score + " / 10", sub: d.why + " " + RPT.tiers[d.tier - 1].posture, source: CH.srcStr(d.src), x: e.clientX, y: e.clientY });
+    tr.onclick = e => U.showDrill({ title: d.name.toUpperCase(), value: d.score + " / 10", sub: d.why + " " + RPT.tiers[d.tier - 1].posture, source: CH.srcLink(d.src), x: e.clientX, y: e.clientY });
   });
 })();
 
@@ -60,7 +60,7 @@
   t.querySelectorAll("tr[data-i]").forEach(tr => {
     const r = RPT.variants[+tr.dataset.i];
     tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
-    tr.onclick = e => U.showDrill({ title: r.v, value: r.model, sub: r.stream + ". Pre-module: " + r.pre + ". Materials: " + r.mat + ". First customers: " + r.first + ".", source: CH.srcStr(r.src), x: e.clientX, y: e.clientY });
+    tr.onclick = e => U.showDrill({ title: r.v, value: r.model, sub: r.stream + ". Pre-module: " + r.pre + ". Materials: " + r.mat + ". First customers: " + r.first + ".", source: CH.srcLink(r.src), x: e.clientX, y: e.clientY });
   });
 })();
 
@@ -76,7 +76,7 @@
   t.querySelectorAll("tr[data-i]").forEach(tr => {
     const r = RPT.risks[+tr.dataset.i];
     tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
-    tr.onclick = e => U.showDrill({ title: "RISK REGISTER", value: r.like + " · " + r.impact, sub: r.r + ". Mitigation: " + r.mit + ". Evidence: " + r.ev + ".", source: CH.srcStr(r.src), x: e.clientX, y: e.clientY });
+    tr.onclick = e => U.showDrill({ title: "RISK REGISTER", value: r.like + " · " + r.impact, sub: r.r + ". Mitigation: " + r.mit + ". Evidence: " + r.ev + ".", source: CH.srcLink(r.src), x: e.clientX, y: e.clientY });
   });
 })();
 
@@ -88,13 +88,18 @@
   window.SRCS.forEach(s => {
     const el = document.createElement("span");
     el.className = "src-row";
+    const citeHtml = s.url
+      ? `<a class="src-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.cite} ↗</a>`
+      : `<span class="src-derived">${s.cite} — derived analysis (no external source)</span>`;
     el.innerHTML = `<span class="s-fact"><b>${s.k}</b> · ${s.fact}</span>
-      <span class="s-cite"><span class="src-cat ${s.cat}">${catName[s.cat]}</span>${s.cite} · ${s.date} · report ref ${s.ref}</span>`;
+      <span class="s-cite"><span class="src-cat ${s.cat}">${catName[s.cat]}</span>${citeHtml} · ${s.date} · report ref ${s.ref}</span>`;
     el.setAttribute("data-drill-keep", "");
     el.style.cursor = "pointer";
+    const a = el.querySelector("a.src-link");
+    if (a) a.onclick = ev => ev.stopPropagation();
     el.onclick = e => U.showDrill({
       title: `${s.k} · ${catName[s.cat].toUpperCase()}`, value: s.date,
-      sub: s.fact, source: s.cite + " · report ref " + s.ref, x: e.clientX, y: e.clientY,
+      sub: s.fact, source: citeHtml + " · report ref " + s.ref, x: e.clientX, y: e.clientY,
     });
     host.appendChild(el);
   });
@@ -111,12 +116,12 @@
   t.querySelectorAll("tr[data-i]").forEach(tr => {
     const r = RPT.storage[+tr.dataset.i];
     tr.style.cursor = "pointer"; tr.setAttribute("data-drill-keep", "");
-    tr.onclick = e => U.showDrill({ title: r.chem.toUpperCase(), value: r.verdict.split("—")[0].trim(), sub: r.note, source: CH.srcStr(r.src), x: e.clientX, y: e.clientY });
+    tr.onclick = e => U.showDrill({ title: r.chem.toUpperCase(), value: r.verdict.split("—")[0].trim(), sub: r.note, source: CH.srcLink(r.src), x: e.clientX, y: e.clientY });
   });
   const rule = document.getElementById("storage-rule-src");
   if (rule) {
     const b = document.createElement("button"); b.className = "src"; b.textContent = "◆"; b.setAttribute("data-drill-keep", "");
-    b.onclick = e => { e.stopPropagation(); U.showDrill({ title: "THE DECISION RULE", value: "LFP by default", sub: RPT.storage_rule, source: CH.srcStr(RPT.storage_src), x: e.clientX, y: e.clientY }); };
+    b.onclick = e => { e.stopPropagation(); U.showDrill({ title: "THE DECISION RULE", value: "LFP by default", sub: RPT.storage_rule, source: CH.srcLink(RPT.storage_src), x: e.clientX, y: e.clientY }); };
     rule.appendChild(b);
   }
 })();
@@ -162,7 +167,7 @@
         title: (lens === "savings" ? "SAVINGS #" + s.srank : "RANK " + c.rank) + " · " + s.vertical.toUpperCase().slice(0, 40),
         value: s.na ? "N/A — offtaker" : band(s).replace(/<[^>]+>/g, "").replace("LOW CONF", "(low conf)") + " /gal",
         sub: s.note + " Composite lens: #" + c.rank + " (" + c.score + "/10, Tier " + c.tier + "). " + c.why + " " + RPT.savings_meta.qualifier + ".",
-        source: CH.srcStr(s.src.concat(c.src.filter(k => !s.src.includes(k))).concat(["K150"])),
+        source: CH.srcLink(s.src.concat(c.src.filter(k => !s.src.includes(k))).concat(["K150"])),
         x: e.clientX, y: e.clientY,
       });
     });

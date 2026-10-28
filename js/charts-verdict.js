@@ -39,7 +39,7 @@
     CH.drill(st, () => ({
       title: "FALSIFICATION LINE " + (i + 3 - 2), value: f,
       sub: RPT.verdict.falsifiers[i].t + " — if this happens, the verdict flips regardless of demand-side evidence.",
-      source: CH.srcStr(RPT.verdict.falsifiers[i].src),
+      source: CH.srcLink(RPT.verdict.falsifiers[i].src),
     }));
   });
   seal.append("text").attr("x", 120).attr("y", 530).attr("font-family", CH.MONO).attr("font-size", 8.5)
@@ -96,7 +96,7 @@
         .attr("font-family", CH.MONO).attr("font-size", 7.2).attr("font-weight", 600).attr("fill", "#fff").text(t);
       CH.drill(wg, () => ({
         title: (side > 0 ? "BULL EVIDENCE" : "BEAR EVIDENCE"), value: t,
-        sub: srcList[i].t, source: CH.srcStr(srcList[i].src),
+        sub: srcList[i].t, source: CH.srcLink(srcList[i].src),
       }));
       if (CH.REDUCE) wg.style("opacity", 1);
       else wg.transition().delay(500 + i * 160 + (side > 0 ? 80 : 0)).duration(300).style("opacity", 1);
@@ -125,7 +125,7 @@
     CH.drill(g, () => ({
       title: "UPGRADE TRIGGER — NOT YET MET", value: upShort[i],
       sub: u.t + ". The reading upgrades only when all three land on the pan.",
-      source: CH.srcStr(u.src),
+      source: CH.srcLink(u.src),
     }));
     if (CH.REDUCE) g.style("opacity", 1);
     else g.transition().delay(1600 + i * 200).duration(350).style("opacity", 1);
@@ -144,7 +144,7 @@
   CH.drill(rd, () => ({
     title: "CURRENT VERDICT", value: "Pursue, staged",
     sub: "The opportunity is real but not yet banked: ~$9–20B/yr consolidated serviceable demand across fifteen industries, contingent on third-party publication of prototype long-run data confirming the manufacturer's salt-free combustion design (>3,000 °F in-reactor H₂ — the documented answer to the failure mode that killed conventional SCWO) — and, new in v2, on scaling in parallel trains rather than unproven giant vessels. Qualitative reading, not a score.",
-    source: CH.srcStr(["K53", "K20", "K70"]),
+    source: CH.srcLink(["K53", "K20", "K70"]),
   }));
 
   root.style("opacity", 0);
@@ -217,7 +217,7 @@
       .attr("font-family", CH.SERIF).attr("font-weight", 700).attr("font-size", 10.5).attr("fill", ink).text(p.label);
     CH.drill(g, () => ({
       title: `${yr} · ${p.label.toUpperCase()}`, value: p.cls === "risk" ? "RISK EVENT" : p.cls === "demand" ? "DEMAND CATALYST" : "POLICY FRAMEWORK",
-      sub: p.ev + ".", source: CH.srcStr(p.src),
+      sub: p.ev + ".", source: CH.srcLink(p.src),
     }));
     if (CH.REDUCE) g.style("opacity", 1);
     else g.transition().delay(i * 110).duration(350).style("opacity", 1);

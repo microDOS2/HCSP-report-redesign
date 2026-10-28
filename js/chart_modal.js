@@ -176,7 +176,7 @@
     const ex = EXPLAIN[id] || {};
     const title = host.querySelector(".chart-title")?.textContent || "Chart";
     const sub = host.querySelector(".chart-sub")?.textContent || "";
-    const src = host.querySelector(".chart-src")?.textContent || "";
+    const src = host.querySelector(".chart-src")?.innerHTML || "";
     if (tableOn) {
       const t = (CXT.table[id]) || (ex.table && ex.table());
       if (!t) { side.innerHTML = `<p class="cxm-take"><b>No tabular dataset.</b> This figure is illustrative; its values are in the explainer.</p>`; return; }

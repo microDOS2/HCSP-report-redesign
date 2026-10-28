@@ -24,7 +24,7 @@
     const r = RPT.comp_profiles[+el.dataset.p].rows[+el.dataset.r];
     el.onclick = e => U.showDrill({
       title: r.drill.title, value: r.drill.value, sub: r.drill.sub,
-      source: CH.srcStr(r.src), x: e.clientX, y: e.clientY,
+      source: CH.srcLink(r.src), x: e.clientX, y: e.clientY,
     });
   });
 })();
@@ -49,12 +49,12 @@
     td.onclick = e => U.showDrill({
       title: M.cols[+td.dataset.c].toUpperCase() + " · " + row.dim.toUpperCase(),
       value: row.dim, sub: cell.txt,
-      source: CH.srcStr(cell.src), x: e.clientX, y: e.clientY,
+      source: CH.srcLink(cell.src), x: e.clientX, y: e.clientY,
     });
   });
   const note = document.createElement("p");
   note.className = "chart-src";
-  note.textContent = "Source · " + CH.srcStr(M.src) + " — " + M.note;
+  note.innerHTML = "Source · " + CH.srcLink(M.src) + " — " + M.note;
   table.parentElement.appendChild(note);
 })();
 
@@ -78,7 +78,7 @@
   const lanes = SG.lanes;
   const laneH = (H - TOP - BOT) / lanes.length;
   const x = d3.scaleLog().domain(SG.domain).range([L, W - R]);
-  const INK = "#051c2c", INKMD = "#42566a", INKLO = "#8595a6", ACC = "#2251ff", LINE = "#dbe2ea";
+  const INK = "#051c2c", INKMD = "#42566a", INKLO = "#42566a", ACC = "#2251ff", LINE = "#dbe2ea";
 
   const svg = CH.svg(body, W, H);
 
@@ -101,7 +101,7 @@
     .attr("font-size", 11).attr("font-weight", 700).attr("fill", ACC)
     .text("NO COMPETITOR SELLS HERE"), 3.5);
   CH.drill(zoneLab, () => lanes.find(l => l.kind === "hcsp").drill && {
-    ...lanes.find(l => l.kind === "hcsp").drill, source: CH.srcStr(lanes.find(l => l.kind === "hcsp").src),
+    ...lanes.find(l => l.kind === "hcsp").drill, source: CH.srcLink(lanes.find(l => l.kind === "hcsp").src),
   });
 
   // ── facility-size landmark labels + gridlines ──
@@ -138,9 +138,9 @@
     const nm = svg.append("text").attr("x", L - 12).attr("y", cy + 3.5).attr("text-anchor", "end")
       .attr("font-size", 11.5).attr("font-weight", 700)
       .attr("fill", ln.kind === "hcsp" ? ACC : INK).text(ln.name);
-    CH.drill(nm, () => ({ ...ln.drill, source: CH.srcStr(ln.src) }));
+    CH.drill(nm, () => ({ ...ln.drill, source: CH.srcLink(ln.src) }));
 
-    const drill = g => CH.drill(g, () => ({ ...ln.drill, source: CH.srcStr(ln.src) }));
+    const drill = g => CH.drill(g, () => ({ ...ln.drill, source: CH.srcLink(ln.src) }));
 
     // ghost span (service pilots only — 374Water)
     if (ln.ghost) {
@@ -204,7 +204,7 @@
     li.style.cursor = "pointer";
     li.onclick = e => U.showDrill({
       title: "WATCH ITEM · " + w.item.toUpperCase(), value: "Track",
-      sub: w.txt, source: CH.srcStr(w.src), x: e.clientX, y: e.clientY,
+      sub: w.txt, source: CH.srcLink(w.src), x: e.clientX, y: e.clientY,
     });
   });
 })();

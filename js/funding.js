@@ -16,7 +16,7 @@
     strip.querySelectorAll(".m").forEach(el => {
       const m = M[+el.dataset.i];
       el.style.cursor = "pointer"; el.setAttribute("data-drill-keep", "");
-      el.onclick = e => U.showDrill({ title: "THE 2026 LANDSCAPE", value: m.v, sub: m.d, source: CH.srcStr(m.src), x: e.clientX, y: e.clientY });
+      el.onclick = e => U.showDrill({ title: "THE 2026 LANDSCAPE", value: m.v, sub: m.d, source: CH.srcLink(m.src), x: e.clientX, y: e.clientY });
     });
   }
 
@@ -42,7 +42,7 @@
     const f = RPT.funding_landscape.filter(x => x.fate === el.dataset.g)[+el.dataset.i];
     el.onclick = e => U.showDrill({
       title: f.name.toUpperCase(), value: f.amount,
-      sub: f.note, source: CH.srcStr(f.src), x: e.clientX, y: e.clientY,
+      sub: f.note, source: CH.srcLink(f.src), x: e.clientX, y: e.clientY,
     });
   });
 })();
@@ -121,7 +121,7 @@
     }
     const drillData = () => ({
       title: "ACCESS MODE (" + L.mode + ") — " + L.effort + "% OF EFFORT", value: L.name,
-      sub: L.gist + " " + L.template, source: CH.srcStr(L.src),
+      sub: L.gist + " " + L.template, source: CH.srcLink(L.src),
     });
     CH.drill(laneG, drillData); CH.drill(node, drillData);
     if (CH.REDUCE) { laneG.style("opacity", 1); node.style("opacity", 1); }
@@ -161,7 +161,7 @@
       g.append("path").attr("d", `M${xs[i + 1] - chain[i + 1].r - 14},${cy - 4} L${xs[i + 1] - chain[i + 1].r - 6},${cy} L${xs[i + 1] - chain[i + 1].r - 14},${cy + 4} Z`)
         .attr("fill", inkMd);
     }
-    CH.drill(g, () => ({ title: "ORLANDO TEMPLATE · " + c.lab, value: c.val + " · " + c.date, sub: c.sub, source: CH.srcStr(c.src) }));
+    CH.drill(g, () => ({ title: "ORLANDO TEMPLATE · " + c.lab, value: c.val + " · " + c.date, sub: c.sub, source: CH.srcLink(c.src) }));
     if (CH.REDUCE) g.style("opacity", 1);
     else g.transition().delay(900 + i * 220).duration(400).style("opacity", 1);
   });
@@ -222,7 +222,9 @@
     table.querySelector("tbody").innerHTML = out.map(r =>
       `<tr data-id="${r.id}" class="${r.status === "DEAD" || r.status === "CLOSED" ? "bad" : r.match === 5 && (r.status === "ACTIVE" || r.status === "OPEN-DEADLINE") ? "hl" : ""}" data-drill-keep="" style="cursor:pointer">
         <td class="num">${r.id}</td>
-        <td><b>${r.program}</b><br><span class="g-ag">${r.agency}</span></td>
+        <td><b>${r.program}</b><br>${r.url
+          ? `<a class="g-ag src-link" href="${r.url}" target="_blank" rel="noopener noreferrer">${r.agency} ↗</a>`
+          : `<span class="g-ag">${r.agency}</span>`}</td>
         <td>${r.level}</td>
         <td>${r.type}</td>
         <td class="num g-award">${r.award}</td>
@@ -237,11 +239,12 @@
     });
     table.querySelectorAll("tbody tr").forEach(tr => {
       const r = rows.find(x => x.id === tr.dataset.id);
+      tr.querySelectorAll("a.src-link").forEach(a => a.onclick = ev => ev.stopPropagation());
       tr.onclick = e => U.showDrill({
         title: r.id + " · " + r.program.toUpperCase(),
         value: r.award,
         sub: r.notes + " · Access: " + r.access + ". Fit: " + r.fit + " — " + r.vertical + ". Next: " + r.deadline + ".",
-        source: CH.srcStr(r.src) + (r.url ? " · " + r.url : ""),
+        source: CH.srcLink(r.src) + (r.url ? ` · <a class="src-link" href="${r.url}" target="_blank" rel="noopener noreferrer">Program page ↗</a>` : ""),
         x: e.clientX, y: e.clientY,
       });
     });
@@ -279,7 +282,7 @@
       title: "PURSUIT #" + r.rank + " · " + r.program.toUpperCase(),
       value: r.award,
       sub: r.why + " · Type: " + r.type + ". Access: " + r.access + ". Status: " + r.status + ". Next: " + r.deadline + ". Match " + r.match + "/5.",
-      source: CH.srcStr(r.src), x: e.clientX, y: e.clientY,
+      source: CH.srcLink(r.src), x: e.clientX, y: e.clientY,
     });
   });
 })();
@@ -353,7 +356,7 @@
     CH.drill(g, () => ({
       title: p.date.toUpperCase() + " · " + p.label.toUpperCase(),
       value: p.closed ? "CLOSED — DEADLINE PASSED SEP 2026" : p.urgent ? "⚑ HARD DEADLINE — ANNUAL CYCLE" : p.cls === "hard" ? "HARD DEADLINE" : p.cls === "forming" ? "PROGRAM FORMING — ENGAGE NOW" : "EXPECTED CYCLE",
-      sub: p.ev, source: CH.srcStr(p.src),
+      sub: p.ev, source: CH.srcLink(p.src),
     }));
     if (CH.REDUCE) g.style("opacity", 1);
     else g.transition().delay(i * 100).duration(350).style("opacity", 1);
