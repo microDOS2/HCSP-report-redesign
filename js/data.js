@@ -719,33 +719,13 @@ window.RPT = {
     { r: "Storage/supply-chain sole-sourcing — NiFe (new in v2)", like: "Medium", impact: "Medium", mit: "Default to LFP for standby/black-start on every unit; dual-source NiFe (Chinese TN-series) only for daily-cycled remote variants; track the UCLA nanostructured revival as a 5–10-yr option", ev: "The dominant US NiFe vendor went bankrupt June 2023 leaving a Chinese-only supply base; NiFe self-discharges 20–30%/month and costs ~$400–1,000/kWh against $70/kWh LFP packs", src: ["K91", "K87", "K88"] },
   ],
 
-  // ── The bottom line evidence (P18) — v2: fifteen industries, scale & crossover added ──
+  // ── The bottom line (§5 decision board) — the tripwires that would change the advice ──
   verdict: {
-    bull: [
-      { t: "Federally validated destruction: 99.9993% of the chemical destroyed and removed from firefighting foam (US Army Corps of Engineers research-lab test)", src: ["K2"] },
-      { t: "Existing supplier umbrella $5–28/gal vs. an HCSP that is self-fueling once started (cost model pending)", src: ["K9", "K10", "K22"] },
-      { t: "No-air-permit moat: sealed system vs. 24 combustors at 88–92% utilization", src: ["K34", "K1"] },
-      { t: "Dated demand clocks: firefighting foam (AFFF) Oct-2026, landfill federal wastewater limits (ELG) 2026–28, India's pollution board (CPCB) distillery zero liquid discharge (ZLD), drinking-water limit (MCL) 2031", src: ["K14", "K7", "K62"] },
-      { t: "the Defense Department (DoD) liability >$9.3B across 718 installations", src: ["K13"] },
-      { t: "Scale + feed strength invert the energy line: net-zero ~35–40 g/L COD, −60 kWh of electricity/m³ export at 150 g/L, $9–20B/yr consolidated reachable market", src: ["K73", "K70"] },
-    ],
-    bear: [
-      { t: "30-year graveyard: corrosion and salt plugging, not chemistry, killed conventional designs — HCSP's documented design answer (>3,000 °F in-reactor combustion; no salt issues reported) still needs published prototype data", src: ["K49", "K50", "K1"] },
-      { t: "Listed leader: $215k revenue vs. $21.0M loss, auditors warn it may run out of money", src: ["K52"] },
-      { t: "EBJ downgraded the 30-yr PFAS pool 43% on deregulation", src: ["K12"] },
-      { t: "the Defense Department (DoD) re-opened the incineration pathway (Feb–Mar 2026)", src: ["K11"] },
-      { t: "Water value ~$3.5/m³ cannot carry module economics — the business must be priced as destruction, with energy export above ~35–60 g/L COD", src: ["K23", "K31"] },
-      { t: "Scale is unproven: no SCWO train above 306 t/d has ever operated; hub economics are interpolated design studies", src: ["K76", "K96"] },
-    ],
-    upgrades: [
-      { t: "Pilot-verified net energy with heat recovery (near-zero >30 g/L organics)", src: ["K59"] },
-      { t: "EPA guidance revision recognizing commercial SCWO operations", src: ["K55"] },
-      { t: "Landfill federal wastewater limits (ELG) finalized — ~2,600 municipal solid waste (MSW) landfills become mandatory buyers", src: ["K7"] },
-    ],
-    falsifiers: [
-      { t: "Third-party long-run data on salty feeds contradicts the manufacturer's no-salt-deposition design answer (>3,000 °F in-reactor combustion)", src: ["K20", "K1"] },
-      { t: "the US Superfund cleanup law (CERCLA) designation or 4 parts per trillion drinking-water limits (MCLs) vacated on appeal", src: ["K5", "K6"] },
-      { t: "A permitted incineration build-out collapses the $5–28/gal umbrella", src: ["K34"] },
+    changes: [
+      { t: "HCSP publishes its prototype long-run test data — independent proof behind the self-fueling design turns a claim into a diligence asset and moves every 'go next' market up.", src: ["K1", "K59"] },
+      { t: "Independent long-run tests on salty feeds contradict the manufacturer's no-salt-deposition combustion design (>3,000 °F in-reactor hydrogen) — the core technical answer fails and the advice flips regardless of demand.", src: ["K20", "K1"] },
+      { t: "The system fails to show self-fueling operation at 100 m³/day or more within 36 months — reliability stays unproven and the 'go next' expansion stalls.", src: ["K70", "K73"] },
+      { t: "PFAS rules are rolled back — the Superfund (CERCLA) designation or the 4 parts-per-trillion drinking-water limits thrown out on appeal — and the demand clock slows.", src: ["K5", "K6", "K12"] },
     ],
   },
 

@@ -78,15 +78,8 @@
           ["Cascade value", RPT.trigen.value, "vs " + RPT.trigen.value_cooling_only + " all-cooling — " + RPT.trigen.basis],
         ].concat(RPT.trigen.hierarchy.map(h => ["Value of 1 megawatt-hour of heat as " + h.form, h.val + " /" + h.per, h.note])) }),
     },
-    "verdict-chart": {
-      take: "The scale tips toward pursuit — staged, and gated on reliability: the 'for' pan carries validated destruction and the pricing umbrella; the 'against' pan carries the 30-year graveyard and unproven scale-up.",
-      axes: "Qualitative, not a score: solid weights are live evidence, dashed weights are upgrade triggers not yet met, and the hatched seal carries the proof-killer lines that would sink either case.",
-      table: () => ({ cols: ["Side", "Weight", "Detail"],
-        rows: RPT.verdict.bull.map(b => ["For", b.t.split("—")[0].trim(), b.t])
-          .concat(RPT.verdict.bear.map(b => ["Against", b.t.split("—")[0].trim(), b.t]))
-          .concat(RPT.verdict.upgrades.map(u => ["Upgrade trigger (not yet met)", u.t.split("—")[0].trim(), u.t]))
-          .concat(RPT.verdict.falsifiers.map(f => ["Proof-killer", f.t.split("—")[0].trim(), f.t])) }),
-    },
+    // "verdict-chart" intentionally has no entry: it is a DOM decision board
+    // (no SVG), so the explorer never opens for it.
     "horizon-chart": {
       take: "Several of the report's risks and catalysts are dated — so capital can be timed to them instead of committed blindly.",
       axes: "Wall-chart timeline 2023–2045 (recent decade expanded). Ink plaques = policy framework, blue = demand catalyst, red dashed = risk/competition event; the shaded band is the current window.",

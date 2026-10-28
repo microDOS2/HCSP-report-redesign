@@ -1,155 +1,158 @@
-// ═══ §5 verdict: balance scale (P18) + regulatory catalyst horizon (P3 wall chart) ═══
+// ═══ §5 verdict: plain-language decision board + regulatory catalyst horizon (P3 wall chart) ═══
 
 /* ────────────────────────────────────────────────────────────
-   10 · The bottom line — the two cases, weighed
+   10 · The bottom line — what to do, in what order.
+   A plain decision board: three groups, one sentence per market,
+   every score/condition drillable to its dated K-source.
+   (Replaces the old balance-scale graphic; scores and sources unchanged.)
 ──────────────────────────────────────────────────────────── */
 (function () {
   const host = document.getElementById("verdict-chart");
   if (!host) return;
   const body = U.frame(host, {
-    title: "The scale tips toward pursuit — staged, and gated on reliability",
-    sub: "EVIDENCE WEIGHTS ON BOTH PANS · DASHED WEIGHTS = UPGRADE TRIGGERS NOT YET MET · HATCHED SEAL = WHAT WOULD PROVE US WRONG · QUALITATIVE, NOT A SCORE · CLICK EVERYTHING",
-    src: "Research compilation — report Ch. 10 synthesis (2026-09); every weight traces to a K anchor",
+    title: "The bottom line: start with three markets, prove reliability, then expand.",
+    sub: "A PLAIN DECISION BOARD · SCORE OUT OF 10 FROM THE FIFTEEN-INDUSTRY RANKING · CLICK ANY ROW FOR THE FULL EVIDENCE AND ITS DATED SOURCES",
+    src: "Research compilation — report Ch. 10 synthesis (2026-09); every score and condition traces to a K anchor",
   });
-  const W = 880, H = 580;
-  const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
-  const CX = 440, beamY = 128, BL = 210, tilt = 0.075;
-  const endY = s => beamY + Math.sin(tilt) * BL * s; // s=-1 left (bear, up), +1 right (bull, down)
 
-  // short weight labels (full text in drill-down)
-  const bullShort = ["99.9993% DESTRUCTION", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD CLEANUP", "ENERGY INVERTS"];
-  const bearShort = ["30-YR GRAVEYARD", "$215K/$21M LOSS", "MARKET CUT −43%", "INCINERATION BACK", "WATER CAN'T CARRY", "306 T/DAY MAX RUN"];
-  const upShort = ["PILOT ENERGY DATA", "EPA REVISION", "LANDFILL PFAS LIMITS"];
+  const byKey = {};
+  RPT.league.forEach(d => { byKey[d.key] = d; });
 
-  const root = svg.append("g");
+  // Board content: plain-English names, one-sentence whys, and "what has to
+  // happen first" conditions — all drawn from the existing ranking data (RPT.league).
+  const GROUPS = [
+    {
+      cls: "go", head: "1 · GO NOW — strongest fit",
+      note: "Enter these three markets directly, selling a destruction service priced well under what disposal costs today.",
+      rows: [
+        { key: "pfas", name: "PFAS destruction & landfill leachate",
+          why: "Regulation forces the cleanup, federally witnessed tests show 99.9993% destruction, and today's disposal costs $1–28 per gallon." },
+        { key: "defense", name: "Defense, maritime & remote sites",
+          why: "The Defense Department alone owes more than $9.3B of PFAS cleanup across 718 installations, and remote sites pay 2–5× normal prices." },
+        { key: "textile", name: "Textile & dyeing clusters — India",
+          why: "Courts already force these clusters to run zero-discharge plants that still cannot destroy the leftover brine and sludge." },
+      ],
+    },
+    {
+      cls: "next", head: "2 · GO NEXT — after prototypes and pilot results",
+      note: "Strong scores, but the money waits until working prototypes and published pilot data prove the machines run reliably.",
+      rows: [
+        { key: "chem", name: "Chemical & hazardous waste",
+          why: "Getting rid of halogenated solvents costs $15–50+ per gallon, and the existing incinerators are running almost full." },
+        { key: "pharma", name: "Pharma & biotech",
+          why: "Solvent and drug-ingredient disposal costs $1.5–15 per gallon, and new rules make proven destruction worth paying for." },
+        { key: "distill", name: "Distillery & ethanol vinasse",
+          why: "Spent wash is strong enough to power its own treatment and export electricity, and India is forcing about 270 distilleries to comply." },
+        { key: "semi", name: "Semiconductor side-streams",
+          why: "New fabs face PFAS permit fights and pay $1.8–4 per gallon to get rid of solvent and polishing side-streams.",
+          first: "Side-streams only — the fabs' bulk wastewater is far too dilute to pay." },
+        { key: "bio", name: "Municipal biosolids — crisis regions",
+          why: "US cities spend $4.8B a year on sludge disposal, and PFAS worries are closing the cheap routes.",
+          first: "Only where disposal costs are already high — the Northeast, Florida, California." },
+        { key: "fnb", name: "Food & beverage side-streams",
+          why: "Concentrated side-streams already cost $45–120 per 1,000 gallons to haul away.",
+          first: "Stick to concentrated side-streams; digesters own the bulk wastewater." },
+        { key: "islands", name: "Islands & resorts",
+          why: "The only market where power, water, and cooling all sell at near world-maximum prices.",
+          first: "The waste arrives too weak — fats, oil, and food waste must be blended in." },
+      ],
+    },
+    {
+      cls: "cond", head: "3 · ONLY IF CONDITIONS ARE RIGHT",
+      note: "No revenue plan by default — pursue only where the stated condition holds.",
+      rows: [
+        { key: "og", name: "Produced water — Marcellus hub niche",
+          why: "Real only where trucking disposal costs $3–15 a barrel (the Marcellus region); cheap Permian pipelines kill the idea elsewhere.",
+          first: "Only large 50–100K barrel-a-day hub projects in the Marcellus region qualify." },
+        { key: "cea", name: "Indoor agriculture (CEA)",
+          why: "The wastewater is 99.8% water — too weak to power the process — and most customers are short of cash.",
+          first: "A regulatory showcase under California's zero-waste invitation — never count on it for revenue." },
+        { key: "cafo", name: "Factory-farm manure (CAFO)",
+          why: "Manure is 85–92% water, and subsidized digesters already monetize the same story better.",
+          first: "Only where spreading land runs out — crowded dairy belts." },
+        { key: "mining", name: "Mining & remote camps",
+          why: "Remote sites pay high prices per unit, but each site is small and buys on the commodity cycle.",
+          first: "Opportunistic only — take the work when a site comes to you." },
+        { key: "dc", name: "Data centers — as an energy customer, not a host",
+          why: "Their on-site waste cannot be treated by this process — but they wait 4–7 years for a grid connection.",
+          first: "Build the plant next door at a waste-rich site and sell them power, cooling, and water across the fence." },
+      ],
+    },
+  ];
 
-  // ── falsification seal (bottom) ──
-  const seal = root.append("g");
-  seal.append("rect").attr("x", 120).attr("y", 536).attr("width", 640).attr("height", 30).attr("fill", "rgba(194,47,78,.10)");
-  for (let hx = 120; hx < 760; hx += 14)
-    seal.append("line").attr("x1", hx).attr("y1", 566).attr("x2", hx + 8).attr("y2", 536).attr("stroke", neg).attr("stroke-width", 0.8).attr("opacity", 0.5);
-  const falsShort = ["SALT DATA REFUTES IT", "DRINKING-WATER LIMITS REMOVED", "INCINERATOR BUILD-OUT"];
-  falsShort.forEach((f, i) => {
-    const wX = 150 + i * 205;
-    const st = seal.append("g");
-    st.append("rect").attr("x", wX).attr("y", 541).attr("width", 190).attr("height", 20).attr("fill", "#fff").attr("stroke", neg).attr("stroke-width", 1);
-    st.append("text").attr("x", wX + 95).attr("y", 554).attr("text-anchor", "middle")
-      .attr("font-family", CH.MONO).attr("font-size", 7.6).attr("font-weight", 700).attr("fill", neg).text(f);
-    CH.drill(st, () => ({
-      title: "PROOF-KILLER " + (i + 3 - 2), value: f,
-      sub: RPT.verdict.falsifiers[i].t + " — if this happens, the verdict flips regardless of demand-side evidence.",
-      source: CH.srcLink(RPT.verdict.falsifiers[i].src),
-    }));
-  });
-  seal.append("text").attr("x", 120).attr("y", 530).attr("font-family", CH.MONO).attr("font-size", 8.5)
-    .attr("fill", neg).attr("font-weight", 700).text("WHAT WOULD PROVE US WRONG — EITHER CASE DIES IF THESE BREAK");
+  const board = document.createElement("div");
+  board.className = "vboard";
 
-  // ── pillar + base ──
-  root.append("rect").attr("x", CX - 9).attr("y", beamY).attr("width", 18).attr("height", 396).attr("fill", "#eef1f5").attr("stroke", ink).attr("stroke-width", 1.4);
-  root.append("path").attr("d", `M${CX - 60},524 L${CX + 60},524 L${CX + 34},500 L${CX - 34},500 Z`).attr("fill", "#e3e9f0").attr("stroke", ink).attr("stroke-width", 1.4);
+  GROUPS.forEach(g => {
+    const gEl = document.createElement("div");
+    gEl.className = "vb-group vb-" + g.cls;
+    const h = document.createElement("h3");
+    h.className = "vb-head"; h.textContent = g.head;
+    const n = document.createElement("p");
+    n.className = "vb-note"; n.textContent = g.note;
+    gEl.appendChild(h); gEl.appendChild(n);
 
-  // ── fulcrum dial: three zones + needle (stops inside the bull zone) ──
-  const dial = root.append("g");
-  dial.append("path").attr("d", `M${CX - 44},${beamY} A44,44 0 0 1 ${CX + 44},${beamY}`).attr("fill", "#fff").attr("stroke", ink).attr("stroke-width", 1.4);
-  for (let i = 0; i <= 6; i++) {
-    const a = Math.PI - (i / 6) * Math.PI;
-    const x1 = CX + Math.cos(a) * 36, y1 = beamY - Math.sin(a) * 36;
-    const x2 = CX + Math.cos(a) * 44, y2 = beamY - Math.sin(a) * 44;
-    dial.append("line").attr("x1", x1).attr("y1", y1).attr("x2", x2).attr("y2", y2).attr("stroke", inkMd).attr("stroke-width", 1);
-  }
-  const na = Math.PI - 0.68 * Math.PI; // needle into the right (bull) zone
-  dial.append("line").attr("x1", CX).attr("y1", beamY).attr("x2", CX + Math.cos(na) * 38).attr("y2", beamY - Math.sin(na) * 38)
-    .attr("stroke", blue).attr("stroke-width", 2.4).attr("stroke-linecap", "round");
-  dial.append("circle").attr("cx", CX).attr("cy", beamY).attr("r", 4.5).attr("fill", blue);
-  dial.append("text").attr("x", CX - 52).attr("y", beamY + 16).attr("text-anchor", "end").attr("font-family", CH.MONO).attr("font-size", 8).attr("fill", inkLo).text("WALK AWAY");
-  dial.append("text").attr("x", CX + 52).attr("y", beamY + 16).attr("font-family", CH.MONO).attr("font-size", 8).attr("fill", blue).text("PURSUE");
-
-  // ── beam (drawn tilted; hanging assemblies translate, not rotate) ──
-  const beam = root.append("g");
-  beam.append("line").attr("x1", CX - BL).attr("y1", endY(-1)).attr("x2", CX + BL).attr("y2", endY(1))
-    .attr("stroke", ink).attr("stroke-width", 5).attr("stroke-linecap", "round");
-  beam.append("circle").attr("cx", CX).attr("cy", beamY).attr("r", 7).attr("fill", ink);
-
-  // ── pans + weights ──
-  function pan(side, items, col, srcList) {
-    const ex = CX + BL * side, ey = endY(side);
-    const g = root.append("g");
-    const panY = ey + 150;
-    // chains
-    [-46, 0, 46].forEach(dx => {
-      g.append("line").attr("x1", ex + dx * 0.2).attr("y1", ey + 4).attr("x2", ex + dx).attr("y2", panY - 8)
-        .attr("stroke", inkMd).attr("stroke-width", 1.2);
+    g.rows.forEach(r => {
+      const d = byKey[r.key];
+      if (!d) return;
+      const row = document.createElement("div");
+      row.className = "vb-row";
+      row.setAttribute("data-drill-keep", "");
+      const score = document.createElement("span");
+      score.className = "vb-score";
+      score.textContent = Number.isInteger(d.score) ? d.score.toFixed(1) : String(d.score);
+      const txt = document.createElement("span");
+      txt.className = "vb-body";
+      const nm = document.createElement("span");
+      nm.className = "vb-name"; nm.textContent = r.name;
+      const wy = document.createElement("span");
+      wy.className = "vb-why"; wy.textContent = r.why;
+      txt.appendChild(nm); txt.appendChild(wy);
+      if (r.first) {
+        const f = document.createElement("span");
+        f.className = "vb-first"; f.textContent = "First: " + r.first;
+        txt.appendChild(f);
+      }
+      row.appendChild(score); row.appendChild(txt);
+      row.addEventListener("click", e => {
+        e.stopPropagation();
+        U.showDrill({
+          title: r.name.toUpperCase(),
+          value: d.score + " / 10 · " + g.head.replace(/^\d · /, ""),
+          sub: r.why + (r.first ? " What has to happen first: " + r.first : "")
+            + " Full rationale: " + d.why + " " + RPT.tiers[d.tier - 1].posture,
+          source: CH.srcLink(d.src), x: e.clientX, y: e.clientY,
+        });
+      });
+      gEl.appendChild(row);
     });
-    // pan bowl
-    g.append("path").attr("d", `M${ex - 96},${panY} A96,26 0 0 0 ${ex + 96},${panY}`).attr("fill", "#eef1f5").attr("stroke", ink).attr("stroke-width", 1.4);
-    g.append("line").attr("x1", ex - 96).attr("x2", ex + 96).attr("y1", panY).attr("y2", panY).attr("stroke", ink).attr("stroke-width", 1.4);
-    // weight stack (solid trapezoids, bottom-up; 22px pitch so six clear the beam)
-    items.forEach((t, i) => {
-      const wy = panY - (i + 1) * 22;
-      const wg = g.append("g").style("opacity", 0);
-      const ww = 158 - i * 4;
-      wg.append("path").attr("d", `M${ex - ww / 2 + 8},${wy} L${ex + ww / 2 - 8},${wy} L${ex + ww / 2},${wy + 22} L${ex - ww / 2},${wy + 22} Z`)
-        .attr("fill", col).attr("stroke", ink).attr("stroke-width", 1.1);
-      wg.append("circle").attr("cx", ex).attr("cy", wy - 3.5).attr("r", 3.2).attr("fill", col).attr("stroke", ink).attr("stroke-width", 1);
-      const wt = wg.append("text").attr("x", ex).attr("y", wy + 14.5).attr("text-anchor", "middle")
-        .attr("font-family", CH.MONO).attr("font-size", 7.2).attr("font-weight", 600).attr("fill", "#fff").text(t);
-      CH.drill(wg, () => ({
-        title: (side > 0 ? "EVIDENCE FOR" : "EVIDENCE AGAINST"), value: t,
-        sub: srcList[i].t, source: CH.srcLink(srcList[i].src),
-      }));
-      if (CH.REDUCE) wg.style("opacity", 1);
-      else wg.transition().delay(500 + i * 160 + (side > 0 ? 80 : 0)).duration(300).style("opacity", 1);
-    });
-    // case label
-    g.append("text").attr("x", ex).attr("y", panY + 44).attr("text-anchor", "middle")
-      .attr("font-family", CH.MONO).attr("font-size", 10).attr("font-weight", 700).attr("fill", col)
-      .text(side > 0 ? "THE CASE FOR" : "THE CASE AGAINST");
-    return g;
-  }
-  pan(-1, bearShort, inkMd, RPT.verdict.bear);
-  pan(1, bullShort, blue, RPT.verdict.bull);
-
-  // ── upgrade triggers: dashed hollow weights hovering above the bull pan ──
-  const upX = CX + BL, upBaseY = 152;
-  RPT.verdict.upgrades.forEach((u, i) => {
-    const wy = upBaseY - i * 30;
-    const g = root.append("g").style("opacity", 0);
-    g.append("path").attr("d", `M${upX - 72},${wy} L${upX + 72},${wy} L${upX + 80},${wy + 25} L${upX - 80},${wy + 25} Z`)
-      .attr("fill", "rgba(255,255,255,.75)").attr("stroke", blue).attr("stroke-width", 1.2).attr("stroke-dasharray", "5 4");
-    g.append("text").attr("x", upX).attr("y", wy + 16.5).attr("text-anchor", "middle")
-      .attr("font-family", CH.MONO).attr("font-size", 7.8).attr("font-weight", 600).attr("fill", blue).text(upShort[i]);
-    // dashed arrow down toward the pan
-    g.append("path").attr("d", `M${upX + 88},${wy + 12} q18,10 4,26`).attr("fill", "none")
-      .attr("stroke", blue).attr("stroke-width", 1).attr("stroke-dasharray", "3 3");
-    CH.drill(g, () => ({
-      title: "UPGRADE TRIGGER — NOT YET MET", value: upShort[i],
-      sub: u.t + ". The reading upgrades only when all three land on the pan.",
-      source: CH.srcLink(u.src),
-    }));
-    if (CH.REDUCE) g.style("opacity", 1);
-    else g.transition().delay(1600 + i * 200).duration(350).style("opacity", 1);
+    board.appendChild(gEl);
   });
-  const upNote = root.append("text").attr("x", upX).attr("y", upBaseY - 3 * 30 - 12).attr("text-anchor", "middle")
-    .attr("font-family", CH.MONO).attr("font-size", 8).attr("fill", blue).text("READING UPGRADES ONLY WHEN ALL LAND ON THE PAN");
-  CH.halo(upNote);
 
-  // ── readout plaque on the pillar ──
-  const rd = root.append("g");
-  rd.append("rect").attr("x", CX - 118).attr("y", 300).attr("width", 236).attr("height", 56).attr("fill", "#fff").attr("stroke", ink).attr("stroke-width", 1.6);
-  rd.append("text").attr("x", CX).attr("y", 322).attr("text-anchor", "middle").attr("font-family", CH.SERIF)
-    .attr("font-weight", 700).attr("font-size", 14).attr("fill", ink).text("Pursue, staged — Tier 1 first.");
-  rd.append("text").attr("x", CX).attr("y", 342).attr("text-anchor", "middle").attr("font-family", CH.MONO)
-    .attr("font-size", 8.5).attr("fill", inkMd).text("RELIABILITY, NOT DEMAND, IS THE GATE");
-  CH.drill(rd, () => ({
-    title: "CURRENT VERDICT", value: "Pursue, staged",
-    sub: "The opportunity is real but not yet banked: ~$9–20B/yr consolidated reachable demand across fifteen industries, contingent on third-party publication of prototype long-run data confirming the manufacturer's salt-free combustion design (>3,000 °F in-reactor H₂ — the documented answer to the failure mode that killed conventional SCWO) — and, new in v2, on scaling in parallel trains rather than unproven giant vessels. Qualitative reading, not a score.",
-    source: CH.srcLink(["K53", "K20", "K70"]),
-  }));
+  // ── boxed plain list: what would change this advice ──
+  const box = document.createElement("div");
+  box.className = "vb-change";
+  const bh = document.createElement("h3");
+  bh.className = "vb-change-h"; bh.textContent = "What would change this advice";
+  box.appendChild(bh);
+  const ul = document.createElement("ul");
+  RPT.verdict.changes.forEach(c => {
+    const li = document.createElement("li");
+    li.textContent = c.t;
+    li.setAttribute("data-drill-keep", "");
+    li.addEventListener("click", e => {
+      e.stopPropagation();
+      U.showDrill({
+        title: "WHAT WOULD CHANGE THIS ADVICE", value: "Tripwire",
+        sub: c.t, source: CH.srcLink(c.src), x: e.clientX, y: e.clientY,
+      });
+    });
+    ul.appendChild(li);
+  });
+  box.appendChild(ul);
+  board.appendChild(box);
 
-  root.style("opacity", 0);
-  CH.enter(host, () => root.transition().duration(500).style("opacity", 1));
-  if (CH.REDUCE) root.style("opacity", 1);
+  body.appendChild(board);
 })();
 
 /* ────────────────────────────────────────────────────────────

@@ -276,6 +276,63 @@ h3 { font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 
 .chart-src { font-family: var(--mono); font-size: 10px; color: var(--ink-lo); margin: 10px 0 4px; }
 .chart-frame svg text { font-family: var(--mono); }
 
+/* ── §5 plain-language decision board ("The bottom line") ── */
+.vboard { margin-top: 6px; }
+.vb-group { margin: 0 0 34px; }
+.vb-group:last-of-type { margin-bottom: 26px; }
+.vb-head {
+  font-family: var(--sans); font-size: 17px; font-weight: 800;
+  letter-spacing: .02em; margin: 0 0 4px; padding-bottom: 9px;
+  border-bottom: 3px solid var(--ink);
+}
+.vb-go .vb-head { color: var(--green); border-color: var(--green); }
+.vb-next .vb-head { color: var(--red); border-color: var(--red); }
+.vb-cond .vb-head { color: var(--ink-md); border-color: var(--ink-md); }
+.vb-note { font-size: 14px; color: var(--ink-md); margin: 0 0 6px; line-height: 1.6; }
+.vb-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 13px 10px 13px 6px; border-bottom: 1px solid var(--line-lo);
+  cursor: pointer; border-radius: 4px;
+}
+.vb-row:hover { background: var(--paper-hi); }
+.vb-row:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; }
+.vb-score {
+  flex: 0 0 58px; text-align: center;
+  font-family: var(--mono); font-size: 21px; font-weight: 700;
+  font-variant-numeric: tabular-nums; padding-top: 1px;
+}
+.vb-go .vb-score { color: var(--green); }
+.vb-next .vb-score { color: var(--red); }
+.vb-cond .vb-score { color: var(--ink-md); }
+.vb-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.vb-name { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.vb-why { font-size: 14px; color: var(--ink-md); line-height: 1.6; }
+.vb-first { font-size: 13px; color: var(--ink-lo); line-height: 1.55; }
+.vb-first::before { content: ""; }
+.vb-change {
+  border: 1.5px solid var(--ink); border-radius: 6px;
+  padding: 16px 20px 10px; margin-top: 8px; background: var(--paper-hi);
+}
+.vb-change-h {
+  font-family: var(--sans); font-size: 16px; font-weight: 800;
+  margin: 0 0 8px; color: var(--ink);
+}
+.vb-change ul { list-style: none; margin: 0; padding: 0; }
+.vb-change li {
+  position: relative; padding: 9px 6px 9px 24px; margin: 0;
+  border-top: 1px solid var(--line); font-size: 14px; line-height: 1.65;
+  color: var(--ink-md); cursor: pointer; border-radius: 4px;
+}
+.vb-change li:hover { background: #fff; }
+.vb-change li::before {
+  content: ""; position: absolute; left: 6px; top: 17px;
+  width: 7px; height: 7px; background: var(--neg);
+}
+@media (max-width: 768px) {
+  .vb-score { flex-basis: 46px; font-size: 18px; }
+  .vb-name { font-size: 14.5px; }
+}
+
 /* metric strip */
 .metric-strip {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
