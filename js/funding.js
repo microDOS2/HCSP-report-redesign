@@ -61,7 +61,7 @@
   });
   const W = 880, H = 470;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#8595a6", blue = "#2251ff", lineLo = "#eef1f6";
+  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", lineLo = "#eef1f6";
 
   // ── upper flow: 100% pursuit effort → three access modes ──
   const LX = 40, LW = 150, MX = 560, MW = 280; // left bar / mode nodes
@@ -115,7 +115,7 @@
     if (l2) node.append("text").attr("x", MX + 12).attr("y", my + (tall ? 53 : 43))
       .attr("font-family", CH.SERIF).attr("font-weight", 700).attr("font-size", nf).attr("fill", ink).text(l2);
     if (tall) {
-      const tag = { b: "WHERE THE BIG MONEY IS — THE UTILITY WRITES THE PROPOSAL", a: "CREDIBILITY PLAYS — DIRECT APPLICATIONS, ACTIONABLE NOW", c: "A REVENUE CHANNEL DISGUISED AS A GRANTS CHANNEL" }[L.mode];
+      const tag = { b: "WHERE THE BIG MONEY IS", a: "DIRECT, ACTIONABLE NOW", c: "A REVENUE CHANNEL IN DISGUISE" }[L.mode];
       node.append("text").attr("x", MX + 12).attr("y", my + mh - 9)
         .attr("font-family", CH.MONO).attr("font-size", 7.6).attr("fill", inkLo).text(tag);
     }
@@ -167,7 +167,7 @@
   });
   svg.append("text").attr("x", LX).attr("y", 452)
     .attr("font-family", CH.MONO).attr("font-size", 8).attr("fill", inkLo)
-    .text("FUNDED DEMONSTRATION → SERVICE LICENSE → HUB · THE GRANT PROPOSAL IS WRITTEN BY THE UTILITY; THE VENDOR SUPPLIES THE WINNING EVIDENCE");
+    .text("FUNDED DEMONSTRATION → SERVICE LICENSE → HUB · PROPOSAL WRITTEN BY THE UTILITY");
 })();
 
 /* ────────────────────────────────────────────────────────────
@@ -299,7 +299,7 @@
   // piecewise scale: Sep 2026–Feb 2027 expanded (deadline cluster), Mar–Sep 2027 compressed
   const x = v => v <= 2027.15 ? 56 + (v - 2026.6) / 0.55 * 560 : 616 + (v - 2027.15) / 0.65 * 208;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkLo = "#8595a6", blue = "#2251ff", closedCol = "#c22f4e";
+  const ink = "#051c2c", inkLo = "#42566a", blue = "#2251ff", closedCol = "#c22f4e";
   const clsCol = { hard: blue, window: ink, forming: inkLo };
 
   // "now" marker (compiled September 2026)
@@ -321,7 +321,7 @@
   // greedy plaque layering
   const layers = [];
   const placed = RPT.funding_calendar.map(c => {
-    const wpx = Math.max(76, c.label.length * 6.6 + 20);
+    const wpx = Math.max(88, c.label.length * 7.8 + 22);
     const cx = U.clamp(x(c.y), 40 + wpx / 2, W - 16 - wpx / 2);
     let li = 0;
     for (;;) {

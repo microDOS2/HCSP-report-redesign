@@ -256,6 +256,30 @@
   </div>
 </section>
 
+<!-- ═══ §2B Inside the HCSP — interactive 3D skid ═══ -->
+<section id="sec-inside" class="band" data-win="mech">
+  <div class="prose">
+    <p class="sec-no">§2B · Inside the HCSP — the skid in three dimensions</p>
+    <h2>Open the skid and look inside.</h2>
+    <p class="dek">A stylized but faithful walk around the 10&nbsp;m³/day module — orbit it, pull it apart, and click any
+      component for its role and its numbers. Everything here is the same hardware the mechanism chart describes;
+      nothing is a rendering of claims the report does not make.</p>
+  </div>
+  <div class="wide xl">
+    <div class="skid3d-wrap" id="skid3d">
+      <canvas class="skid3d-stage" id="skid3d-canvas" aria-label="Interactive 3D model of the HCSP skid"></canvas>
+      <div class="skid3d-ui"><button type="button" id="skid3d-explode">EXPLODE ⇕</button></div>
+      <p class="skid3d-hint">DRAG TO ORBIT · SCROLL OR PINCH TO ZOOM · CLICK A COMPONENT</p>
+    </div>
+  </div>
+  <div class="prose">
+    <p>The train reads left to right: the feed pump pressurizes, the electrolyzer makes the fuel, the combustor turns it
+      into preheat, the reactor mineralizes the waste, and the separator hands back distilled water and a contained
+      sludge. On concentrated feeds, the surplus heat the preheat loop does not reclaim is what the economics section
+      cascades into power and cooling.</p>
+  </div>
+</section>
+
 <!-- ═══ §3 Current state ═══ -->
 <section id="sec-state" class="band" data-win="state">
   <div class="prose">
@@ -278,6 +302,7 @@
       range for that stream; click any bar for the value, its basis, and the dated source.</p>
   </div>
   <div class="wide xl"><div id="savings-chart" class="chart-frame"></div></div>
+  <div class="wide xl"><div id="savings-calculator"></div></div>
   <div class="prose">
     <div class="note-box">
       <p><b>Two lenses, two questions.</b> The savings lens asks <i>where is the margin umbrella?</i>; the composite
@@ -547,6 +572,11 @@
 <script src="js/charts-exec.js"></script>
 <script src="js/charts-v2.js"></script>
 <script src="js/charts-verdict.js"></script>
+<script src="js/chart_modal.js"></script>
+<script src="js/calculator.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="js/skid3d.js"></script>
 <script src="js/tables.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/main.js"></script>

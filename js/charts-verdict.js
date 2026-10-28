@@ -13,14 +13,14 @@
   });
   const W = 880, H = 580;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#8595a6", blue = "#2251ff", neg = "#c22f4e";
+  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
   const CX = 440, beamY = 128, BL = 210, tilt = 0.075;
   const endY = s => beamY + Math.sin(tilt) * BL * s; // s=-1 left (bear, up), +1 right (bull, down)
 
   // short weight labels (full text in drill-down)
-  const bullShort = ["99.9993% DRE VALIDATED", "$5–28/GAL UMBRELLA", "NO-AIR-PERMIT MOAT", "DATED DEMAND CLOCKS", ">$9.3B DOD LIABILITY", "ENERGY INVERTS AT SCALE"];
-  const bearShort = ["30-YR GRAVEYARD", "$215K REV VS $21M LOSS", "EBJ DOWNGRADE −43%", "INCINERATION RE-OPENED", "WATER VALUE CAN'T CARRY IT", "SCALE-UP UNPROVEN >306 T/D"];
-  const upShort = ["PILOT ENERGY DATA", "EPA GUIDANCE REVISION", "LANDFILL ELG FINAL"];
+  const bullShort = ["99.9993% DRE", "$5–28/GAL UMBRELLA", "NO AIR PERMIT", "DATED CLOCKS", ">$9.3B DOD", "ENERGY INVERTS"];
+  const bearShort = ["30-YR GRAVEYARD", "$215K/$21M LOSS", "EBJ −43%", "INCINERATION BACK", "WATER CAN'T CARRY", "306 T/D MAX RUN"];
+  const upShort = ["PILOT ENERGY DATA", "EPA REVISION", "LANDFILL ELG"];
 
   const root = svg.append("g");
 
@@ -29,7 +29,7 @@
   seal.append("rect").attr("x", 120).attr("y", 536).attr("width", 640).attr("height", 30).attr("fill", "rgba(194,47,78,.10)");
   for (let hx = 120; hx < 760; hx += 14)
     seal.append("line").attr("x1", hx).attr("y1", 566).attr("x2", hx + 8).attr("y2", 536).attr("stroke", neg).attr("stroke-width", 0.8).attr("opacity", 0.5);
-  const falsShort = ["LONG-RUN SALT DATA REFUTES DESIGN", "CERCLA / 4 PPT MCLS VACATED", "INCINERATOR BUILD-OUT KILLS THE UMBRELLA"];
+  const falsShort = ["SALT DATA REFUTES IT", "CERCLA MCLS VACATED", "INCINERATOR BUILD-OUT"];
   falsShort.forEach((f, i) => {
     const wX = 150 + i * 205;
     const st = seal.append("g");
@@ -93,7 +93,7 @@
         .attr("fill", col).attr("stroke", ink).attr("stroke-width", 1.1);
       wg.append("circle").attr("cx", ex).attr("cy", wy - 3.5).attr("r", 3.2).attr("fill", col).attr("stroke", ink).attr("stroke-width", 1);
       const wt = wg.append("text").attr("x", ex).attr("y", wy + 14.5).attr("text-anchor", "middle")
-        .attr("font-family", CH.MONO).attr("font-size", 7.2).attr("font-weight", 700).attr("fill", "#fff").text(t);
+        .attr("font-family", CH.MONO).attr("font-size", 7.2).attr("font-weight", 600).attr("fill", "#fff").text(t);
       CH.drill(wg, () => ({
         title: (side > 0 ? "BULL EVIDENCE" : "BEAR EVIDENCE"), value: t,
         sub: srcList[i].t, source: CH.srcStr(srcList[i].src),
@@ -118,7 +118,7 @@
     g.append("path").attr("d", `M${upX - 72},${wy} L${upX + 72},${wy} L${upX + 80},${wy + 25} L${upX - 80},${wy + 25} Z`)
       .attr("fill", "rgba(255,255,255,.75)").attr("stroke", blue).attr("stroke-width", 1.2).attr("stroke-dasharray", "5 4");
     g.append("text").attr("x", upX).attr("y", wy + 16.5).attr("text-anchor", "middle")
-      .attr("font-family", CH.MONO).attr("font-size", 7.8).attr("font-weight", 700).attr("fill", blue).text(upShort[i]);
+      .attr("font-family", CH.MONO).attr("font-size", 7.8).attr("font-weight", 600).attr("fill", blue).text(upShort[i]);
     // dashed arrow down toward the pan
     g.append("path").attr("d", `M${upX + 88},${wy + 12} q18,10 4,26`).attr("fill", "none")
       .attr("stroke", blue).attr("stroke-width", 1).attr("stroke-dasharray", "3 3");
@@ -167,7 +167,7 @@
   // piecewise-linear time scale: dense recent decade expanded, long horizon compressed
   const x = v => v <= 2028 ? 56 + (v - 2022.5) / 5.5 * 500 : 556 + (v - 2028) / 18 * 268;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkLo = "#8595a6", blue = "#2251ff", neg = "#c22f4e";
+  const ink = "#051c2c", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
   const clsCol = { policy: ink, demand: blue, risk: neg };
 
   // current window band (2026)
@@ -188,7 +188,7 @@
   // greedy layering of plaques
   const layers = []; // each: last x-end
   const placed = RPT.catalysts.map(c => {
-    const wpx = Math.max(64, c.label.length * 6.35 + 18);
+    const wpx = Math.max(76, c.label.length * 7.6 + 20);
     const cx = x(c.y);
     let li = 0;
     for (;;) {

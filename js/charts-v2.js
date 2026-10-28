@@ -10,12 +10,31 @@
   if (!host) return;
   const body = U.frame(host, {
     title: "Scale fixes energy first, capital second — but nothing above 306 t/d has ever operated",
-    sub: "FOUR RUNGS, DILUTE-FEED BASE CASE (COD 5–20 G/L) · LOG CAPACITY AXIS · ENERGY BAND = n≈0.6 SINGLE-TRAIN → n≈0.85 MODULAR-PARALLEL BRANCHES · COST PANEL WITHHELD — MANUFACTURER COST MODEL PENDING · CLICK RUNGS",
+    sub: "FOUR RUNGS, DILUTE-FEED BASE CASE (COD 5–20 G/L) · LOG CAPACITY AXIS · M³/DAY ↔ GPD TOGGLE BELOW · ENERGY BAND = n≈0.6 SINGLE-TRAIN → n≈0.85 MODULAR-PARALLEL BRANCHES · COST PANEL WITHHELD — MANUFACTURER COST MODEL PENDING · CLICK RUNGS",
     src: "Research compilation — report v2 Ch. 11.2 model [derived] · Industry & official — LANL/OSTI 3001291, NETL scaling, Concawe 25-6",
   });
+  // ── capacity unit toggle (per-session only): m³/day ↔ US gpd (×264.172) ──
+  let capU = "m3d";
+  try { capU = sessionStorage.getItem("hcsp-scale-unit") || "m3d"; } catch (e) {}
+  const tg = document.createElement("div");
+  tg.className = "unit-toggle";
+  tg.innerHTML = `<span class="ut-lab">CAPACITY UNITS</span>
+    <button type="button" data-u="m3d">M³/DAY</button><button type="button" data-u="gpd">GPD (US)</button>`;
+  body.parentNode.insertBefore(tg, body);
+  const syncTg = () => tg.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.u === capU));
+  tg.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    capU = b.dataset.u;
+    try { sessionStorage.setItem("hcsp-scale-unit", capU); } catch (e) {}
+    syncTg(); render(true);
+  }));
+  const capLab = m3d => capU === "gpd" ? `${Math.round(m3d * 264.172).toLocaleString("en-US")} GPD` : `${m3d.toLocaleString("en-US")} M³/DAY`;
+  syncTg();
+
+  function render(instant) {
+  body.innerHTML = "";
   const W = 880, H = 496;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#8595a6", blue = "#2251ff", neg = "#c22f4e";
+  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
   const mL = 84, mR = 30;
   const x = d3.scaleLog().domain([8, 2400]).range([mL, W - mR]);
   const D = RPT.scale_ladder;
@@ -98,7 +117,7 @@
     const xc = Math.max(mL + half, Math.min(x(d.m3d), W - mR - half));
     const nm = g.append("text").attr("x", xc).attr("y", p2.y1 + 18 + yOff).attr("text-anchor", "middle")
       .attr("font-family", CH.MONO).attr("font-size", 9.5).attr("font-weight", 700).attr("fill", ink)
-      .text(`${d.m3d.toLocaleString("en-US")} M³/DAY`);
+      .text(capLab(d.m3d));
     CH.halo(nm);
     const cx = g.append("text").attr("x", xc).attr("y", p2.y1 + 32 + yOff).attr("text-anchor", "middle")
       .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo).text(capexTxt);
@@ -149,14 +168,18 @@
     .text("MODULE COST IS TBD (MFR COST MODEL PENDING) — PART I SITS ONLY UNDER DESTRUCTION-PRICED UMBRELLAS");
   CH.halo(rd);
 
-  CH.enter(host, () => {
+  const final = () => { b1.style("opacity", 1); b2.style("opacity", 1); rungEls.forEach(g => g.style("opacity", 1)); xo.style("opacity", 1); lim.style("opacity", 1); };
+  if (instant || CH.REDUCE) final();
+  else CH.enter(host, () => {
     b1.transition().duration(700).style("opacity", 1);
     b2.transition().delay(150).duration(700).style("opacity", 1);
     rungEls.forEach((g, i) => g.transition().delay(300 + i * 160).duration(350).style("opacity", 1));
     xo.transition().delay(900).duration(400).style("opacity", 1);
     lim.transition().delay(1050).duration(400).style("opacity", 1);
   });
-  if (CH.REDUCE) { b1.style("opacity", 1); b2.style("opacity", 1); rungEls.forEach(g => g.style("opacity", 1)); xo.style("opacity", 1); lim.style("opacity", 1); }
+  CH.fitTextSoon();
+  }
+  render(false);
 })();
 
 /* ────────────────────────────────────────────────────────────
@@ -171,9 +194,9 @@
     sub: "NET ELECTRICITY KWHₑ/M³ (POSITIVE = IMPORTED, NEGATIVE = EXPORTED) × FEED COD G/L · HUB LINE = LANL MODEL WITH RANKINE POWER RECOVERY · DASHED BAND = 10 M³/DAY MODULE, NO POWER CYCLE · CLICK MARKERS",
     src: "Industry & official — LANL/OSTI 1990108 (2022), Concawe 25-6 (2025), WSAA (2025) · stream COD: measured values, each dated",
   });
-  const W = 880, H = 520;
+  const W = 880, H = 566;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#8595a6", blue = "#2251ff", neg = "#c22f4e";
+  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", neg = "#c22f4e";
   const mL = 74, mR = 26, top = 40, bot = 372;
   const x = d3.scaleLinear().domain([0, 200]).range([mL, W - mR]);
   const y = d3.scaleLinear().domain([260, -80]).range([top, bot]);
@@ -281,14 +304,14 @@
     g.append("line").attr("x1", x(s.cod[1])).attr("x2", x(s.cod[1])).attr("y1", railY + 1).attr("y2", railY + 9).attr("stroke", col).attr("stroke-width", 1);
     // label placement: staggered rows below the rail
     const label = s.name.toUpperCase() + " " + (s.cod[0] === s.cod[1] ? s.cod[0] : s.cod[0] + "–" + s.cod[1]);
-    const wpx = label.length * 5.4 + 8;
+    const wpx = label.length * 10.4 + 12;
     const cxm = x((s.cod[0] + s.cod[1]) / 2);
     let li = 0;
     for (;;) {
       if (!rows[li] || cxm - wpx / 2 > rows[li] + 6) { rows[li] = cxm + wpx / 2; break; }
       li++;
     }
-    const ly = railY + 22 + li * 13;
+    const ly = railY + 26 + li * 21;
     g.append("line").attr("x1", cxm).attr("x2", cxm).attr("y1", railY + 9).attr("y2", ly - 4)
       .attr("stroke", col).attr("stroke-width", 0.8).attr("opacity", 0.55);
     const lt = g.append("text").attr("x", Math.max(mL + wpx / 2, Math.min(cxm, W - mR - wpx / 2))).attr("y", ly)
@@ -303,7 +326,7 @@
     if (CH.REDUCE) g.style("opacity", 1);
     else g.transition().delay(700 + i * 90).duration(300).style("opacity", 1);
   });
-  svg.append("text").attr("x", mL).attr("y", railY + 22 + 4 * 13 + 8)
+  svg.append("text").attr("x", mL).attr("y", railY + 26 + 4 * 21 + 12)
     .attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", inkLo)
     .text("MEASURED STREAM COD — BLUE MARKERS CLEAR THE CROSSOVER; GREY NEVER WILL");
 
@@ -334,9 +357,9 @@
     src: "Industry & official — MDPI Processes (2021) 13.88 kJ/g COD · heat-recovery 70–85% · Cádiz pilot check · district-cooling tariff benchmarks",
   });
   const T = RPT.trigen;
-  const W = 880, H = 520;
+  const W = 880, H = 600;
   const svg = CH.svg(body, W, H);
-  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#8595a6", blue = "#2251ff", blueSoft = "#7d9bff", neg = "#c22f4e";
+  const ink = "#051c2c", inkMd = "#42566a", inkLo = "#42566a", blue = "#2251ff", blueSoft = "#7d9bff", neg = "#c22f4e";
   const S = 11.5; // px per MW
 
   const cas = svg.append("g");
@@ -404,7 +427,8 @@
 
   // preheat block (internal, recirculated)
   const n3 = node(NX.surplus - 40, preBlockY, 150, preH, "rgba(66,86,106,.10)", inkMd);
-  lab(NX.surplus + 35, preBlockY + preH / 2 + 3, "PREHEAT 6.5 MW_TH — RECIRCULATED", { anchor: "middle", size: 8, col: inkMd });
+  const preLab = lab(NX.surplus + 35, preBlockY + preH / 2 - 4, "PREHEAT 6.5 MW_TH", { anchor: "middle", size: 8, col: inkMd });
+  preLab.append("tspan").attr("x", NX.surplus + 35).attr("dy", "1.35em").text("— RECIRCULATED");
   lab(NX.surplus + 35, preBlockY + preH + 14, "THE PRICE OF AUTOTHERMAL OPERATION · ~60% OF GROSS", { anchor: "middle", size: 7.5, col: inkLo, bold: false });
   // dashed return arrow to gross bar
   cas.append("path").attr("d", `M${NX.surplus - 40},${preBlockY + preH / 2} C${NX.gross - 60},${preBlockY} ${NX.gross - 60},${gY + gH - 20} ${NX.gross},${gY + gH - 10}`)
@@ -420,7 +444,7 @@
 
   // outputs
   const n5 = node(NX.out, surY, 108, powH + 12, blue, blue);
-  lab(NX.out + 54, surY + powH / 2 + 9, "1.4 MWₑ POWER", { anchor: "middle", size: 9, col: "#fff", nohalo: true });
+  lab(NX.out - 10, surY + powH / 2 + 9, "1.4 MWₑ POWER", { anchor: "end", size: 9, col: blue });
   nodes.push({ el: n5, d: { title: "POWER OUTPUT", value: "1.4 MWₑ", sub: "Worth $15–20 per MWh_th of surplus heat at a 15–20% efficient small steam turbine and $0.10/kWh industrial power — the top of the monetization hierarchy unless chilled water sells retail.", source: CH.srcStr(["K83"]) } });
 
   const n6 = node(NX.out, chY, 108, coolHeatH, "rgba(125,155,255,.18)", blueSoft);
@@ -441,25 +465,25 @@
     .attr("fill", "#fff").attr("stroke", blue).attr("stroke-width", 1.6).attr("rx", 3);
   lab(NX.turbine + 85, preBlockY + 20, "≈ $1.15M/YR AT 8,000 H", { anchor: "middle", size: 11, col: blue });
   lab(NX.turbine + 85, preBlockY + 36, "VS $0.79M/YR IF ALL-COOLING", { anchor: "middle", size: 8, col: inkMd });
-  lab(NX.turbine + 85, preBlockY + 50, "OPTIMAL CASCADE — ENGINEERED, NOT ASSUMED", { anchor: "middle", size: 7.5, col: inkLo, bold: false });
+  lab(NX.turbine + 85, preBlockY + 50, "ENGINEERED, NOT ASSUMED", { anchor: "middle", size: 7.5, col: inkLo, bold: false });
   nodes.push({ el: vp, d: { title: "CASCADE VALUE", value: "$1.15M/yr", sub: "Base case 1,000 m³/day, 100 g/L COD, 80% recovery, 9.6 MW_th surplus, 8,000 operating hours. CCHP cooling-and-power mode can underperform separate production unless dispatch follows the tariff structure — the value stack must be engineered into the operating strategy.", source: CH.srcStr(["K83"]) } });
 
   // ── monetization hierarchy (bottom panel) ──
-  const hy = 448;
+  const hy = 500;
   svg.append("line").attr("x1", 66).attr("x2", W - 40).attr("y1", hy - 26).attr("y2", hy - 26).attr("stroke", "#dbe2ea");
   lab(66, hy - 34, "WHAT ONE MW_TH OF SURPLUS HEAT IS WORTH — THE MONETIZATION HIERARCHY", { size: 8.5, col: inkMd });
-  const hx = d3.scaleLinear().domain([0, 52]).range([290, W - 60]);
+  const hx = d3.scaleLinear().domain([0, 52]).range([290, W - 190]);
   const hRows = [
     { r: T.hierarchy[2], col: blue, note: "COOLING LEAPFROGS POWER ONLY HERE" },   // district — longest, first
     { r: T.hierarchy[0], col: inkMd, note: "THE DEFAULT TOP OF THE STACK" },       // power
     { r: T.hierarchy[1], col: inkLo, note: "HALF TO TWO-THIRDS THE POWER RATE" },  // cooling
   ];
   hRows.forEach((h, i) => {
-    const yy = hy + i * 24;
+    const yy = hy + i * 28;
     const g = svg.append("g").style("opacity", 0);
     const lo = parseFloat(h.r.val.replace(/[~$]/g, "").split("–")[0]), hi = parseFloat(h.r.val.replace(/[~$]/g, "").split("–")[1] || h.r.val.replace(/[~$]/g, ""));
     g.append("text").attr("x", 66).attr("y", yy + 11).attr("font-family", CH.MONO).attr("font-size", 8.5).attr("fill", ink)
-      .text(h.r.form.toUpperCase().slice(0, 36));
+      .text(h.r.form.toUpperCase().slice(0, 26));
     g.append("rect").attr("x", hx(0)).attr("y", yy).attr("width", hx(hi) - hx(0)).attr("height", 13).attr("fill", h.col).attr("opacity", 0.85).attr("rx", 2);
     if (lo !== hi) g.append("rect").attr("x", hx(lo)).attr("y", yy).attr("width", hx(hi) - hx(lo)).attr("height", 13).attr("fill", h.col).attr("rx", 2);
     const vt = g.append("text").attr("x", hx(hi) + 8).attr("y", yy + 11)
@@ -475,4 +499,24 @@
   cas.style("opacity", 0);
   CH.enter(host, () => cas.transition().duration(600).style("opacity", 1));
   if (CH.REDUCE) cas.style("opacity", 1);
+
+  // ── walkthrough registration (heat-allocation cascade) ──
+  window.CXT = window.CXT || { table: {}, walk: {} };
+  CXT.walk["heat-chart"] = {
+    title: "The heat cascade, step by step",
+    steps: [
+      { el: nodes[0].el, label: "Gross reaction heat — 16.1 MW_th",
+        cap: "Oxidizing the feed releases 16.1 MW of heat — the energy content of the waste itself, arriving free with every cubic meter processed." },
+      { el: nodes[2].el, label: "Preheat takes its cut — 6.5 MW_th",
+        cap: "First the plant pays itself: 6.5 MW recirculates to preheat incoming feed toward 400 °C. That is the price of autothermal operation — about 60% of gross heat never leaves the plant." },
+      { el: nodes[1].el, label: "Exportable surplus — 9.6 MW_th",
+        cap: "What remains is 9.6 MW of exportable surplus (6.4–11.2 across the 70–85% heat-recovery band). Only this slice can earn revenue." },
+      { el: nodes[3].el, label: "The turbine split",
+        cap: "An extraction turbine skims the hottest slice for power; the remaining 8.2 MW at 150–180 °C is ideal duty for an ammonia-water absorption chiller." },
+      { els: [nodes[4].el, nodes[5].el], label: "Outputs: power + cooling + water",
+        cap: "Out the gate: 1.4 MW of electricity, 4.9 MW of cooling (~1,392 refrigeration tons), and ~900 m³/day of distilled water — a displacement stack sold across the fence." },
+      { el: nodes[6].el, label: "What the cascade is worth — ≈$1.15M/yr",
+        cap: "Dispatched this way the cascade earns ≈$1.15M/yr at 8,000 operating hours, versus $0.79M/yr if all surplus went to cooling. The value stack must be engineered into the operating strategy, not assumed." },
+    ],
+  };
 })();
